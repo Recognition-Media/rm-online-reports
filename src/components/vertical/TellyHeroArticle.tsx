@@ -114,7 +114,7 @@ export function TellyHeroArticle({
                 className="text-[12px] font-bold uppercase px-4 py-1.5 rounded-full"
                 style={{ fontFamily: "'Basetica', -apple-system, sans-serif", border: '2px solid #2EFB5E', color: '#2EFB5E', letterSpacing: 1 }}
               >
-                2026 Edition
+                2026 Guide
               </span>
               <span
                 className="text-[12px] font-bold uppercase px-4 py-1.5 rounded-full"

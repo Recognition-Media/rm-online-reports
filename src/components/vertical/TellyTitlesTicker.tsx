@@ -58,9 +58,12 @@ export function TellyTitlesTicker({ report }: { report: Report }) {
   if (!items || items.length === 0) return null
 
   return (
-    <section className="relative px-5 md:px-[60px] py-10 md:py-14" style={{ background: '#110E1F' }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto', width: '100%' }}>
-        <div className="telly-ticker flex items-stretch overflow-hidden rounded-lg">
+    // Full-bleed: no side padding, no max-width and no corner radius, so it
+    // runs the whole width of the screen as a section break between About and
+    // Credits rather than sitting as a card inside a padded column.
+    <section className="relative" style={{ background: '#110E1F' }}>
+      <div className="w-full">
+        <div className="telly-ticker flex items-stretch overflow-hidden">
           <div
             className="flex-shrink-0 flex items-center gap-2 px-4 md:px-5 whitespace-nowrap"
             style={{

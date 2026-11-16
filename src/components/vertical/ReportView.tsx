@@ -23,6 +23,7 @@ import { PosterRowList } from './PosterRowList'
 import { RankedThumbnailRow } from './RankedThumbnailRow'
 import { PartnerDirectoryList } from './PartnerDirectoryList'
 import { StickySectionGroup } from './SectionStickyBar'
+import { TellyTitlesTicker } from './TellyTitlesTicker'
 import { StreamProgressRail } from './StreamProgressRail'
 import { TellyOnNowBar } from './TellyOnNowBar'
 import { SectionStatDonut } from './SectionStatDonut'
@@ -2509,12 +2510,14 @@ export function ReportView({ report }: { report: Report }) {
 
             {isTelly && <TellyAbout report={report} />}
 
-            {/* "The Facts" and the "Who's Behind the Best Video Work" ticker
-                used to sit here, between About and Credits. Both were removed
-                at Ann's request (2026-11-16); TellyFacts.tsx and
-                TellyTitlesTicker.tsx are left in the tree, along with their
-                Sanity fields, so either can be dropped back in with a single
-                line if they're wanted again. */}
+            {/* "The Facts" used to sit here, between About and Credits. It
+                was removed at Ann's request (2026-11-16); TellyFacts.tsx and
+                its Sanity fields are left in the tree so it can be dropped
+                back in with a single line if it's wanted again. */}
+
+            {/* The "Who's Behind the Best Video Work" ticker, kept on as a
+                full-bleed section break between About and Credits. */}
+            {isTelly && <TellyTitlesTicker report={report} />}
 
             {/* Credits sits below About per Ann's request. For every
                 non-Telly property this is a no-op position change
