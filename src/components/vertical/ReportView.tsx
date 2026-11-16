@@ -18,8 +18,6 @@ import { LovieFooter } from './LovieFooter'
 import { TellyFooter } from './TellyFooter'
 import { TellyAbout } from './TellyAbout'
 import { FloatingIcons } from './FloatingIcons'
-import { TellyFacts } from './TellyFacts'
-import { TellyTitlesTicker } from './TellyTitlesTicker'
 import { WinnerList } from './WinnerList'
 import { PosterRowList } from './PosterRowList'
 import { RankedThumbnailRow } from './RankedThumbnailRow'
@@ -2511,20 +2509,16 @@ export function ReportView({ report }: { report: Report }) {
 
             {isTelly && <TellyAbout report={report} />}
 
-            {/* "The Facts" moved here from the hero carousel per Ann's
-                request — now its own section at the bottom of the page,
-                right after "About The Telly Awards" instead of rotating
-                through the homepage. */}
-            {isTelly && <TellyFacts report={report} />}
+            {/* "The Facts" and the "Who's Behind the Best Video Work" ticker
+                used to sit here, between About and Credits. Both were removed
+                at Ann's request (2026-11-16); TellyFacts.tsx and
+                TellyTitlesTicker.tsx are left in the tree, along with their
+                Sanity fields, so either can be dropped back in with a single
+                line if they're wanted again. */}
 
-            {/* Scrolling "Who's Behind the Best Video Work" ticker — moved
-                down here, right alongside Credits, from its old spot
-                between the Table of Contents and Shows & Series. Telly-only. */}
-            {isTelly && <TellyTitlesTicker report={report} />}
-
-            {/* Credits moved below About/The Facts per Ann's request. For
-                every non-Telly property this is a no-op position change
-                (TellyAbout/TellyFacts above render nothing for them). */}
+            {/* Credits sits below About per Ann's request. For every
+                non-Telly property this is a no-op position change
+                (TellyAbout above renders nothing for them). */}
             <Credits report={report} />
 
             {report.property === 'lovie' ? (
