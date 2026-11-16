@@ -64,20 +64,28 @@ export function TellyTitlesTicker({ report }: { report: Report }) {
     <section className="relative" style={{ background: '#110E1F' }}>
       <div className="w-full">
         <div className="telly-ticker flex items-stretch overflow-hidden">
-          <div
-            className="flex-shrink-0 flex items-center gap-2 px-4 md:px-5 whitespace-nowrap"
-            style={{
-              background: '#0C75FF',
-              fontFamily: "'Basetica', -apple-system, sans-serif",
-              fontWeight: 700,
-              fontSize: 11,
-              letterSpacing: 1.3,
-              color: '#110E1F',
-              textTransform: 'uppercase',
-            }}
-          >
-            <span style={{ width: 6, height: 6, borderRadius: 999, background: '#110E1F', flexShrink: 0 }} />
-            {heading}
+          {/* Label styled like the "On Now" bars: dark fill, 2px accent
+              stroke, accent dot and accent uppercase text — rather than the
+              solid blue block it used to be. Sits in its own padded slot so
+              the rounded stroke reads as a bar rather than being clipped at
+              the viewport edge. */}
+          <div className="flex-shrink-0 flex items-center py-2.5 pl-4 md:pl-6 pr-3 md:pr-4" style={{ background: '#110E1F' }}>
+            <span
+              className="flex items-center gap-2.5 whitespace-nowrap rounded-lg px-3.5 md:px-4 py-2"
+              style={{
+                background: '#110E1F',
+                border: '2px solid #0C75FF',
+                fontFamily: "'Basetica', -apple-system, sans-serif",
+                fontWeight: 700,
+                fontSize: 11,
+                letterSpacing: 1.3,
+                color: '#0C75FF',
+                textTransform: 'uppercase',
+              }}
+            >
+              <span style={{ width: 6, height: 6, borderRadius: 999, background: '#0C75FF', flexShrink: 0 }} />
+              {heading}
+            </span>
           </div>
 
           <div className="relative flex-1 overflow-hidden flex items-center min-w-0" style={{ background: '#D8F5FF' }}>
