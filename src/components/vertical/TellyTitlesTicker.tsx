@@ -58,34 +58,39 @@ export function TellyTitlesTicker({ report }: { report: Report }) {
   if (!items || items.length === 0) return null
 
   return (
-    // Full-bleed: no side padding, no max-width and no corner radius, so it
-    // runs the whole width of the screen as a section break between About and
-    // Credits rather than sitting as a card inside a padded column.
-    <section className="relative" style={{ background: '#110E1F' }}>
+    // Near-full-width section break between About and Credits. A small
+    // horizontal inset rather than true full bleed, so the blue stroke that
+    // now wraps the whole bar isn't sliced off at the viewport edges.
+    <section className="relative py-5 px-4 md:px-6" style={{ background: '#110E1F' }}>
       <div className="w-full">
-        <div className="telly-ticker flex items-stretch overflow-hidden">
-          {/* Label styled like the "On Now" bars: dark fill, 2px accent
-              stroke, accent dot and accent uppercase text — rather than the
-              solid blue block it used to be. Sits in its own padded slot so
-              the rounded stroke reads as a bar rather than being clipped at
-              the viewport edge. */}
-          <div className="flex-shrink-0 flex items-center py-2.5 pl-4 md:pl-6 pr-3 md:pr-4" style={{ background: '#110E1F' }}>
-            <span
-              className="flex items-center gap-2.5 whitespace-nowrap rounded-lg px-3.5 md:px-4 py-2"
-              style={{
-                background: '#110E1F',
-                border: '2px solid #0C75FF',
-                fontFamily: "'Basetica', -apple-system, sans-serif",
-                fontWeight: 700,
-                fontSize: 11,
-                letterSpacing: 1.3,
-                color: '#0C75FF',
-                textTransform: 'uppercase',
-              }}
-            >
-              <span style={{ width: 6, height: 6, borderRadius: 999, background: '#0C75FF', flexShrink: 0 }} />
-              {heading}
-            </span>
+        {/* The stroke wraps the entire bar — label and scrolling track
+            together — rather than just the label pill. */}
+        <div
+          className="telly-ticker flex items-stretch overflow-hidden rounded-xl"
+          style={{ border: '2px solid #0C75FF' }}
+        >
+          {/* Label segment: a translucent dark wash rather than flat black,
+              so it reads as a tinted panel instead of a hard slab. The
+              stroke lives on the bar around it, not here. */}
+          <div
+            className="flex-shrink-0 flex items-center gap-2.5 whitespace-nowrap px-4 md:px-6 py-3"
+            style={{
+              // Blue-tinted translucent panel rather than flat black — a
+              // plain dark wash reads as a hard slab here, because the
+              // section behind it is already near-black so transparency
+              // alone changes nothing. Tinting toward the bar's own stroke
+              // colour ties the two together.
+              background: 'rgba(12, 117, 255, 0.18)',
+              fontFamily: "'Basetica', -apple-system, sans-serif",
+              fontWeight: 700,
+              fontSize: 11,
+              letterSpacing: 1.3,
+              color: '#0C75FF',
+              textTransform: 'uppercase',
+            }}
+          >
+            <span style={{ width: 6, height: 6, borderRadius: 999, background: '#0C75FF', flexShrink: 0 }} />
+            {heading}
           </div>
 
           <div className="relative flex-1 overflow-hidden flex items-center min-w-0" style={{ background: '#D8F5FF' }}>
