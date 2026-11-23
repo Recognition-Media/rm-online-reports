@@ -89,6 +89,14 @@ Each component gets its props from `content.ts` (later from the Sanity `report` 
 3. **CMS:** once the design is stable, move `content.ts` fields into the `report` schema (a "Memory Field" group, hidden unless `template === 'field'`) and enter the copy in the Studio.
 4. **Launch:** open a PR to `main` → Steve reviews → merge → Amplify deploys → set the report `status` to `live` at `reports.webbyawards.com/<slug>/`.
 
+## Studio publishing rules
+
+As of 2026-11-23, publishing any document in the Studio ("RM Online Reports") automatically rebuilds the live sites (about 5 minutes).
+
+- Keep the W31 `report` document's **status on `draft`** until launch. Production builds skip non-live reports, so a draft never appears publicly.
+- **Do not set it to `live` until this branch is merged to `main`.** Before the merge, the live build doesn't know the `field` template.
+- **Batch Studio edits and publish once** per round of changes; every publish triggers a rebuild of all brands' sites.
+
 ## Out of scope for this spec
 
 - **Storing "Drop it in" submissions.** In the prototype the input shows its UI only, with nothing saved. Where submissions are stored gets its own spec once the design settles. Because the sign-up Lambda is shared by every report, that spec must either use a separate endpoint or get Steve's sign-off before touching the Lambda.
