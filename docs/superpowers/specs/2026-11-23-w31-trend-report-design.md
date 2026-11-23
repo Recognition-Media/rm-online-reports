@@ -14,12 +14,30 @@ Source material lives outside this repo in `~/webby-trend-report-31/` (design ex
 
 ## Decisions
 
-- **Build inside `webby-annual-report`, not a new repo.** The report reuses the existing sign-up gate (Lambda → DynamoDB + Customer.io), Sanity Studio, analytics, and the native `reports.webbyawards.com/<slug>/` URL. This is a normal feature branch that merges to `main` through Steve's PR review, like the Lovie and Nordics work.
+- **Build inside `rm-online-reports` (formerly `webby-annual-report`; renamed by Steve 2026-11-23), not a new repo.** The report reuses the existing sign-up gate (Lambda → DynamoDB + Customer.io), Sanity Studio, analytics, and the native `reports.webbyawards.com/<slug>/` URL. This is a normal feature branch that merges to `main` through Steve's PR review, like the Lovie and Nordics work.
 - **Add a third layout template, `field`**, next to `horizontal` and `vertical`. The `property` stays `webby`. `ReportView.tsx` routes `template === 'field'` to a new `src/components/field/ReportView.tsx`. The existing templates are not touched.
-- **Reuse the existing sign-up gate.** No new gate design. Adapt `vertical/SignupGate.tsx` (or the horizontal one, whichever is closer) to the field template's styling. Sign-ups flow through the existing Lambda to Customer.io unchanged.
+- **Reuse the existing sign-up gate by copying it, not editing it.** No new gate design. Copy `vertical/SignupGate.tsx` into `src/components/field/SignupGate.tsx` and restyle only the copy. The original file is not modified. Sign-ups go to the same Lambda → Customer.io endpoint, and the Lambda itself is unchanged.
 - **Production stays on AWS Amplify** (Steve admins it). Nothing about production hosting changes.
 - **Design previews on Vercel, limited to this branch.** A Vercel project in the Recognition Media team (`recog-media`) is connected to this repo and builds **only** `jordana/w31-trend-report`. It never gets a real domain and is for team review links only.
 - **Content in a local file first, Sanity later.** While the design is moving, copy and data live in one typed content file (`src/components/field/content.ts`), kept separate from layout code. Once the design is stable, those fields move into the `report` schema so the team can edit TK copy in the Studio without a developer.
+
+## Scope guardrail: W31 Trend Report only (hard rule)
+
+This work must not change how any other template or report looks or behaves: Webby (horizontal), Anthem/Lovie/Nordics/Shared Influence (vertical), Telly, or any future report.
+
+**New files (free to change):** anything under `src/components/field/`, `public/field/`, and this branch's docs.
+
+**Existing shared files: only these, and only additive, inert edits:**
+
+| File | Allowed change | Why it can't affect other reports |
+|---|---|---|
+| `src/components/ReportView.tsx` | One added `if (template === 'field')` branch | Only runs for a report whose template is `field`; the existing fallback logic is untouched |
+| `src/sanity/schemas/report.ts` | Add `{ title: 'Field (W31 Trend Report)', value: 'field' }` to the template list; in Phase 3, add a "Memory Field" field group **hidden unless `template === 'field'`** | Existing documents keep their saved template; new fields are optional, empty, and invisible on other reports |
+| `src/sanity/types.ts` / `src/sanity/queries.ts` | Phase 3 only: add the new optional fields to the type and the report query | Optional fields resolve to `null` for every other report |
+
+**Not allowed:** editing any existing component (including both `SignupGate.tsx` files, `horizontal/`, `vertical/`, shared modules), global CSS, `next.config.ts`, `amplify.yml`, the sign-up Lambda, `infra/`, or existing Sanity documents. If something shared seems to need a change, copy it into `src/components/field/` instead. If that isn't possible, stop and ask first.
+
+**Check before every PR:** `git diff --stat origin/main...HEAD` must list only the files above plus `field/` paths. Any other file in that list is a scope bug.
 
 ## Experience (from the 11.23 design exports)
 
@@ -57,7 +75,7 @@ Each component gets its props from `content.ts` (later from the Sanity `report` 
 
 ## Preview hosting (Vercel, this branch only)
 
-- A new Vercel project in the `recog-media` team, connected to `Recognition-Media/webby-annual-report`.
+- A new Vercel project in the `recog-media` team, connected to `Recognition-Media/rm-online-reports`.
 - **Ignored Build Step** set so only `jordana/w31-trend-report` builds and every other branch (including `main` and `preview`) is skipped.
 - **Build machine: standard.** Push in batches rather than after every small edit.
 - Environment variables: `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `NEXT_PUBLIC_SANITY_API_VERSION` (same values as Amplify). `NEXT_PUBLIC_SIGNUP_API_URL` is **left unset**, so the gate opens and closes normally but no test sign-up reaches DynamoDB or Customer.io. (The Lambda's CORS allow-list would also block `*.vercel.app`.)
@@ -73,7 +91,7 @@ Each component gets its props from `content.ts` (later from the Sanity `report` 
 
 ## Out of scope for this spec
 
-- **Storing "Drop it in" submissions.** In the prototype the input shows its UI only, with nothing saved. Where submissions are stored (likely a new Lambda route beside the sign-up handler, moderated before reaching the ticker) gets its own spec once the design settles.
+- **Storing "Drop it in" submissions.** In the prototype the input shows its UI only, with nothing saved. Where submissions are stored gets its own spec once the design settles. Because the sign-up Lambda is shared by every report, that spec must either use a separate endpoint or get Steve's sign-off before touching the Lambda.
 - Redesigning the sign-up gate.
 - Moving production off Amplify.
 
@@ -84,6 +102,7 @@ Each component gets its props from `content.ts` (later from the Sanity `report` 
 
 ## Verification
 
+- `git diff --stat origin/main...HEAD` shows only allowlisted files (see Scope guardrail).
 - `npm run lint` and `npm run build` (static export) pass.
 - Existing reports (Webby, Anthem, Lovie, Telly) still build and render unchanged; spot-check one horizontal and one vertical report locally.
 - The field report renders from a draft document in dev, and from a `live` document on the Vercel preview.
