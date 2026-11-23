@@ -7,8 +7,8 @@ import { signupExportPlugin } from './plugins/signupExport'
 import { duplicateReportAction } from './actions/duplicateReport'
 
 export default defineConfig({
-  name: 'webby-annual-report',
-  title: 'Annual Reports',
+  name: 'rm-online-reports',
+  title: 'RM Online Reports',
   projectId,
   dataset,
   basePath: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/studio`,
