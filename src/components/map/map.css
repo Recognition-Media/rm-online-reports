@@ -393,3 +393,8 @@
 .map-root .map-feature-video-bar > span { display: block; min-width: 0; font-size: 12px; line-height: 1.3; }
 .map-root .map-feature-video-bar > span > span { display: block; }
 .map-root .map-stop-left p { line-height: 1.5; }
+/* Feature video side: video, speaker and Watch button centered in the right panel */
+.map-root .map-stop-right:has(.map-feature-video) { align-items: center; }
+.map-root .map-feature-video { margin-inline: auto; }
+.map-root .map-feature-video-bar { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+.map-root .map-stop-right:has(.map-feature-video) > .map-voice { width: 100%; }
