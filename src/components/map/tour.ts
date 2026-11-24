@@ -1,11 +1,5 @@
-// Pure tour order for the map template: intro card first, then each stop.
+// Pure tour order for the map template: the stops in order.
 // `null` means no pop-up is open.
-
-export const INTRO = 'intro'
-
-export function tourSteps(stopIds: string[]): string[] {
-  return [INTRO, ...stopIds]
-}
 
 export function nextStep(steps: string[], current: string | null): string | null {
   if (current === null) return steps[0] ?? null

@@ -104,7 +104,7 @@
 /* Stage: a fixed 1440×900 design canvas scaled to fit */
 .map-root .map-stage-wrap { position: relative; }
 .map-root .map-stage-wrap { padding-top: var(--map-header-height); }
-.map-root .map-stage { position: relative; height: calc(100dvh - var(--map-header-height) - var(--map-tour-height) - var(--map-band-ticker-height)); overflow: hidden; background: var(--map-ground); }
+.map-root .map-stage { position: relative; height: calc(100dvh - var(--map-header-height) - var(--map-tour-height, 0px)); overflow: hidden; background: var(--map-ground); }
 /* Background art, bled slightly past the edges so the artwork's soft corners never show. */
 .map-root .map-stage::before { content: ''; position: absolute; inset: -2%; background: var(--map-report-bg) center / cover no-repeat; opacity: var(--map-report-bg-opacity); pointer-events: none; }
 .map-root .map-canvas { z-index: 1; }
@@ -165,25 +165,33 @@
 /* Ring of stops (on the canvas, above the field) */
 .map-root .map-ring { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
 .map-root .map-ring-stop {
-  position: absolute; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 12px;
-  border: 0; border-radius: var(--map-radius-pill); background: var(--map-btn-secondary-bg); color: var(--map-btn-secondary-text);
-  box-shadow: inset 0 0 0 1.5px var(--map-ink); font-family: var(--map-font-body); font-weight: 500; font-size: 13px;
-  white-space: nowrap; overflow: hidden; cursor: pointer; pointer-events: auto; transition: transform 150ms ease;
+  position: absolute; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 14px;
+  border: 0; border-radius: var(--map-radius-pill); background: var(--map-btn-primary-bg); color: var(--map-btn-primary-text);
+  font-family: var(--map-font-body); font-weight: 500; font-size: 16px; white-space: nowrap; overflow: hidden;
+  cursor: pointer; pointer-events: auto; transition: background-color 150ms ease, color 150ms ease, transform 150ms ease;
 }
-.map-root .map-ring-stop:hover { transform: translateY(-2px); }
-.map-root .map-ring-stop.is-current { background: var(--map-btn-primary-bg); color: var(--map-btn-primary-text); }
-.map-root .map-ring-num { font-family: var(--map-font-display); font-size: 15px; }
-.map-root .map-ring-stop.is-visited::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+/* Hover / open: the stop's own brand color, black text for contrast. */
+.map-root .map-ring-stop:hover, .map-root .map-ring-stop:focus-visible, .map-root .map-ring-stop.is-current {
+  background: var(--stop-color); color: var(--map-ink); transform: translateY(-2px);
+}
+.map-root .map-ring-num { font-family: var(--map-font-display); font-size: 18px; }
 
-/* Stop pop-up (native dialog, centered) */
-.map-root .map-stop {
-  position: fixed; inset: 0; margin: auto; width: min(1200px, 92vw); height: min(780px, 88dvh); padding: 0;
-  border: 1.5px solid var(--map-ink); background: var(--map-ground); color: var(--map-ink); font-family: var(--map-font-body);
+/* Stop pop-up: sits between the top bar and the bottom navigation, over a dim layer on the field only */
+.map-root .map-stop-scrim {
+  position: fixed; left: 0; right: 0; top: var(--map-header-height); bottom: var(--map-tour-height, 0px); z-index: 30;
+  background: var(--map-gate-overlay);
 }
-.map-root .map-stop.is-intro { height: fit-content; width: min(680px, 92vw); }
-.map-root .map-stop::backdrop { background: var(--map-gate-overlay); }
-.map-root .map-stop-card { position: relative; height: 100%; overflow-y: auto; padding: 64px 56px 48px; }
-.map-root .map-stop-controls { position: absolute; top: 16px; right: 16px; display: flex; gap: 8px; }
+.map-root .map-stop {
+  position: fixed; z-index: 31; left: 50%; transform: translateX(-50%); width: min(1200px, 94vw);
+  top: calc(var(--map-header-height) + 16px); bottom: calc(var(--map-tour-height, 0px) + 16px);
+  border: 1.5px solid var(--map-ink); border-top: 8px solid var(--stop-color); background: var(--map-ground); color: var(--map-ink);
+  font-family: var(--map-font-body);
+}
+.map-root .map-stop-card { position: relative; height: 100%; overflow-y: auto; overscroll-behavior: contain; padding: 20px 56px 48px; }
+.map-root .map-stop-controls {
+  position: sticky; top: 0; z-index: 1; display: flex; justify-content: flex-end; gap: 8px;
+  margin: 0 -36px 16px 0; padding: 0 0 8px; background: var(--map-ground);
+}
 .map-root .map-stop-controls .map-btn[aria-disabled='true'] { opacity: 0.35; cursor: default; }
 .map-root .map-stop h2:focus { outline: none; }
 .map-root .map-stop-panels { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
@@ -191,25 +199,24 @@
 .map-root .map-stop-left p { margin: 0; line-height: 1.6; }
 .map-root .map-stop-eyebrow { margin: 0; font-size: var(--map-size-label); letter-spacing: 0.08em; text-transform: uppercase; }
 .map-root .map-stop h2 { margin: 0; font-family: var(--map-font-display); font-weight: 400; font-size: 48px; line-height: 0.95; text-transform: uppercase; }
-.map-root .map-stop-intro { display: grid; gap: 16px; }
-.map-root .map-stop-intro p { margin: 0; line-height: 1.6; }
 .map-root .map-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
-/* Bottom band on the field page: tour bar above a slim ticker */
-.map-root .map-band { background: var(--map-topbar-solid-bg); color: var(--map-topbar-solid-text); }
-.map-root .map-tour { display: flex; align-items: center; gap: 16px; height: var(--map-tour-height); padding: 0 var(--map-gutter); }
-.map-root .map-tour-prev {
+/* Bottom navigation on the field page (stays usable while a stop is open) */
+.map-root .map-band { position: relative; z-index: 32; background: var(--map-topbar-solid-bg); color: var(--map-topbar-solid-text); }
+.map-root .map-tour { display: flex; align-items: center; gap: 12px; height: var(--map-tour-height); padding: 0 var(--map-gutter); }
+.map-root .map-tour-hint { flex: 1; margin: 0; font-weight: var(--map-subhead-weight); font-size: 15px; }
+.map-root .map-tour-arrow {
   width: 40px; height: 40px; border: 1.5px solid currentColor; border-radius: 50%; background: transparent; color: inherit; font-size: 18px; cursor: pointer;
 }
-.map-root .map-tour-prev:disabled { opacity: 0.35; cursor: default; }
-.map-root .map-tour-steps { flex: 1; display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.map-root .map-tour-arrow[aria-disabled='true'] { opacity: 0.35; cursor: default; }
+.map-root .map-tour-steps { display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .map-root .map-tour-pill {
-  height: 32px; padding: 0 12px; border: 1.5px solid currentColor; border-radius: var(--map-radius-pill); background: transparent;
-  color: inherit; font-family: var(--map-font-display); font-size: 16px; cursor: pointer;
+  height: 36px; padding: 0 14px; border: 1.5px solid currentColor; border-radius: var(--map-radius-pill); background: transparent;
+  color: inherit; font-family: var(--map-font-display); font-size: 17px; cursor: pointer; transition: background-color 150ms ease, color 150ms ease;
 }
-.map-root .map-tour-pill.is-current { background: var(--map-btn-secondary-bg); color: var(--map-btn-secondary-text); border-color: var(--map-btn-secondary-bg); }
-.map-root .map-ticker.map-ticker-field { position: relative; left: auto; right: auto; bottom: auto; height: var(--map-band-ticker-height); }
-.map-root .map-ticker.map-ticker-field.is-muted { visibility: hidden; }
+.map-root .map-tour-pill:hover, .map-root .map-tour-pill:focus-visible, .map-root .map-tour-pill.is-current {
+  background: var(--stop-color); border-color: var(--stop-color); color: var(--map-ink);
+}
 /* Buttons inside modules keep their natural width; arrow buttons on the beige card get an outline. */
 .map-root .map-mod > .map-btn { align-self: flex-start; }
 .map-root .map-stop-controls .map-btn-secondary { box-shadow: inset 0 0 0 1.5px var(--map-ink); }

@@ -3,8 +3,6 @@ import type { MapStop } from '../types'
 // Survey numbers are typed by hand in content.ts; this catches typos
 // (690 for 69, an empty list, a duplicate number) before they ship.
 
-// Must match INTRO in ../tour.ts (kept literal so node --test can load this file; a test checks they match).
-const RESERVED_ID = 'intro'
 const isPct = (v: number) => Number.isFinite(v) && v >= 0 && v <= 100
 const onCanvas = (p?: { x: number; y: number }) =>
   !!p && Number.isFinite(p.x) && Number.isFinite(p.y) && p.x >= 0 && p.x <= 1440 && p.y >= 0 && p.y <= 900
@@ -18,7 +16,6 @@ export function validateStops(stops: MapStop[]): string[] {
     ids.add(s.id)
     if (numbers.has(s.number)) errors.push(`duplicate stop number "${s.number}"`)
     numbers.add(s.number)
-    if (s.id === RESERVED_ID) errors.push(`stop id "${RESERVED_ID}" is reserved for the tour's intro card`)
     if (!onCanvas(s.position)) errors.push(`stop "${s.id}": position must be on the 1440×900 canvas`)
     const m = s.module
     if (m.type === 'slider' && !isPct(m.value)) errors.push(`stop "${s.id}": slider value must be 0–100 (got ${m.value})`)

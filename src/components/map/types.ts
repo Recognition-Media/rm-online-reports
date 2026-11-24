@@ -46,7 +46,8 @@ export interface MapContent {
   }
   /** The stops around the map, in tour order. */
   stops: MapStop[]
-  tour: { intro: TourIntro; start: string; next: string; end: string; prev: string; aria: string }
+  /** Bottom navigation bar on the field page. */
+  tour: { hint: string; prev: string; next: string; aria: string }
   /** Small UI labels used by the map template. */
   labels: { ringEyebrow: string; ringAria: string; close: string; prevStop: string; nextStop: string; videoSoon: string }
 }
@@ -140,8 +141,10 @@ export interface MapStop {
   /** "01" … */
   number: string
   title: string
-  /** Shown on the tour bar instead of the number, e.g. "06 Takeaways". */
+  /** Shown on the navigation bar instead of the number, e.g. "06 Takeaways". */
   tourLabel?: string
+  /** Brand color the stop turns on hover and while open (a CSS color / var). */
+  color: string
   /** Pill center on the 1440×900 canvas. */
   position: { x: number; y: number }
   /** One entry per paragraph. */
@@ -150,7 +153,3 @@ export interface MapStop {
   module: StopModule
 }
 
-export interface TourIntro {
-  title: string
-  body: string[]
-}

@@ -1,7 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { validateStops, assertValidStops } from './validate.ts'
-import { INTRO } from '../tour.ts'
 
 const stop = (id, number, module) => ({ id, number, title: id, position: { x: 0, y: 0 }, copy: [], module })
 const bars = (values) => ({ type: 'bars', source: '', bars: values.map((value) => ({ label: 'x', value })) })
@@ -40,18 +39,12 @@ test('split parts must add up to ~100 and have 1–4 parts', () => {
   assert.ok(validateStops([split([20, 20, 20, 20, 20])]).some((e) => e.includes('1–4 parts')), 'five')
 })
 
-test('a stop cannot use the reserved id "intro" and needs a position on the canvas', () => {
+test('a stop needs a position on the canvas', () => {
   const ok = stop('a', '01', bars([1]))
   const errs = validateStops([
-    { ...ok, id: 'intro', number: '02' },
     { ...ok, id: 'b', number: '03', position: { x: NaN, y: 10 } },
     { ...ok, id: 'c', number: '04', position: { x: 1600, y: 10 } },
   ])
-  assert.ok(errs.some((e) => e.includes('"intro"')))
   assert.ok(errs.some((e) => e.includes('stop "b"') && e.includes('position')))
   assert.ok(errs.some((e) => e.includes('stop "c"') && e.includes('position')))
-})
-
-test('the reserved id matches the tour intro marker', () => {
-  assert.ok(validateStops([stop(INTRO, '01', bars([1]))]).some((e) => e.includes(`"${INTRO}"`)))
 })

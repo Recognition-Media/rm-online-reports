@@ -30,3 +30,10 @@ test('stop pills never overlap each other', () => {
     assert.ok(apart, `${content.stops[i].number} overlaps ${content.stops[j].number}`)
   }
 })
+
+test('each stop has its own brand color; the five lead colors come first', () => {
+  const colors = content.stops.map((s) => s.color)
+  assert.equal(new Set(colors).size, content.stops.length)
+  for (const c of colors) assert.match(c, /^var\(--w31-(pink|orange|yellow|blue|green|watermelon|forest)\)$/)
+  assert.deepEqual(colors.slice(0, 5).sort(), ['var(--w31-blue)', 'var(--w31-green)', 'var(--w31-orange)', 'var(--w31-pink)', 'var(--w31-yellow)'])
+})

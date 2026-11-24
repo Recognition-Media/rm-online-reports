@@ -2,11 +2,14 @@
 
 import type { MapContent, MapStop } from './types'
 
+/**
+ * Bottom navigation on the field page: a hint, ← / →, and a pill per stop.
+ * Stays usable while a stop pop-up is open (the pop-up sits above it, not over it).
+ */
 export function TourBar({
   stops,
   labels,
   current,
-  isLast,
   onGo,
   onPrev,
   onNext,
@@ -14,15 +17,16 @@ export function TourBar({
   stops: MapStop[]
   labels: MapContent['tour']
   current: string | null
-  isLast: boolean
   onGo: (id: string) => void
-  onPrev: () => void
-  onNext: () => void
+  onPrev?: () => void
+  onNext?: () => void
 }) {
-  const primary = current === null ? labels.start : isLast ? labels.end : labels.next
   return (
     <nav className="map-tour" aria-label={labels.aria}>
-      <button type="button" className="map-tour-prev" onClick={onPrev} disabled={current === null} aria-label={labels.prev}>
+      <p className="map-tour-hint">
+        {labels.hint} <span aria-hidden="true">→</span>
+      </p>
+      <button type="button" className="map-tour-arrow" onClick={() => onPrev?.()} aria-disabled={!onPrev} aria-label={labels.prev}>
         ←
       </button>
       <ol className="map-tour-steps">
@@ -31,7 +35,9 @@ export function TourBar({
             <button
               type="button"
               className={`map-tour-pill${current === s.id ? ' is-current' : ''}`}
+              style={{ ['--stop-color' as string]: s.color }}
               aria-current={current === s.id ? 'step' : undefined}
+              aria-label={`${s.number} ${s.title}`}
               onClick={() => onGo(s.id)}
             >
               {s.tourLabel ?? s.number}
@@ -39,8 +45,8 @@ export function TourBar({
           </li>
         ))}
       </ol>
-      <button type="button" className="map-btn map-btn-secondary map-tour-next" onClick={onNext}>
-        {primary} <span aria-hidden="true">→</span>
+      <button type="button" className="map-tour-arrow" onClick={() => onNext?.()} aria-disabled={!onNext} aria-label={labels.next}>
+        →
       </button>
     </nav>
   )

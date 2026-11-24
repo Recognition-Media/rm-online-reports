@@ -20,6 +20,9 @@ export const content: MapContent = {
             'TKTK: what the report is and why The Webby Awards made it.',
             'TKTK: who we asked (Internet Memory Project events and Webby Judges) and how the answers were read.',
             'TKTK: how to explore the report.',
+            // How to read the field (moved here from the old tour intro).
+            'How to read the field: each shape is one reason people gave for why something stuck. Its size shows how many answers led with that reason.',
+            'Warm colors are Meaning, the human insight, feeling or point of view behind the work; cool colors are Form, the shape and execution that carry it. Shapes in the same color belong to the same family of reasons.',
           ],
         },
       },
@@ -51,7 +54,8 @@ export const content: MapContent = {
       id: 'attention',
       number: '01',
       title: 'The Attention Trap',
-      position: { x: 140, y: 300 },
+      position: { x: 134, y: 300 },
+      color: 'var(--w31-pink)',
       copy: ['About 10 hours of media a day. Roughly 1,500 pieces of content. Most of it ends up as noise. [Copy TK]'],
       voice: {
         kind: 'video',
@@ -80,6 +84,7 @@ export const content: MapContent = {
       number: '02',
       title: 'When Metrics Lose Meaning',
       position: { x: 720, y: 110 },
+      color: 'var(--w31-orange)',
       copy: ['Metrics were a gift to creative work. But once everyone optimizes for views, the view count says less and less. [Copy TK]'],
       voice: { kind: 'quote', quote: { text: 'Craft and effectiveness are not two sides of the same coin anymore.', name: 'Matheus Faustino', role: 'Creative Director, Monks' } },
       module: {
@@ -99,7 +104,8 @@ export const content: MapContent = {
       id: 'optimization',
       number: '03',
       title: 'Optimization-Maxxing',
-      position: { x: 1300, y: 300 },
+      position: { x: 1296, y: 300 },
+      color: 'var(--w31-yellow)',
       copy: ['When everyone optimizes toward the same numbers, everyone arrives at the same work. [Copy TK]'],
       voice: { kind: 'quote', quote: { text: "We've gotten incredibly good at optimizing for what performs, which can also mean optimizing toward sameness.", name: 'Kaare Wesnaes', role: 'Head of Innovation, Ogilvy' } },
       module: {
@@ -117,7 +123,8 @@ export const content: MapContent = {
       id: 'signals',
       number: '04',
       title: 'What Are the Signals?',
-      position: { x: 1300, y: 610 },
+      position: { x: 1291, y: 610 },
+      color: 'var(--w31-blue)',
       copy: ['Judges agree a high view count proves one thing: the work was put in front of people. [Copy TK]'],
       voice: { kind: 'quote', quote: { text: 'The comment section has become one of the most valuable spaces in social.', name: 'Wangari Nderi', role: 'Group Brand, Digital & Communications Lead, Live54 Plus' } },
       module: {
@@ -137,6 +144,7 @@ export const content: MapContent = {
       number: '05',
       title: 'Listening vs. Experimenting',
       position: { x: 720, y: 858 },
+      color: 'var(--w31-green)',
       copy: ['Audience feedback still matters. The line to draw is between experimentation and optimization. [Copy TK]'],
       voice: {
         kind: 'video',
@@ -153,7 +161,8 @@ export const content: MapContent = {
       number: '06',
       title: 'Takeaways',
       tourLabel: '06 Takeaways',
-      position: { x: 140, y: 610 },
+      position: { x: 93, y: 610 },
+      color: 'var(--w31-watermelon)',
       copy: [],
       module: {
         type: 'takeaways',
@@ -168,18 +177,10 @@ export const content: MapContent = {
     },
   ],
   tour: {
-    intro: {
-      title: 'How to read the field',
-      body: [
-        'Each shape is one reason people gave for why something stuck. Its size shows how many answers led with that reason.',
-        'Warm colors are Meaning, the human insight, feeling or point of view behind the work; cool colors are Form, the shape and execution that carry it. Shapes in the same color belong to the same family of reasons.',
-      ],
-    },
-    start: 'Start the tour',
-    next: 'Next',
-    end: 'Back to the field',
-    prev: 'Previous',
-    aria: 'Report tour',
+    hint: 'Click a section to explore',
+    prev: 'Previous section',
+    next: 'Next section',
+    aria: 'Report sections',
   },
   labels: {
     ringEyebrow: 'Outer ring',

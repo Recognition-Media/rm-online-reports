@@ -1,40 +1,33 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import type { MapContent, MapStop, TourIntro } from './types'
+import type { MapContent, MapStop } from './types'
 import { StopModule } from './modules/StopModule'
 import { VoiceBlock } from './modules/VoiceBlock'
 
 /**
- * Large center pop-up for a stop (or the tour's intro card when `stop` is null).
- * Native <dialog>: focus is trapped, Escape closes, and the page behind is inert.
+ * Large pop-up for a stop. It sits between the top bar and the bottom
+ * navigation (both stay usable), over a dim layer that covers only the field.
+ * Escape, × and a click on the dim layer close it; ← / → (and arrow keys) move between stops.
  */
 export function StopModal({
   stop,
-  intro,
   labels,
   onClose,
   onPrev,
   onNext,
 }: {
-  stop: MapStop | null
-  intro: TourIntro
+  stop: MapStop
   labels: MapContent['labels']
   onClose: () => void
   onPrev?: () => void
   onNext?: () => void
 }) {
-  const ref = useRef<HTMLDialogElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (el && !el.open) el.showModal()
-  }, [])
-
-  // Arrow keys move between stops wherever focus is (it can drop to <body> when a
-  // focused button disappears), except inside inputs like the Q10 slider.
+  // Keyboard: arrows move between stops wherever focus is (except inside inputs
+  // like the Q10 slider); Escape closes.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') return onClose()
       if (e.altKey || e.metaKey || e.ctrlKey) return
       if ((e.target as HTMLElement | null)?.tagName === 'INPUT') return
       if (e.key === 'ArrowLeft' && onPrev) onPrev()
@@ -42,71 +35,69 @@ export function StopModal({
     }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
-  }, [onPrev, onNext])
+  }, [onClose, onPrev, onNext])
 
-  // When the content changes (next/previous), move focus to the new title so
-  // keyboard and screen-reader users land at the start of it.
+  // Move focus to the title whenever a new stop shows.
   const titleRef = useRef<HTMLHeadingElement>(null)
-  const stepKey = stop?.id ?? 'intro'
   useEffect(() => {
     titleRef.current?.focus()
-  }, [stepKey])
+  }, [stop.id])
 
-  const isTakeaways = stop?.module.type === 'takeaways'
+  const isTakeaways = stop.module.type === 'takeaways'
 
   return (
-    <dialog
-      ref={ref}
-      className={`map-stop${stop ? '' : ' is-intro'}${isTakeaways ? ' is-wide' : ''}`}
-      aria-labelledby="map-stop-title"
-      onClose={onClose}
-      onClick={(e) => {
-        if (e.target === e.currentTarget) ref.current?.close()
-      }}
-    >
-      <div className="map-stop-card">
-        <div className="map-stop-controls">
-          {/* aria-disabled (not disabled) so a focused arrow keeps focus at the first/last stop */}
-          <button type="button" className="map-btn map-btn-secondary" onClick={() => onPrev?.()} aria-disabled={!onPrev} aria-label={labels.prevStop}>
-            ←
-          </button>
-          <button type="button" className="map-btn map-btn-secondary" onClick={() => onNext?.()} aria-disabled={!onNext} aria-label={labels.nextStop}>
-            →
-          </button>
-          <button type="button" className="map-btn map-btn-primary" onClick={() => ref.current?.close()}>
-            {labels.close} ×
-          </button>
-        </div>
+    <>
+      <div className="map-stop-scrim" onClick={onClose} aria-hidden="true" />
+      <div
+        className={`map-stop${isTakeaways ? ' is-wide' : ''}`}
+        role="dialog"
+        aria-modal="false"
+        aria-labelledby="map-stop-title"
+        style={{ ['--stop-color' as string]: stop.color }}
+      >
+        <div className="map-stop-card">
+          <div className="map-stop-controls">
+            {/* aria-disabled (not disabled) so a focused arrow keeps focus at the first/last stop */}
+            <button type="button" className="map-btn map-btn-secondary" onClick={() => onPrev?.()} aria-disabled={!onPrev} aria-label={labels.prevStop}>
+              ←
+            </button>
+            <button type="button" className="map-btn map-btn-secondary" onClick={() => onNext?.()} aria-disabled={!onNext} aria-label={labels.nextStop}>
+              →
+            </button>
+            <button type="button" className="map-btn map-btn-primary" onClick={onClose}>
+              {labels.close} ×
+            </button>
+          </div>
 
-        {stop === null ? (
-          <div className="map-stop-intro">
-            <h2 id="map-stop-title" ref={titleRef} tabIndex={-1}>{intro.title}</h2>
-            {intro.body.map((p) => <p key={p}>{p}</p>)}
-          </div>
-        ) : isTakeaways ? (
-          <div className="map-stop-full">
-            <p className="map-stop-eyebrow">
-              {labels.ringEyebrow} · {stop.number}
-            </p>
-            <h2 id="map-stop-title" ref={titleRef} tabIndex={-1} className="map-visually-hidden">{stop.title}</h2>
-            <StopModule module={stop.module} />
-          </div>
-        ) : (
-          <div className="map-stop-panels">
-            <div className="map-stop-left">
+          {isTakeaways ? (
+            <div className="map-stop-full">
               <p className="map-stop-eyebrow">
                 {labels.ringEyebrow} · {stop.number}
               </p>
-              <h2 id="map-stop-title" ref={titleRef} tabIndex={-1}>{stop.title}</h2>
-              {stop.copy.map((p) => <p key={p}>{p}</p>)}
-              {stop.voice && <VoiceBlock voice={stop.voice} labels={labels} />}
-            </div>
-            <div className="map-stop-right">
+              <h2 id="map-stop-title" ref={titleRef} tabIndex={-1} className="map-visually-hidden">
+                {stop.title}
+              </h2>
               <StopModule module={stop.module} />
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="map-stop-panels">
+              <div className="map-stop-left">
+                <p className="map-stop-eyebrow">
+                  {labels.ringEyebrow} · {stop.number}
+                </p>
+                <h2 id="map-stop-title" ref={titleRef} tabIndex={-1}>
+                  {stop.title}
+                </h2>
+                {stop.copy.map((p) => <p key={p}>{p}</p>)}
+                {stop.voice && <VoiceBlock voice={stop.voice} labels={labels} />}
+              </div>
+              <div className="map-stop-right">
+                <StopModule module={stop.module} />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </dialog>
+    </>
   )
 }
