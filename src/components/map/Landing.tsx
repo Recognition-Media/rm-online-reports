@@ -55,6 +55,7 @@ export function Landing({ content, onExplore }: { content: MapContent; onExplore
         <p className="map-subtitle">{landing.subtitle}</p>
         <button type="button" className="map-cta" onClick={onExplore}>
           {landing.cta}
+          <span aria-hidden="true">↓</span>
         </button>
       </div>
     </section>

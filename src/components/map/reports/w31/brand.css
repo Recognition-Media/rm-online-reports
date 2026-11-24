@@ -43,9 +43,8 @@
   --map-bar: var(--w31-ink);
   --map-bar-text: var(--w31-beige);
   --map-info-bg: var(--w31-beige);
+  --map-cta-bg: var(--w31-beige);
   --map-cta-text: var(--w31-ink);
-  --map-cta-ellipse: var(--w31-beige);
-  --map-cta-scribble: url('/map/w31/scribble-ellipse.png');
   --map-ticker-label-bg: var(--w31-pink);
   --map-ticker-label-text: var(--w31-ink);
 
@@ -75,7 +74,7 @@
   --map-size-pole: 44px;
   --map-size-title: 24px;
   --map-size-lead: clamp(22px, 2.3vw, 44px);
-  --map-size-cta: clamp(22px, 2.3vw, 36px);
+  --map-size-cta: 18px;
   --map-size-body: 16px;
   --map-size-label: 14px;
   --map-size-blob-pct: 36px;

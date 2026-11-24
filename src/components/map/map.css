@@ -44,19 +44,14 @@
   font-size: var(--map-size-lead); line-height: 1.15; font-weight: 500; font-style: normal;
 }
 
-/* Main landing button (opens the sign-up gate): text inside a hand-drawn ellipse */
+/* Main landing button (opens the sign-up gate) */
 .map-root .map-cta {
-  position: relative; margin-top: var(--map-hero-gap); padding: 22px 56px; border: 0; background: none;
-  color: var(--map-cta-text); font-family: var(--map-font-cta); font-weight: 500; font-size: var(--map-size-cta);
-  cursor: pointer; transition: transform 150ms ease;
+  margin-top: var(--map-hero-gap); padding: 16px 32px; border: 0; border-radius: var(--map-radius-pill);
+  background: var(--map-cta-bg); color: var(--map-cta-text); font-family: var(--map-font-cta); font-weight: 500;
+  font-size: var(--map-size-cta); cursor: pointer; transition: transform 150ms ease;
 }
-/* The ellipse: the brand scribble used as a stencil, filled with a palette color. */
-.map-root .map-cta::before {
-  content: ''; position: absolute; inset: -6px -10px; background: var(--map-cta-ellipse);
-  -webkit-mask: var(--map-cta-scribble) center / 100% 100% no-repeat; mask: var(--map-cta-scribble) center / 100% 100% no-repeat;
-  pointer-events: none;
-}
-.map-root .map-cta:hover { transform: rotate(-2deg) scale(1.03); }
+.map-root .map-cta span { margin-left: 10px; }
+.map-root .map-cta:hover { transform: translateY(-2px); }
 
 /* Info drop-down under a nav button (e.g. About the Report) */
 .map-root .map-info-dropdown {
