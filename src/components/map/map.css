@@ -10,12 +10,24 @@
   font-size: var(--map-size-body);
 }
 
-/* Header (logo + title) */
-.map-root .map-header {
-  height: var(--map-header-height); display: flex; align-items: center; justify-content: space-between;
-  padding: 0 var(--map-gutter); border-bottom: 1.5px solid var(--map-ink); background: var(--map-ground);
+/* Top bar: pinned to the top of the screen. Floats over the landing art,
+   turns solid beige with the report title once the report reaches the top. */
+.map-root .map-topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between;
+  height: var(--map-topbar-height); padding: 0 var(--map-gutter); border-bottom: 1.5px solid transparent;
+  transition: background-color 200ms ease, border-color 200ms ease, height 200ms ease;
 }
-.map-root .map-header-logo { height: var(--map-header-logo-height); width: auto; }
+.map-root .map-topbar.is-solid { height: var(--map-header-height); background: var(--map-ground); border-bottom-color: var(--map-ink); }
+.map-root .map-topbar-logo { height: var(--map-landing-logo-height); width: auto; transition: height 200ms ease; }
+.map-root .map-topbar.is-solid .map-topbar-logo { height: var(--map-header-logo-height); }
+/* Title sits in the space between logo and buttons (centered there), so it can never run under them. */
+.map-root .map-topbar .map-header-title {
+  flex: 1; min-width: 0; justify-content: center; padding: 0 24px; overflow: hidden; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity 200ms ease;
+}
+.map-root .map-topbar.is-solid .map-header-title { opacity: 1; }
+/* On the solid beige bar, beige buttons get a black outline so they stay visible. */
+.map-root .map-topbar.is-solid .map-btn-secondary { box-shadow: inset 0 0 0 1.5px var(--map-ink); }
 .map-root .map-header-title { display: flex; align-items: baseline; gap: 14px; font-family: var(--map-font-body); font-weight: 500; font-size: var(--map-size-title); }
 .map-root .map-header-title strong {
   font-family: var(--map-font-display); font-weight: 400; font-size: var(--map-size-header-title);
@@ -28,7 +40,7 @@
   min-height: 100dvh; padding: 48px var(--map-gutter) calc(var(--map-ticker-height) + 48px);
   background: var(--map-landing-bg) center / cover no-repeat, var(--map-accent);
 }
-.map-root .map-nav { position: absolute; top: 48px; right: var(--map-gutter); display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+.map-root .map-nav { position: relative; display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
 /* Buttons: one design, two versions. Primary = the one main action per screen. */
 .map-root .map-btn {
   display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border: 0; border-radius: var(--map-radius-pill);
@@ -39,7 +51,6 @@
 .map-root .map-btn-primary { background: var(--map-btn-primary-bg); color: var(--map-btn-primary-text); }
 .map-root .map-btn-secondary { background: var(--map-btn-secondary-bg); color: var(--map-btn-secondary-text); }
 .map-root .map-landing-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.map-root .map-landing-logo { position: absolute; top: 48px; left: var(--map-gutter); height: var(--map-landing-logo-height); width: auto; }
 .map-root .map-hero {
   margin: 0; font-family: var(--map-font-display); font-weight: 400;
   font-size: var(--map-size-hero); line-height: var(--map-hero-line-height);
@@ -93,6 +104,7 @@
 
 /* Stage: a fixed 1440×900 design canvas scaled to fit */
 .map-root .map-stage-wrap { position: relative; }
+.map-root .map-stage-wrap { padding-top: var(--map-header-height); }
 .map-root .map-stage { position: relative; height: calc(100dvh - var(--map-header-height)); overflow: hidden; }
 .map-root .map-canvas { position: absolute; left: 50%; top: 50%; width: 1440px; height: 900px; transform-origin: center; }
 

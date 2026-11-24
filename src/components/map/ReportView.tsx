@@ -5,6 +5,7 @@ import type { Report } from '@/sanity/types'
 import { AnalyticsScripts } from '@/components/AnalyticsScripts'
 import { getMapReport } from './reports'
 import { Landing } from './Landing'
+import { TopBar } from './TopBar'
 import { Ticker } from './Ticker'
 import { MapStage } from './MapStage'
 import { SignupGate } from './SignupGate'
@@ -33,6 +34,7 @@ export function ReportView({ report }: { report: Report }) {
   return (
     <main className={`map-root ${config.className}`}>
       <AnalyticsScripts report={report} />
+      <TopBar content={config.content} />
       <Landing
         content={config.content}
         onExplore={() => {

@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { assetPath } from '@/lib/assetPath'
 import type { MapReportConfig } from './types'
 
 const W = 1440
@@ -18,7 +17,7 @@ export function MapStage({
 }) {
   const stageRef = useRef<HTMLDivElement>(null)
   const [scale, setScale] = useState(1)
-  const { content, Center, Panel } = config
+  const { Center, Panel } = config
 
   useEffect(() => {
     const el = stageRef.current
@@ -39,15 +38,6 @@ export function MapStage({
 
   return (
     <section id="map" className="map-stage-wrap">
-      <header className="map-header">
-        {/* eslint-disable-next-line @next/next/no-img-element -- static export, plain img like the other templates */}
-        <img className="map-header-logo" src={assetPath(content.logo.src)} alt={content.logo.alt} />
-        <div className="map-header-title">
-          <strong>{content.reportTitle}</strong>
-          <span>{content.reportSubtitle}</span>
-        </div>
-        <div aria-hidden="true" />
-      </header>
       <div className="map-stage" ref={stageRef}>
         <div className="map-canvas" style={{ transform: `translate(-50%, -50%) scale(${scale})` }}>
           <Center selectedId={selectedId} onSelect={onSelect} />
