@@ -26,7 +26,7 @@
   background: var(--map-landing-bg) center / cover no-repeat, var(--map-accent);
 }
 .map-root .map-nav { position: absolute; top: 48px; right: var(--map-gutter); display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
-.map-root .map-nav a, .map-root .map-nav button {
+.map-root .map-nav > a, .map-root .map-nav > button {
   border: 0; cursor: pointer; padding: 12px 24px; border-radius: var(--map-radius-pill); background: var(--map-paper);
   color: var(--map-ink); font-family: var(--map-font-display); font-size: 18px; text-decoration: none; opacity: 0.85;
 }
@@ -44,15 +44,18 @@
   font-size: var(--map-size-lead); line-height: 1.15; font-weight: 500; font-style: normal;
 }
 
-/* Info pop-up (e.g. About the Report) */
-.map-root .map-info-dialog { position: fixed; inset: 0; margin: auto; height: fit-content; width: min(640px, calc(100% - 32px)); max-height: calc(100dvh - 64px); padding: 0; border: 1.5px solid var(--map-ink); background: var(--map-info-bg); color: var(--map-ink); }
-.map-root .map-info-dialog::backdrop { background: var(--map-gate-overlay); }
-.map-root .map-info-box { position: relative; padding: 48px; font-family: var(--map-font-body); }
-.map-root .map-info-box h2 { margin: 0 0 24px; font-family: var(--map-font-display); font-weight: 400; font-size: var(--map-size-panel-headline); line-height: 1.05; font-style: normal; }
-.map-root .map-info-box p { margin: 0 0 16px; font-size: var(--map-size-body); line-height: 1.6; }
+/* Info drop-down under a nav button (e.g. About the Report) */
+.map-root .map-info-dropdown {
+  position: absolute; top: calc(100% + 12px); right: 0; z-index: 30; width: min(480px, calc(100vw - 32px));
+  padding: 32px; border: 1.5px solid var(--map-ink); background: var(--map-info-bg); color: var(--map-ink);
+  text-align: left; font-family: var(--map-font-body);
+}
+.map-root .map-info-dropdown h2 { margin: 0 48px 16px 0; font-family: var(--map-font-display); font-weight: 400; font-size: var(--map-size-info-title); line-height: 1.05; font-style: normal; }
+.map-root .map-info-dropdown p { margin: 0 0 12px; font-size: var(--map-size-body); line-height: 1.6; }
+.map-root .map-info-dropdown p:last-child { margin-bottom: 0; }
 .map-root .map-info-close {
-  position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border: 1.5px solid var(--map-ink);
-  border-radius: var(--map-radius-pill); background: transparent; color: var(--map-ink); font-size: 22px; line-height: 1; cursor: pointer;
+  position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; padding: 0; border: 1.5px solid var(--map-ink);
+  border-radius: var(--map-radius-pill); background: transparent; color: var(--map-ink); font-size: 20px; line-height: 1; cursor: pointer;
 }
 
 /* Prompt bar */

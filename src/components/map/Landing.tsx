@@ -1,13 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { assetPath } from '@/lib/assetPath'
 import type { InfoPanel, MapContent } from './types'
-import { InfoDialog } from './InfoDialog'
+import { InfoDropdown } from './InfoDropdown'
 
 export function Landing({ content }: { content: MapContent }) {
   const { landing } = content
-  const [openPanel, setOpenPanel] = useState<InfoPanel | null>(null)
+  const [open, setOpen] = useState<string | null>(null)
+  const close = useCallback(() => setOpen(null), [])
+  const openPanel: InfoPanel | undefined = landing.nav.find((n) => n.label === open)?.panel
 
   return (
     <section className="map-landing">
@@ -17,9 +19,16 @@ export function Landing({ content }: { content: MapContent }) {
         {landing.nav.map((n) => {
           const cls = n.primary ? 'is-primary' : undefined
           if (n.panel) {
-            const panel = n.panel
+            const isOpen = open === n.label
             return (
-              <button key={n.label} type="button" className={cls} onClick={() => setOpenPanel(panel)}>
+              <button
+                key={n.label}
+                type="button"
+                className={cls}
+                aria-expanded={isOpen}
+                aria-controls={isOpen ? 'map-info' : undefined}
+                onClick={() => setOpen(isOpen ? null : n.label)}
+              >
                 {n.label}
               </button>
             )
@@ -35,6 +44,7 @@ export function Landing({ content }: { content: MapContent }) {
             </a>
           )
         })}
+        {openPanel && <InfoDropdown id="map-info" panel={openPanel} onClose={close} />}
       </nav>
       <div className="map-landing-center">
         <h1 className="map-hero">
@@ -44,7 +54,6 @@ export function Landing({ content }: { content: MapContent }) {
         </h1>
         <p className="map-subtitle">{landing.subtitle}</p>
       </div>
-      {openPanel && <InfoDialog panel={openPanel} onClose={() => setOpenPanel(null)} />}
     </section>
   )
 }
