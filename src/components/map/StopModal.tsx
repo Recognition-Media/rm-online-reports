@@ -44,12 +44,13 @@ export function StopModal({
   }, [stop.id])
 
   const isTakeaways = stop.module.type === 'takeaways'
+  const isSide = stop.layout === 'side'
 
   return (
     <>
-      <div className="map-stop-scrim" onClick={onClose} aria-hidden="true" />
+      {!isSide && <div className="map-stop-scrim" onClick={onClose} aria-hidden="true" />}
       <div
-        className={`map-stop${isTakeaways ? ' is-wide' : ''}`}
+        className={`map-stop${isTakeaways ? ' is-wide' : ''}${isSide ? ' is-side' : ''}`}
         role="dialog"
         aria-modal="false"
         aria-labelledby="map-stop-title"
