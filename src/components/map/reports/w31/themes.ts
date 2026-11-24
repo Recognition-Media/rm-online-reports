@@ -5,8 +5,8 @@ import type { Theme } from './themeMath'
 // and rankings are all calculated from these counts.
 //
 // Colors are Webby 31 brand colors from brand.css, one per theme family
-// (Feeling orange, Presence pink, Substance yellow, Invention + Structure blue,
-// Belonging watermelon, Execution forest, Spread green).
+// (Feeling orange, Presence pink, Substance yellow, Belonging watermelon;
+// Invention blue, Structure light blue, Execution forest, Spread green).
 //
 // count = coded answers that LEAD with this theme
 // (source: themes[].leads.everyone in
@@ -227,7 +227,7 @@ export const themes: Theme[] = [
     name: "Narrative",
     pole: 'form',
     count: 12,
-    color: 'var(--w31-blue)',
+    color: 'var(--w31-blue-light)',
     ink: 'var(--w31-ink)',
     shape: 'polygon(83% 18%, 92% 53%, 65% 97%, 26% 83%, 10% 58%, 12% 30%, 58% 3%)',
     line: "A story with updates to follow.",
@@ -242,7 +242,7 @@ export const themes: Theme[] = [
     name: "Format",
     pole: 'form',
     count: 7,
-    color: 'var(--w31-blue)',
+    color: 'var(--w31-blue-light)',
     ink: 'var(--w31-ink)',
     shape: 'polygon(88% 78%, 73% 86%, 22% 89%, 11% 68%, 9% 28%, 41% 6%, 65% 5%, 89% 29%)',
     line: "The format itself was the hook.",

@@ -19,7 +19,7 @@ test('seed data matches the JSON, everyone (376 coded answers, 64/36)', () => {
 
 test('every theme uses a Webby 31 brand color from brand.css', () => {
   for (const t of themes) {
-    assert.match(t.color, /^var\(--w31-(beige|blue|yellow|orange|forest|watermelon|green|pink)\)$/, `${t.id} color ${t.color}`)
+    assert.match(t.color, /^var\(--w31-(beige|blue|blue-light|yellow|orange|forest|watermelon|green|pink)\)$/, `${t.id} color ${t.color}`)
     assert.match(t.ink, /^var\(--w31-(ink|beige)\)$/, `${t.id} ink ${t.ink}`)
   }
 })
@@ -33,4 +33,22 @@ test('with the real data, blobs on the same side barely overlap after spreading'
     const min = (a.size + b.size) * BLOB_RADIUS
     assert.ok(d >= min * 0.97, `${a.id} and ${b.id} overlap: ${Math.round(d)} < ${Math.round(min)}`)
   }
+})
+
+// Theme families from w31-report-data-themes.json. Color = family, so readers can trust "same color, same family".
+const FAMILY = {
+  humour: 'Feeling', emotion: 'Feeling', delight: 'Feeling', nostalgia: 'Feeling',
+  voice: 'Presence', authorship: 'Presence', insight: 'Substance', stakes: 'Substance',
+  shared: 'Belonging', recognition: 'Belonging', novelty: 'Invention', concept: 'Invention',
+  narrative: 'Structure', format: 'Structure', craft: 'Execution', spectacle: 'Execution',
+  stickiness: 'Spread', participation: 'Spread',
+}
+
+test('each theme family has its own color, and no two families share one', () => {
+  const byFamily = {}
+  for (const t of themes) (byFamily[FAMILY[t.id]] ??= new Set()).add(t.color)
+  assert.equal(Object.keys(byFamily).length, 8)
+  for (const [fam, colors] of Object.entries(byFamily)) assert.equal(colors.size, 1, `${fam} uses ${[...colors]}`)
+  const all = Object.values(byFamily).map((c) => [...c][0])
+  assert.equal(new Set(all).size, 8, `families sharing a color: ${all}`)
 })

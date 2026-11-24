@@ -17,6 +17,8 @@
      Lead colors: orange, pink, yellow, blue. */
   --w31-beige: #F0EBDF;
   --w31-blue: #1FA0D2;
+  /* Lighter blue, mixed from brand blue + beige: gives the Structure family its own color. */
+  --w31-blue-light: color-mix(in srgb, var(--w31-blue) 50%, var(--w31-beige));
   --w31-yellow: #FABB33;
   --w31-orange: #F66F0A;
   --w31-forest: #0C573F;
