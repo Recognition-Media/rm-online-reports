@@ -8,7 +8,7 @@ export function SliderReveal({ m }: { m: SliderRevealModule }) {
   const [revealed, setRevealed] = useState(false)
   return (
     <div className="map-mod map-mod-slider">
-      <p className="map-mod-source">{m.source}</p>
+      {m.source && <p className="map-mod-source">{m.source}</p>}
       <p className="map-mod-question">{m.question}</p>
       <div className="map-slider">
         <input

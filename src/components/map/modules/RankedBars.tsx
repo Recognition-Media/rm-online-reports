@@ -4,7 +4,7 @@ export function RankedBars({ m }: { m: RankedBarsModule }) {
   const bars = [...m.bars].sort((a, b) => b.value - a.value)
   return (
     <div className="map-mod map-mod-bars">
-      <p className="map-mod-source">{m.source}</p>
+      {m.source && <p className="map-mod-source">{m.source}</p>}
       <ol className="map-bars">
         {bars.map((b) => (
           <li key={b.label}>

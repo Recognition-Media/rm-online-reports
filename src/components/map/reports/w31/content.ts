@@ -68,7 +68,6 @@ export const content: MapContent = {
       },
       module: {
         type: 'slider',
-        source: 'Webby Judge survey · Q10',
         question: 'Compared with a few years ago, how hard is it to remember what you see online?',
         minLabel: 'Easier',
         maxLabel: 'Much harder',
@@ -89,7 +88,6 @@ export const content: MapContent = {
       voice: { kind: 'quote', quote: { text: 'Craft and effectiveness are not two sides of the same coin anymore.', name: 'Matheus Faustino', role: 'Creative Director, Monks' } },
       module: {
         type: 'split',
-        source: 'Webby Judge survey · Q3',
         headline: 57,
         headlineLabel: 'of Webby Judges have stopped treating views or likes as proof that work is good.',
         parts: [
@@ -110,7 +108,6 @@ export const content: MapContent = {
       voice: { kind: 'quote', quote: { text: "We've gotten incredibly good at optimizing for what performs, which can also mean optimizing toward sameness.", name: 'Kaare Wesnaes', role: 'Head of Innovation, Ogilvy' } },
       module: {
         type: 'bars',
-        source: "Webby Judge survey · Q8 · tactics judges are tired of",
         bars: [
           { label: "AI for AI's sake", value: 27 },
           { label: 'Formulaic voice, look or format', value: 23 },
@@ -129,7 +126,6 @@ export const content: MapContent = {
       voice: { kind: 'quote', quote: { text: 'The comment section has become one of the most valuable spaces in social.', name: 'Wangari Nderi', role: 'Group Brand, Digital & Communications Lead, Live54 Plus' } },
       module: {
         type: 'bars',
-        source: 'Webby Judge survey · Q4 · a high view count signals…',
         bars: [
           { label: 'It was put in front of people', value: 69 },
           { label: 'People chose to watch it', value: 36 },

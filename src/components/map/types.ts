@@ -94,7 +94,8 @@ export type StopVoice = { kind: 'quote'; quote: Quote } | { kind: 'video'; video
 
 export interface SliderRevealModule {
   type: 'slider'
-  source: string
+  /** Optional source line above the module (none shown in W31). */
+  source?: string
   question: string
   minLabel: string
   maxLabel: string
@@ -108,7 +109,8 @@ export interface SliderRevealModule {
 
 export interface SplitStatModule {
   type: 'split'
-  source: string
+  /** Optional source line above the module (none shown in W31). */
+  source?: string
   /** Headline percent, 0–100. */
   headline: number
   headlineLabel: string
@@ -117,7 +119,8 @@ export interface SplitStatModule {
 
 export interface RankedBarsModule {
   type: 'bars'
-  source: string
+  /** Optional source line above the module (none shown in W31). */
+  source?: string
   bars: { label: string; value: number }[]
 }
 
