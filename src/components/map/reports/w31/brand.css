@@ -39,6 +39,11 @@
   --map-dot: color-mix(in srgb, var(--w31-ink) 40%, var(--w31-beige));
   --map-accent: var(--w31-orange);
   --map-info-bg: var(--map-surface);
+  /* Data accents for charts (palette colors are for data only) */
+  --map-data-1: var(--w31-orange);
+  --map-data-2: var(--w31-pink);
+  --map-data-3: var(--w31-yellow);
+  --map-data-4: var(--w31-blue);
   --map-topbar-solid-bg: var(--w31-ink);
   --map-topbar-solid-text: var(--w31-beige);
 
