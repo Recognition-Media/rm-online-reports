@@ -162,7 +162,7 @@
 .map-root.map-w31 .w31-panel-stat { display: flex; align-items: center; gap: 32px; margin: 40px 0 24px; }
 .map-root.map-w31 .w31-panel-swatch { width: 96px; height: 96px; }
 .map-root.map-w31 .w31-panel-pct { font-family: var(--map-font-display); font-size: var(--map-size-panel-pct); line-height: 1; }
-.map-root.map-w31 .w31-panel-headline { margin: 0 0 16px; font-family: var(--map-font-subhead); font-weight: var(--map-subhead-weight); font-size: var(--map-size-panel-headline); line-height: 1.05; font-style: normal; }
+.map-root.map-w31 .w31-panel-headline { margin: 0 0 16px; font-family: var(--map-font-body); font-weight: 500; font-size: var(--map-size-panel-headline); line-height: 1.05; font-style: normal; }
 .map-root.map-w31 .w31-panel-copy { margin: 0 0 40px; line-height: 1.6; }
 .map-root.map-w31 .w31-panel-answer { margin: 0 0 16px; padding: 20px 24px; background: color-mix(in srgb, var(--map-ink) 6%, transparent); }
 .map-root.map-w31 .w31-panel-answer figcaption { font-family: var(--map-font-subhead); font-weight: var(--map-subhead-weight); font-size: 20px; }
