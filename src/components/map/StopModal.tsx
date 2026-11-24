@@ -1,10 +1,10 @@
 'use client'
 
 import { useEffect, useRef, type RefObject } from 'react'
-import { assetPath } from '@/lib/assetPath'
 import type { MapContent, MapStop } from './types'
 import { StopModule } from './modules/StopModule'
 import { VoiceBlock } from './modules/VoiceBlock'
+import { FeatureVideo } from './FeatureVideo'
 
 /**
  * Large pop-up for a stop. It sits between the top bar and the bottom
@@ -90,12 +90,7 @@ export function StopModal({
                 )}
               </div>
               <div className="map-stop-right">
-                {featureVideo?.src && (
-                  <figure className="map-feature-video">
-                    {/* The quote below credits the speaker, so no caption here. */}
-                    <video src={assetPath(featureVideo.src)} controls playsInline preload="metadata" aria-label={featureVideo.speaker} />
-                  </figure>
-                )}
+                {featureVideo && <FeatureVideo video={featureVideo} labels={labels} />}
                 {featureVideo
                   ? featureVideo.quote && (
                       <VoiceBlock voice={{ kind: 'quote', quote: { text: featureVideo.quote, name: featureVideo.speaker, role: featureVideo.role } }} labels={labels} />

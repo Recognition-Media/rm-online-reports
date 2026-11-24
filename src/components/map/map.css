@@ -351,3 +351,21 @@
 /* Feature-video stops: data module under the copy on the left; quote under the video on the right */
 .map-root .map-stop-left .map-mod { margin-top: auto; }
 .map-root .map-stop-right:has(.map-feature-video) .map-voice-quote { padding-top: 14px; }
+
+/* Slider question: bold, one size up */
+.map-root .map-stop .map-mod-slider .map-mod-question { font-weight: 700; font-size: 16px; line-height: 1.4; }
+.map-root .map-mod-reveal:empty { display: none; }
+
+/* Feature video: our own Watch / Pause buttons */
+.map-root .map-feature-video { position: relative; width: min(100%, 300px); }
+.map-root .map-feature-video video { cursor: pointer; }
+.map-root .map-video-watch { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.map-root .map-video-watch:hover { transform: translate(-50%, calc(-50% - 1px)); }
+.map-root .map-video-pause { position: absolute; left: 12px; bottom: 12px; padding: 8px 14px; font-size: 14px; opacity: 0.9; }
+/* Revealed answer, compact when the module sits in the left panel under the copy */
+.map-root .map-stop-left .map-mod { gap: 12px; }
+.map-root .map-stop-left .map-mod-reveal { display: grid; grid-template-columns: auto 1fr; column-gap: 16px; row-gap: 4px; align-items: end; }
+.map-root .map-stop-left .map-mod-big { grid-row: span 2; font-size: 88px; }
+.map-root .map-stop-left .map-mod-big span { font-size: 22px; }
+.map-root .map-stop-left .map-mod-label, .map-root .map-stop-left .map-mod-guess { font-size: 13px; }
+.map-root .map-stop-left .map-mod-lines { grid-column: 1 / -1; gap: 2px; font-size: 13px; line-height: 1.45; }

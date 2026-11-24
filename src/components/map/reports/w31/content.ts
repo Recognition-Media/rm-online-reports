@@ -76,7 +76,6 @@ export const content: MapContent = {
         value: 69,
         valueLabel: 'Webby Judges rated it 69 out of 100.',
         lines: ['79% say it has become at least moderately harder (50+).', '54% say significantly harder (70+).'],
-        revealButton: 'Reveal the answer',
         guessLabel: 'Your guess',
       },
     },
@@ -205,6 +204,8 @@ export const content: MapContent = {
     nextStop: 'Next',
     videoSoon: 'Video coming soon',
     playVideo: 'Play video',
+    watchVideo: 'Watch video',
+    pauseVideo: 'Pause',
   },
 }
 

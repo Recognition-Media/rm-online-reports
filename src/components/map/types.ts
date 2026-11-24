@@ -49,7 +49,7 @@ export interface MapContent {
   /** Bottom navigation bar on the field page. */
   tour: { hint: string; prev: string; next: string; aria: string }
   /** Small UI labels used by the map template. */
-  labels: { ringEyebrow: string; ringAria: string; close: string; prevStop: string; nextStop: string; videoSoon: string; playVideo: string }
+  labels: { ringEyebrow: string; ringAria: string; close: string; prevStop: string; nextStop: string; videoSoon: string; playVideo: string; watchVideo: string; pauseVideo: string }
 }
 
 export interface CenterProps {
@@ -105,7 +105,6 @@ export interface SliderRevealModule {
   value: number
   valueLabel: string
   lines: string[]
-  revealButton: string
   guessLabel: string
 }
 

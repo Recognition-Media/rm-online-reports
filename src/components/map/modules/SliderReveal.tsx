@@ -3,9 +3,13 @@
 import { useState } from 'react'
 import type { SliderRevealModule } from '../types'
 
+/** Drag to guess; the real answer appears as soon as the reader lets go (or uses the keyboard). */
 export function SliderReveal({ m }: { m: SliderRevealModule }) {
   const [guess, setGuess] = useState(50)
+  const [moved, setMoved] = useState(false)
   const [revealed, setRevealed] = useState(false)
+  const reveal = () => moved && setRevealed(true)
+
   return (
     <div className="map-mod map-mod-slider">
       {m.source && <p className="map-mod-source">{m.source}</p>}
@@ -16,7 +20,13 @@ export function SliderReveal({ m }: { m: SliderRevealModule }) {
           min={0}
           max={100}
           value={guess}
-          onChange={(e) => setGuess(Number(e.target.value))}
+          onChange={(e) => {
+            setGuess(Number(e.target.value))
+            setMoved(true)
+          }}
+          onPointerUp={reveal}
+          onKeyUp={reveal}
+          onBlur={reveal}
           disabled={revealed}
           aria-label={m.question}
         />
@@ -26,25 +36,24 @@ export function SliderReveal({ m }: { m: SliderRevealModule }) {
           <span>{m.maxLabel}</span>
         </div>
       </div>
-      {!revealed ? (
-        <button type="button" className="map-btn map-btn-primary" onClick={() => setRevealed(true)}>
-          {m.revealButton}
-        </button>
-      ) : (
-        <div className="map-mod-reveal" aria-live="polite">
-          <p className="map-mod-big">
-            {m.value}
-            <span>/100</span>
-          </p>
-          <p className="map-mod-label">{m.valueLabel}</p>
-          <p className="map-mod-guess">
-            {m.guessLabel}: {guess}
-          </p>
-          <ul className="map-mod-lines">
-            {m.lines.map((l) => <li key={l}>{l}</li>)}
-          </ul>
-        </div>
-      )}
+      {/* Live region stays mounted so the answer is announced when it appears. */}
+      <div className="map-mod-reveal" aria-live="polite">
+        {revealed && (
+          <>
+            <p className="map-mod-big">
+              {m.value}
+              <span>/100</span>
+            </p>
+            <p className="map-mod-label">{m.valueLabel}</p>
+            <p className="map-mod-guess">
+              {m.guessLabel}: {guess}
+            </p>
+            <ul className="map-mod-lines">
+              {m.lines.map((l) => <li key={l}>{l}</li>)}
+            </ul>
+          </>
+        )}
+      </div>
     </div>
   )
 }
