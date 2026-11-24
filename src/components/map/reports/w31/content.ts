@@ -13,7 +13,7 @@ export const content: MapContent = {
   landing: {
     headline: ['By', 'Popular', 'Demand'],
     subtitle: 'A report on what makes work memorable on the Internet in 2026, by The Webby Awards',
-    cta: 'Explore the Report',
+    cta: 'See What Stuck',
     nav: [
       {
         label: 'About the Report',
