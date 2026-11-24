@@ -34,6 +34,7 @@ This work must not change how any other template or report looks or behaves: Web
 |---|---|---|
 | `src/components/ReportView.tsx` | One added `if (template === 'map')` branch | Only runs for a report whose template is `map`; the existing fallback logic is untouched |
 | `src/sanity/schemas/report.ts` | Add `{ title: 'Interactive Map', value: 'map' }` to the template list; in Phase 3, add an "Interactive Map" field group **hidden unless `template === 'map'`** | Existing documents keep their saved template; new fields are optional, empty, and invisible on other reports |
+| `src/app/[slug]/page.tsx` | Preview-only switch (approved by Jordana 2026-11-24): when env `REPORTS_PREVIEW_MAP_DRAFTS=true`, also build draft reports with `template == "map"` | Env is set only on the W31 Vercel preview project; Amplify never sets it, so live builds are unchanged (verified: identical live pages with the switch off/on). Can be removed before merge if Steve prefers |
 | `src/sanity/types.ts` / `src/sanity/queries.ts` | Phase 3 only: add the new optional fields to the type and the report query | Optional fields resolve to `null` for every other report |
 
 **Not allowed:** editing any existing component (including both `SignupGate.tsx` files, `horizontal/`, `vertical/`, shared modules), global CSS, `next.config.ts`, `amplify.yml`, the sign-up Lambda, `infra/`, or existing Sanity documents. If something shared seems to need a change, copy it into `src/components/map/` instead. If that isn't possible, stop and ask first.

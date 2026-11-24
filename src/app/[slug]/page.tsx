@@ -5,8 +5,15 @@ import type { Report } from '@/sanity/types'
 import { ReportView } from '@/components/ReportView'
 import { urlFor } from '@/sanity/image'
 
+// Preview-only switch (set on the W31 Vercel preview project, never on Amplify):
+// also build draft reports that use the Interactive Map template, so the team can
+// review them before launch. Other templates' drafts stay hidden either way.
+const PREVIEW_MAP_DRAFTS = process.env.REPORTS_PREVIEW_MAP_DRAFTS === 'true'
+
 export async function generateStaticParams() {
-  const slugs = await client.fetch<{ slug: string }[]>(allReportSlugsQuery)
+  const slugs = await client.fetch<{ slug: string }[]>(
+    PREVIEW_MAP_DRAFTS ? `*[_type == "report" && (status == "live" || template == "map")] { "slug": slug.current }` : allReportSlugsQuery,
+  )
   return slugs.map((s) => ({ slug: s.slug }))
 }
 
@@ -21,7 +28,8 @@ export default async function ReportPage({ params }: Props) {
   // In dev (`npm run dev`) we render drafts so designers can iterate without
   // flipping a CMS field to 'live'. Production builds still 404 non-live docs.
   const allowDrafts = process.env.NODE_ENV === 'development'
-  if (!report || (report.status !== 'live' && !allowDrafts)) {
+  const previewMapDraft = PREVIEW_MAP_DRAFTS && report?.template === 'map'
+  if (!report || (report.status !== 'live' && !allowDrafts && !previewMapDraft)) {
     notFound()
   }
 
