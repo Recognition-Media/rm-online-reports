@@ -26,8 +26,9 @@
   opacity: 0; pointer-events: none; transition: opacity 200ms ease;
 }
 .map-root .map-topbar.is-solid .map-header-title { opacity: 1; }
-/* On the solid beige bar, beige buttons get a black outline so they stay visible. */
-.map-root .map-topbar.is-solid .map-btn-secondary { box-shadow: inset 0 0 0 1.5px var(--map-ink); }
+/* Contrast first: over the landing art the nav buttons are beige; on the solid beige bar they flip to black. */
+.map-root .map-topbar .map-btn-secondary { transition: background-color 200ms ease, color 200ms ease, transform 150ms ease; }
+.map-root .map-topbar.is-solid .map-btn-secondary { background: var(--map-btn-primary-bg); color: var(--map-btn-primary-text); }
 .map-root .map-header-title { display: flex; align-items: baseline; gap: 14px; font-family: var(--map-font-body); font-weight: 500; font-size: var(--map-size-title); }
 .map-root .map-header-title strong {
   font-family: var(--map-font-display); font-weight: 400; font-size: var(--map-size-header-title);
