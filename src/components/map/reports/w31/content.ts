@@ -56,7 +56,6 @@ export const content: MapContent = {
       title: 'The Attention Trap',
       position: { x: 132, y: 300 },
       color: 'var(--w31-pink)',
-      layout: 'side', // TRIAL: compare a right-hand drawer with the centered pop-ups
       copy: ['About 10 hours of media a day. Roughly 1,500 pieces of content. Most of it ends up as noise. [Copy TK]'],
       voice: {
         kind: 'video',

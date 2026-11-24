@@ -145,8 +145,6 @@ export interface MapStop {
   tourLabel?: string
   /** Brand color the stop turns on hover and while open (a CSS color / var). */
   color: string
-  /** How the stop opens: large centered pop-up (default) or a right-hand drawer beside a shrunken field. */
-  layout?: 'center' | 'side'
   /** Pill center on the 1440×900 canvas. */
   position: { x: number; y: number }
   /** One entry per paragraph. */
