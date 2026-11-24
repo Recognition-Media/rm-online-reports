@@ -14,7 +14,7 @@ export const content: MapContent = {
     headline: ['By', 'Popular', 'Demand'],
     subtitle: 'A report on what makes work memorable on the Internet in 2026, by The Webby Awards',
     nav: [
-      { label: 'About the report', href: '#about' },
+      { label: 'About the Report', href: '#about' },
       { label: 'Enter the 31st Webbys', href: 'https://www.webbyawards.com/', primary: true },
     ],
   },
