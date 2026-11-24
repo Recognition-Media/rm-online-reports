@@ -16,7 +16,7 @@
   padding: 0 var(--map-gutter); border-bottom: 1.5px solid var(--map-ink); background: var(--map-ground);
 }
 .map-root .map-header-logo { height: var(--map-header-logo-height); width: auto; }
-.map-root .map-header-title { font-family: var(--map-font-display); font-size: var(--map-size-title); }
+.map-root .map-header-title { font-family: var(--map-font-subhead); font-size: var(--map-size-title); }
 .map-root .map-header-title span { color: var(--map-muted); }
 
 /* Landing: centered lockup, title and subtitle over the background art */
@@ -28,7 +28,7 @@
 .map-root .map-nav { position: absolute; top: 48px; right: var(--map-gutter); display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
 .map-root .map-nav > a, .map-root .map-nav > button {
   border: 0; cursor: pointer; padding: 12px 24px; border-radius: var(--map-radius-pill); background: var(--map-paper);
-  color: var(--map-ink); font-family: var(--map-font-display); font-size: 18px; text-decoration: none; opacity: 0.85;
+  color: var(--map-ink); font-family: var(--map-font-body); font-weight: 500; font-size: 16px; text-decoration: none; opacity: 0.85;
 }
 .map-root .map-nav .is-primary { background: var(--map-ink); color: var(--map-pill); opacity: 1; }
 .map-root .map-landing-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
@@ -50,7 +50,7 @@
   padding: 32px; border: 1.5px solid var(--map-ink); background: var(--map-info-bg); color: var(--map-ink);
   text-align: left; font-family: var(--map-font-body);
 }
-.map-root .map-info-dropdown h2 { margin: 0 48px 16px 0; font-family: var(--map-font-display); font-weight: 400; font-size: var(--map-size-info-title); line-height: 1.05; font-style: normal; }
+.map-root .map-info-dropdown h2 { margin: 0 48px 16px 0; font-family: var(--map-font-subhead); font-weight: 400; font-size: var(--map-size-info-title); line-height: 1.05; font-style: normal; }
 .map-root .map-info-dropdown p { margin: 0 0 12px; font-size: var(--map-size-body); line-height: 1.6; }
 .map-root .map-info-dropdown p:last-child { margin-bottom: 0; }
 .map-root .map-info-close {
@@ -61,19 +61,19 @@
 /* Prompt bar */
 .map-root .map-prompt { position: sticky; bottom: 0; z-index: 20; background: var(--map-bar); color: var(--map-bar-text); }
 .map-root .map-prompt-form { display: flex; align-items: center; gap: 16px; padding: 16px var(--map-gutter) 8px; flex-wrap: wrap; }
-.map-root .map-prompt-form label { font-family: var(--map-font-display); font-size: 20px; }
+.map-root .map-prompt-form label { font-family: var(--map-font-body); font-weight: 500; font-size: 18px; }
 .map-root .map-prompt-form input {
   width: min(400px, 100%); padding: 12px 20px; border: 0; border-radius: var(--map-radius-pill);
   background: var(--map-ground); color: var(--map-ink); font-size: var(--map-size-body);
 }
 .map-root .map-prompt-form button {
   padding: 12px 24px; border: 0; border-radius: var(--map-radius-pill); background: var(--map-accent);
-  color: var(--map-ink); font-family: var(--map-font-display); font-size: 18px; cursor: pointer;
+  color: var(--map-ink); font-family: var(--map-font-body); font-weight: 500; font-size: 16px; cursor: pointer;
 }
 .map-root .map-prompt-form button:disabled { opacity: 0.6; cursor: default; }
 .map-root .map-ticker { overflow: hidden; padding: 8px 0 14px; }
 .map-root .map-ticker-track { display: flex; gap: 56px; width: max-content; animation: map-ticker 60s linear infinite; }
-.map-root .map-ticker-item { display: flex; align-items: center; gap: 12px; font-family: var(--map-font-display); font-size: 20px; white-space: nowrap; }
+.map-root .map-ticker-item { display: flex; align-items: center; gap: 12px; font-family: var(--map-font-ticker); font-size: 20px; white-space: nowrap; }
 .map-root .map-ticker-dot { width: 12px; height: 12px; border-radius: 50%; }
 @keyframes map-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .map-root .map-ticker-track { animation: none; } }
@@ -88,10 +88,10 @@
   padding: 40px; border: 1.5px solid var(--map-ink); background: var(--map-ground); text-align: center;
 }
 .map-root .map-focus-lock p { margin: 0; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; }
-.map-root .map-focus-lock h2 { margin: 16px 0 24px; font-family: var(--map-font-display); font-weight: 400; font-size: 34px; }
+.map-root .map-focus-lock h2 { margin: 16px 0 24px; font-family: var(--map-font-subhead); font-weight: 400; font-size: 34px; }
 .map-root .map-button {
   padding: 12px 24px; border: 0; border-radius: var(--map-radius-pill); background: var(--map-ink);
-  color: var(--map-ground); font-family: var(--map-font-display); font-size: 18px; cursor: pointer;
+  color: var(--map-ground); font-family: var(--map-font-body); font-weight: 500; font-size: 16px; cursor: pointer;
 }
 
 /* Side panel */
@@ -101,5 +101,5 @@
 }
 .map-root .map-panel-close {
   float: right; padding: 8px 16px; border: 1.5px solid var(--map-ink); border-radius: var(--map-radius-pill);
-  background: transparent; font-family: var(--map-font-display); font-size: 16px; cursor: pointer;
+  background: transparent; font-family: var(--map-font-body); font-weight: 500; font-size: 15px; cursor: pointer;
 }
