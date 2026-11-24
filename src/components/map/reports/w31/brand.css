@@ -44,6 +44,9 @@
   --map-data-2: var(--w31-pink);
   --map-data-3: var(--w31-yellow);
   --map-data-4: var(--w31-blue);
+  /* Stop drawers (mockup style) */
+  --map-stop-paper: color-mix(in srgb, var(--w31-beige) 45%, var(--w31-white));
+  --map-slider-track: linear-gradient(90deg, var(--w31-green), var(--w31-yellow) 45%, var(--w31-orange) 72%, var(--w31-watermelon));
   --map-topbar-solid-bg: var(--w31-ink);
   --map-topbar-solid-text: var(--w31-beige);
 

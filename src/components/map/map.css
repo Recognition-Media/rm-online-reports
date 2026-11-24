@@ -221,3 +221,49 @@
 /* Buttons inside modules keep their natural width; arrow buttons on the beige card get an outline. */
 .map-root .map-mod > .map-btn { align-self: flex-start; }
 .map-root .map-stop-controls .map-btn-secondary { box-shadow: inset 0 0 0 1.5px var(--map-ink); }
+
+/* Stop drawer, mockup style: smaller centered card over a soft blur of the field,
+   two tinted panels, Terminal title + quote, compact video row, gradient slider. */
+.map-root .map-stop-scrim { background: color-mix(in srgb, var(--map-ground) 40%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.map-root .map-stop {
+  width: min(1080px, 72vw); height: fit-content; margin: auto 0;
+  max-height: calc(100dvh - var(--map-header-height) - var(--map-tour-height, 0px) - 48px);
+  top: calc(var(--map-header-height) + 24px); bottom: calc(var(--map-tour-height, 0px) + 24px);
+  border: 1px solid color-mix(in srgb, var(--map-ink) 18%, transparent);
+  box-shadow: 0 24px 60px color-mix(in srgb, var(--map-ink) 16%, transparent);
+}
+.map-root .map-stop-card { height: auto; max-height: inherit; padding: 0; }
+.map-root .map-stop-controls { position: absolute; top: 20px; right: 20px; margin: 0; padding: 0; background: none; float: none; }
+.map-root .map-stop-close {
+  padding: 6px 14px; font-size: 14px; background: transparent; color: var(--map-ink); box-shadow: inset 0 0 0 1.5px var(--map-ink);
+}
+.map-root .map-stop-panels { gap: 0; }
+.map-root .map-stop-left { padding: 56px 56px 48px; gap: 22px; background: var(--map-stop-paper); }
+.map-root .map-stop-left p { font-size: 18px; }
+.map-root .map-stop-right { padding: 96px 56px 48px; border-left: 1px solid color-mix(in srgb, var(--map-ink) 12%, transparent); }
+.map-root .map-stop-full { padding: 56px; }
+.map-root .map-stop h2 { font-size: 56px; line-height: 1; text-transform: none; }
+.map-root .map-stop .map-voice-quote, .map-root .map-stop .map-voice-video > blockquote { padding-top: 20px; border-top: 1.5px solid var(--map-ink); }
+.map-root .map-stop .map-voice blockquote { font-family: var(--map-font-display); font-weight: 400; font-size: 22px; line-height: 1.25; }
+.map-root .map-stop .map-voice-quote figcaption { font-size: 14px; }
+.map-root .map-video-row { display: flex; align-items: center; gap: 24px; }
+.map-root .map-video-thumb {
+  position: relative; flex-shrink: 0; width: 220px; height: 140px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+  background: radial-gradient(ellipse at 40% 40%, var(--map-data-3), var(--stop-color, var(--map-data-1)) 75%);
+}
+.map-root .map-video-thumb[aria-disabled='true'] { cursor: default; }
+.map-root .map-video-play {
+  position: absolute; inset: 0; margin: auto; display: flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: 50%; background: var(--map-ink); color: var(--map-ground); font-size: 16px;
+}
+.map-root .map-video-row figcaption { display: grid; gap: 4px; font-size: 15px; line-height: 1.4; }
+.map-root .map-video-row strong { font-family: var(--map-font-display); font-weight: 400; font-size: 22px; }
+.map-root .map-video-soon { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; }
+.map-root .map-slider input[type='range'] {
+  -webkit-appearance: none; appearance: none; height: 12px; border-radius: var(--map-radius-pill); background: var(--map-slider-track); margin: 12px 0;
+}
+.map-root .map-slider input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 40px; height: 40px; border-radius: 50%; background: var(--map-ink); border: 3px solid var(--map-ground); cursor: grab;
+}
+.map-root .map-slider input[type='range']::-moz-range-thumb { width: 36px; height: 36px; border-radius: 50%; background: var(--map-ink); border: 3px solid var(--map-ground); cursor: grab; }
+.map-root .map-slider-answer { top: 6px; height: 36px; background: var(--map-ink); }

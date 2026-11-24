@@ -57,14 +57,7 @@ export function StopModal({
       >
         <div className="map-stop-card">
           <div className="map-stop-controls">
-            {/* aria-disabled (not disabled) so a focused arrow keeps focus at the first/last stop */}
-            <button type="button" className="map-btn map-btn-secondary" onClick={() => onPrev?.()} aria-disabled={!onPrev} aria-label={labels.prevStop}>
-              ←
-            </button>
-            <button type="button" className="map-btn map-btn-secondary" onClick={() => onNext?.()} aria-disabled={!onNext} aria-label={labels.nextStop}>
-              →
-            </button>
-            <button type="button" className="map-btn map-btn-primary" onClick={onClose}>
+            <button type="button" className="map-btn map-stop-close" onClick={onClose}>
               {labels.close} ×
             </button>
           </div>

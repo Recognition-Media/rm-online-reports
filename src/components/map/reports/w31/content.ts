@@ -188,6 +188,7 @@ export const content: MapContent = {
     prevStop: 'Previous',
     nextStop: 'Next',
     videoSoon: 'Video coming soon',
+    playVideo: 'Play video',
   },
 }
 
