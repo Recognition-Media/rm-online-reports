@@ -133,10 +133,3 @@ test('spreadPositions never lets a blob cross the center line', async () => {
     else assert.ok(b.x - b.size / 2 >= CANVAS.divider, `${b.id} left edge ${b.x - b.size / 2}`)
   }
 })
-
-test('blobs under 7% (as shown) get mostly-soft outlines; 7% and up keep more crisp edge', async () => {
-  const { isSoftBlob } = await import('./themeMath.ts')
-  const s = computeThemeStats([t('a', 'meaning', 64), t('b', 'meaning', 66), t('c', 'form', 870)])
-  // a = 6.4% → shows 6% → soft; b = 6.6% → shows 7% → sharp; c = 87% → sharp
-  assert.deepEqual(s.themes.map(isSoftBlob), [true, false, false])
-})

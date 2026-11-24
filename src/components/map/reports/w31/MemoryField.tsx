@@ -1,7 +1,7 @@
 'use client'
 
 import type { CenterProps } from '../../types'
-import { CANVAS, isSoftBlob } from './themeMath'
+import { CANVAS } from './themeMath'
 import { summary } from './summary'
 
 // Below this size the theme name is hidden and only the % shows (as in the design).
@@ -34,7 +34,7 @@ export function MemoryField({ selectedId, onSelect }: CenterProps) {
           <button
             key={t.id}
             type="button"
-            className={`w31-blob${isSoftBlob(t) ? ' is-soft' : ''}${dimmed ? ' is-dimmed' : ''}${selectedId === t.id ? ' is-selected' : ''}`}
+            className={`w31-blob${dimmed ? ' is-dimmed' : ''}${selectedId === t.id ? ' is-selected' : ''}`}
             style={{
               left: t.x - t.size / 2,
               top: t.y - t.size / 2,

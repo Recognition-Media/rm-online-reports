@@ -137,12 +137,6 @@
   -webkit-mask-image: linear-gradient(var(--fade), #000 35%, transparent 75%);
   mask-image: linear-gradient(var(--fade), #000 35%, transparent 75%);
 }
-/* Smaller themes (under 7%): same blur, but the crisp edge shrinks to one corner,
-   so most of the outline is soft. Bigger themes keep crisp edges on about half the shape. */
-.map-root.map-w31 .w31-blob.is-soft .w31-blob-crisp {
-  -webkit-mask-image: linear-gradient(var(--fade), #000 8%, transparent 30%);
-  mask-image: linear-gradient(var(--fade), #000 8%, transparent 30%);
-}
 /* Color washes: Meaning warm, Form cool */
 .map-root.map-w31 .w31-wash { position: absolute; top: 200px; bottom: 60px; filter: blur(60px); opacity: var(--map-wash-opacity); }
 .map-root.map-w31 .w31-wash-meaning {
