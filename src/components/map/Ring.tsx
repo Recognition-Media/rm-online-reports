@@ -27,6 +27,7 @@ export function Ring({
             type="button"
             className={cls}
             style={{ left: s.position.x - w / 2, top: s.position.y - PILL_HEIGHT / 2, width: w, height: PILL_HEIGHT }}
+            data-stop-id={s.id}
             onClick={() => onOpen(s.id)}
             aria-current={current === s.id ? 'step' : undefined}
           >

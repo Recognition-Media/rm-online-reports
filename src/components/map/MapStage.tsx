@@ -90,7 +90,15 @@ export function MapStage({
           stop={step === INTRO ? null : stop}
           intro={content.tour.intro}
           labels={content.labels}
-          onClose={() => setStep(null)}
+          onClose={() => {
+            // Return focus to the pill of the stop the reader was on (or the tour button after the intro).
+            const last = step
+            setStep(null)
+            requestAnimationFrame(() => {
+              const target = document.querySelector<HTMLElement>(`[data-stop-id="${last}"]`) ?? document.querySelector<HTMLElement>('.map-tour-next')
+              target?.focus()
+            })
+          }}
           onPrev={prev ? () => go(prev) : undefined}
           onNext={next ? () => go(next) : undefined}
         />
