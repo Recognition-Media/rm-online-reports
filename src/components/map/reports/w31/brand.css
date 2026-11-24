@@ -49,6 +49,14 @@
 
   /* Landing background */
   --map-landing-bg: url('/map/w31/colorwash.jpg');
+
+  /* Sign-up gate */
+  --map-gate-overlay: rgba(20, 20, 20, 0.55);
+  --map-gate-frame: #141414;
+  --map-gate-card: #F0EBDF;
+  --map-gate-text: #141414;
+  --map-gate-accent: #141414;
+  --map-gate-button-text: #F0EBDF;
 }
 
 /* Memory Field (drawn on the 1440×900 canvas) */
