@@ -4,6 +4,7 @@ import type { Report } from '@/sanity/types'
 import { AnalyticsScripts } from '@/components/AnalyticsScripts'
 import { getMapReport } from './reports'
 import { Landing } from './Landing'
+import { PromptBar } from './PromptBar'
 import './map.css'
 
 /**
@@ -17,6 +18,7 @@ export function ReportView({ report }: { report: Report }) {
     <main className={`map-root ${config.className}`}>
       <AnalyticsScripts report={report} />
       <Landing content={config.content} />
+      <PromptBar prompt={config.content.prompt} />
     </main>
   )
 }
