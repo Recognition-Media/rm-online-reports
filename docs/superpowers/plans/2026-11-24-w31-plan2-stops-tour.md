@@ -350,9 +350,23 @@ test('both poles have copy entries', () => {
 })
 ```
 
-Run `node --test src/components/map/reports/w31/content.test.mjs` → FAIL (`content.stops` undefined).
+Run `node --test src/components/map/reports/w31/content.test.mjs` → FAIL. (It first fails with `Cannot find module … w31/themes`: `node --test` can't resolve content.ts's extension-less `import { themes } from './themes'`. Step 7 removes that import.)
 
-- [ ] **Step 7: Add the placeholder content** — in `src/components/map/reports/w31/content.ts`, add inside `content` (after `gate`):
+- [ ] **Step 7: Make content.ts testable, then add the placeholder content**
+
+First, in `src/components/map/reports/w31/content.ts`, delete `import { themes } from './themes'` and the `colorOf` helper, and replace each ticker `color: colorOf('<id>')` with the theme's family color directly (same colors as before, so nothing changes on screen):
+
+| `colorOf(…)` | replace with |
+|---|---|
+| `'delight'`, `'emotion'` | `'var(--w31-orange)'` |
+| `'novelty'` | `'var(--w31-blue)'` |
+| `'insight'` | `'var(--w31-yellow)'` |
+| `'craft'` | `'var(--w31-forest)'` |
+| `'voice'` | `'var(--w31-pink)'` |
+| `'narrative'` | `'var(--w31-blue-light)'` |
+| `'stickiness'` | `'var(--w31-green)'` |
+
+Now content.ts has only a type import, so `node --test` can load it. Then add inside `content` (after `gate`):
 
 ```ts
   // Stops around the map. ALL COPY BELOW IS PLACEHOLDER from the content outline; edit freely.
@@ -685,7 +699,7 @@ test('stop pills never overlap each other', () => {
 
 (Put the `import` at the top of the file.) Run all tests → PASS.
 
-- [ ] **Step 7: Print the resulting zoom for the record** — `node -e "import('./src/components/map/reports/w31/summary.ts').then(m=>console.log('fieldZoom', m.fieldZoom))"` and note the value in the ledger (it will be reported to Jordana).
+- [ ] **Step 7: Note on checking the zoom** — summary.ts uses extension-less imports, so it can't be loaded by `node --test`; `fitZoom` itself is covered by the tests above. The actual value is read in the browser in Task 8 (the `.w31-field` transform) and reported to Jordana.
 - [ ] **Step 8: Commit** — `git add src/components/map && git commit -m "feat(map): ring geometry + field zoom calculated to keep blobs clear of stop pills"`
 
 ---
@@ -1460,7 +1474,7 @@ and change the dimming line to:
 - [ ] **Step 1: Tests + types + lint + build** — `node --test 'src/components/map/**/*.test.mjs' && npx tsc --noEmit && npx eslint src/components/map && npm run build`. **Stop the dev server first** (the build wipes `.next`), restart it after.
 - [ ] **Step 2: Scope check** — `git fetch -q origin && git diff --name-only origin/main...HEAD | grep -vE '^(docs/superpowers/|src/components/map/|public/map/w31/|src/components/ReportView.tsx|src/sanity/schemas/report.ts|src/sanity/types.ts)'` → no output.
 - [ ] **Step 3: Browser checks** (headless Chrome, `?access=direct`, click See What Stuck):
-  - All six pills visible, readable, none overlapping a blob or MEANING / FORM; report the computed `fieldZoom`.
+  - All six pills visible, readable, none overlapping a blob or MEANING / FORM; read the computed zoom from `getComputedStyle(document.querySelector('.w31-field')).transform` and report it.
   - Each pill opens its pop-up; ×, Escape and a click outside close it; focus returns to the page.
   - ← / → buttons and arrow keys move between stops; on 01, arrow keys inside the slider move the slider only.
   - Slider: drag, Reveal → 69/100 and the guess show.
