@@ -13,17 +13,30 @@
 }
 
 .map-root.map-w31 {
-  /* Palette */
-  --map-ink: #141414;
-  --map-ground: #F0EBDF;
-  --map-paper: #FBF8F1;
-  --map-muted: #8A8578;
-  --map-dot: #9B978E;
-  --map-accent: #F5700F;
-  --map-pill: #FABB33;
-  --map-ellipse: #FFFFFF;
-  --map-bar: #141414;
-  --map-bar-text: #F0EBDF;
+  /* Webby 31 brand palette: the only hex values for this report.
+     Lead colors: orange, pink, yellow, blue. */
+  --w31-beige: #F0EBDF;
+  --w31-blue: #1FA0D2;
+  --w31-yellow: #FABB33;
+  --w31-orange: #F66F0A;
+  --w31-forest: #0C573F;
+  --w31-watermelon: #EF3C33;
+  --w31-green: #14C863;
+  --w31-pink: #FBAAEF;
+  --w31-ink: #141414;
+  --w31-white: #FFFFFF;
+
+  /* What each part of the page uses */
+  --map-ink: var(--w31-ink);
+  --map-ground: var(--w31-beige);
+  --map-paper: color-mix(in srgb, var(--w31-beige) 50%, var(--w31-white));
+  --map-muted: color-mix(in srgb, var(--w31-ink) 50%, var(--w31-beige));
+  --map-dot: color-mix(in srgb, var(--w31-ink) 40%, var(--w31-beige));
+  --map-accent: var(--w31-orange);
+  --map-pill: var(--w31-yellow);
+  --map-ellipse: var(--w31-white);
+  --map-bar: var(--w31-ink);
+  --map-bar-text: var(--w31-beige);
 
   /* Type */
   --map-font-display: 'W31 Terminal Grotesque', 'Aktiv Grotesk', monospace;
@@ -51,12 +64,12 @@
   --map-landing-bg: url('/map/w31/landing-bg.jpg');
 
   /* Sign-up gate */
-  --map-gate-overlay: rgba(20, 20, 20, 0.55);
-  --map-gate-frame: #141414;
-  --map-gate-card: #F0EBDF;
-  --map-gate-text: #141414;
-  --map-gate-accent: #141414;
-  --map-gate-button-text: #F0EBDF;
+  --map-gate-overlay: color-mix(in srgb, var(--w31-ink) 55%, transparent);
+  --map-gate-frame: var(--w31-ink);
+  --map-gate-card: var(--w31-beige);
+  --map-gate-text: var(--w31-ink);
+  --map-gate-accent: var(--w31-ink);
+  --map-gate-button-text: var(--w31-beige);
 }
 
 /* Memory Field (drawn on the 1440×900 canvas) */

@@ -16,3 +16,10 @@ test('seed data matches the JSON, everyone (376 coded answers, 64/36)', () => {
   // Humour is 47/376 = 12.5% exactly: shows as 13%
   assert.equal(s.themes.find((t) => t.id === 'humour').label, '13%')
 })
+
+test('every theme uses a Webby 31 brand color from brand.css', () => {
+  for (const t of themes) {
+    assert.match(t.color, /^var\(--w31-(beige|blue|yellow|orange|forest|watermelon|green|pink)\)$/, `${t.id} color ${t.color}`)
+    assert.match(t.ink, /^var\(--w31-(ink|beige)\)$/, `${t.id} ink ${t.ink}`)
+  }
+})

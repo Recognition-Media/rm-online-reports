@@ -4,7 +4,7 @@ import { themes } from './themes'
 // ALL COPY for the W31 report. Edit text here; components hold none.
 // Moves into Sanity fields in Phase 3.
 
-const colorOf = (id: string) => themes.find((t) => t.id === id)?.color ?? '#9B978E'
+const colorOf = (id: string) => themes.find((t) => t.id === id)?.color ?? 'var(--map-dot)'
 
 export const content: MapContent = {
   brandLines: ['The', 'Webby', 'Awards'],
