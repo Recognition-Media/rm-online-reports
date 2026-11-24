@@ -182,7 +182,7 @@ export const content: MapContent = {
     aria: 'Report sections',
   },
   labels: {
-    ringEyebrow: 'Outer ring',
+    ringEyebrow: 'Trend',
     ringAria: 'Report sections',
     close: 'Close',
     prevStop: 'Previous',

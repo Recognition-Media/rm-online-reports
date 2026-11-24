@@ -65,7 +65,7 @@ export function StopModal({
           {isTakeaways ? (
             <div className="map-stop-full">
               <p className="map-stop-eyebrow">
-                {labels.ringEyebrow} · {stop.number}
+                {labels.ringEyebrow} {stop.number}
               </p>
               <h2 id="map-stop-title" ref={titleRef} tabIndex={-1} className="map-visually-hidden">
                 {stop.title}
@@ -76,7 +76,7 @@ export function StopModal({
             <div className="map-stop-panels">
               <div className="map-stop-left">
                 <p className="map-stop-eyebrow">
-                  {labels.ringEyebrow} · {stop.number}
+                  {labels.ringEyebrow} {stop.number}
                 </p>
                 <h2 id="map-stop-title" ref={titleRef} tabIndex={-1}>
                   {stop.title}
