@@ -48,7 +48,7 @@
   --map-bar-height: 64px;
 
   /* Landing background */
-  --map-landing-bg: url('/map/w31/colorwash.jpg');
+  --map-landing-bg: url('/map/w31/landing-bg.jpg');
 
   /* Sign-up gate */
   --map-gate-overlay: rgba(20, 20, 20, 0.55);
