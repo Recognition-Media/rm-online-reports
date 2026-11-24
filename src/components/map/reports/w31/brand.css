@@ -124,6 +124,11 @@
 .map-root.map-w31 .w31-blob.is-dimmed { opacity: 0.35; }
 .map-root.map-w31 .w31-blob-glow { position: absolute; inset: 0; filter: blur(var(--map-blob-blur)); }
 .map-root.map-w31 .w31-blob-fill { position: absolute; inset: 0; }
+/* Brand-shape stencil: the PNG's transparency cuts the color, keeping the art's own soft or crisp edges. */
+.map-root.map-w31 .w31-blob-mask {
+  -webkit-mask: var(--mask) center / contain no-repeat;
+  mask: var(--mask) center / contain no-repeat;
+}
 /* Crisp copy on top, faded out toward one side, so one edge is sharp and the rest glows. */
 .map-root.map-w31 .w31-blob-crisp {
   -webkit-mask-image: linear-gradient(var(--fade), #000 35%, transparent 75%);

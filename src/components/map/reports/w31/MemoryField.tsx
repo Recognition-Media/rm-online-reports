@@ -1,5 +1,6 @@
 'use client'
 
+import { assetPath } from '@/lib/assetPath'
 import type { CenterProps } from '../../types'
 import { CANVAS } from './themeMath'
 import { summary } from './summary'
@@ -45,14 +46,25 @@ export function MemoryField({ selectedId, onSelect }: CenterProps) {
             onClick={() => onSelect(selectedId === t.id ? null : t.id)}
             aria-label={`${t.name}, ${t.label}`}
           >
-            <span className="w31-blob-glow" aria-hidden="true">
-              <span className="w31-blob-fill" style={{ background: t.color, clipPath: t.shape }} />
-            </span>
-            <span
-              className="w31-blob-fill w31-blob-crisp"
-              aria-hidden="true"
-              style={{ background: t.color, clipPath: t.shape, ['--fade' as string]: `${fadeAngle}deg` }}
-            />
+            {t.mask ? (
+              // Brand shape: its own soft/crisp edges come from the artwork.
+              <span
+                className="w31-blob-fill w31-blob-mask"
+                aria-hidden="true"
+                style={{ background: t.color, ['--mask' as string]: `url(${assetPath(t.mask)})` }}
+              />
+            ) : (
+              <>
+                <span className="w31-blob-glow" aria-hidden="true">
+                  <span className="w31-blob-fill" style={{ background: t.color, clipPath: t.shape }} />
+                </span>
+                <span
+                  className="w31-blob-fill w31-blob-crisp"
+                  aria-hidden="true"
+                  style={{ background: t.color, clipPath: t.shape, ['--fade' as string]: `${fadeAngle}deg` }}
+                />
+              </>
+            )}
             <span className="w31-blob-pct">{t.label}</span>
             {t.size >= NAME_MIN_SIZE && <span className="w31-blob-name">{t.name}</span>}
           </button>
