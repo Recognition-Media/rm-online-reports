@@ -10,8 +10,8 @@ export function ThemePanel({ id, onClose }: PanelProps) {
   const poleName = t.pole === 'meaning' ? 'Meaning' : 'Form'
 
   return (
-    <SidePanel onClose={onClose} closeLabel="Back to the field">
-      <p className="w31-panel-eyebrow">{poleName}</p>
+    <SidePanel onClose={onClose} closeLabel="Back">
+      <p className="w31-panel-eyebrow w31-panel-pole">{poleName}</p>
       <div className="w31-panel-stat">
         <span className="w31-panel-swatch" style={{ background: t.color, clipPath: t.shape }} />
         <span className="w31-panel-pct">{t.label}</span>
@@ -23,7 +23,7 @@ export function ThemePanel({ id, onClose }: PanelProps) {
       </p>
       {t.answers.length > 0 && (
         <>
-          <p className="w31-panel-eyebrow">In their words</p>
+          <p className="w31-panel-eyebrow">What We Remembered</p>
           {t.answers.map((a) => (
             <figure key={a.project} className="w31-panel-answer">
               <figcaption>{a.project}</figcaption>

@@ -116,6 +116,7 @@
   padding: 56px; border-left: 1.5px solid var(--map-ink); background: var(--map-ground);
 }
 .map-root .map-panel-close {
-  float: right; padding: 8px 16px; border: 1.5px solid var(--map-ink); border-radius: var(--map-radius-pill);
-  background: transparent; font-family: var(--map-font-body); font-weight: 500; font-size: 15px; cursor: pointer;
+  float: right; padding: 8px 20px; border: 0; border-radius: var(--map-radius-pill);
+  background: var(--map-btn-primary-bg); color: var(--map-btn-primary-text);
+  font-family: var(--map-font-body); font-weight: 500; font-size: 15px; cursor: pointer;
 }
