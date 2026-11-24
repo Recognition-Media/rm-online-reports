@@ -91,7 +91,8 @@
   --map-gutter: 56px;
   --map-blob-blur: 14px;
   --map-wash-opacity: 0.45;
-  --map-field-zoom: 1.2;
+  --map-tour-height: 52px;
+  --map-band-ticker-height: 44px;
   --map-header-height: 104px; /* the top bar: same height over the landing and the report */
   --map-ticker-height: 56px;
 
@@ -114,7 +115,7 @@
 
 /* Memory Field (drawn on the 1440×900 canvas) */
 /* Zoom scales everything on the field (labels, blobs, numbers) around its center. */
-.map-root.map-w31 .w31-field { position: absolute; inset: 0; transform: scale(var(--map-field-zoom)); transform-origin: 720px 470px; }
+.map-root.map-w31 .w31-field { position: absolute; inset: 0; transform-origin: 720px 470px; }
 .map-root.map-w31 .w31-pole { position: absolute; top: 150px; display: flex; align-items: baseline; gap: 16px; }
 .map-root.map-w31 .w31-pole-meaning { left: 280px; }
 .map-root.map-w31 .w31-pole-form { right: 280px; }

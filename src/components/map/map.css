@@ -104,7 +104,7 @@
 /* Stage: a fixed 1440×900 design canvas scaled to fit */
 .map-root .map-stage-wrap { position: relative; }
 .map-root .map-stage-wrap { padding-top: var(--map-header-height); }
-.map-root .map-stage { position: relative; height: calc(100dvh - var(--map-header-height)); overflow: hidden; background: var(--map-ground); }
+.map-root .map-stage { position: relative; height: calc(100dvh - var(--map-header-height) - var(--map-tour-height) - var(--map-band-ticker-height)); overflow: hidden; background: var(--map-ground); }
 /* Background art, bled slightly past the edges so the artwork's soft corners never show. */
 .map-root .map-stage::before { content: ''; position: absolute; inset: -2%; background: var(--map-report-bg) center / cover no-repeat; opacity: var(--map-report-bg-opacity); pointer-events: none; }
 .map-root .map-canvas { z-index: 1; }
@@ -193,3 +193,19 @@
 .map-root .map-stop-intro { display: grid; gap: 16px; }
 .map-root .map-stop-intro p { margin: 0; line-height: 1.6; }
 .map-root .map-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* Bottom band on the field page: tour bar above a slim ticker */
+.map-root .map-band { background: var(--map-topbar-solid-bg); color: var(--map-topbar-solid-text); }
+.map-root .map-tour { display: flex; align-items: center; gap: 16px; height: var(--map-tour-height); padding: 0 var(--map-gutter); }
+.map-root .map-tour-prev {
+  width: 40px; height: 40px; border: 1.5px solid currentColor; border-radius: 50%; background: transparent; color: inherit; font-size: 18px; cursor: pointer;
+}
+.map-root .map-tour-prev:disabled { opacity: 0.35; cursor: default; }
+.map-root .map-tour-steps { flex: 1; display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.map-root .map-tour-pill {
+  height: 32px; padding: 0 12px; border: 1.5px solid currentColor; border-radius: var(--map-radius-pill); background: transparent;
+  color: inherit; font-family: var(--map-font-display); font-size: 16px; cursor: pointer;
+}
+.map-root .map-tour-pill.is-current { background: var(--map-btn-secondary-bg); color: var(--map-btn-secondary-text); border-color: var(--map-btn-secondary-bg); }
+.map-root .map-ticker.map-ticker-field { position: relative; left: auto; right: auto; bottom: auto; height: var(--map-band-ticker-height); }
+.map-root .map-ticker.map-ticker-field.is-muted { visibility: hidden; }

@@ -4,6 +4,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { MapReportConfig } from './types'
 import { Ring } from './Ring'
 import { StopModal } from './StopModal'
+import { TourBar } from './TourBar'
+import { Ticker } from './Ticker'
 import { INTRO, nextStep, prevStep, tourSteps } from './tour'
 
 const W = 1440
@@ -66,6 +68,22 @@ export function MapStage({
           <Ring stops={content.stops} current={step} visited={visited} ariaLabel={content.labels.ringAria} onOpen={go} />
         </div>
         {selectedId && <Panel id={selectedId} onClose={() => onSelect(null)} onSelect={onSelect} />}
+      </div>
+      <div className="map-band">
+        <TourBar
+          stops={content.stops}
+          labels={content.tour}
+          current={step}
+          isLast={step === steps[steps.length - 1]}
+          onGo={go}
+          onPrev={() => go(prev)}
+          onNext={() => go(next)}
+        />
+        <Ticker
+          label={content.tickerLabel}
+          items={content.ticker}
+          className={`map-ticker-field${step !== null ? ' is-muted' : ''}`}
+        />
       </div>
       {step !== null && (
         <StopModal
