@@ -16,13 +16,14 @@
 - **Copy is placeholder:** every word lives in `reports/w31/content.ts` (or the theme data). Components hold no copy. **Tests never assert on wording**; they check structure, numbers and behavior.
 - **Design system:** two fonts only (Terminal Grotesque for large headers and data numbers via `--map-font-display`; Aktiv Grotesk for everything else via `--map-font-body` / `--map-font-subhead`). Buttons use `.map-btn` + `.map-btn-primary` (black/beige) or `.map-btn-secondary` (beige/black). Palette colors only for data (new `--map-data-1..4` tokens). Every selector starts with `.map-root`.
 - Stop names/numbers (exact): `01` The Attention Trap · `02` When Metrics Lose Meaning · `03` Optimization-Maxxing · `04` What Are the Signals? · `05` Listening vs. Experimenting · `06` Takeaways.
-- Positions (pill centers on the 1440×900 canvas): 01 (165, 300) · 02 (720, 110) · 03 (1275, 300) · 04 (1275, 610) · 05 (720, 858) · 06 (165, 610).
+- Positions (pill centers on the 1440×900 canvas): 01 (140, 300) · 02 (720, 110) · 03 (1300, 300) · 04 (1300, 610) · 05 (720, 858) · 06 (140, 610).
+- **Field size: 100%** (`MAX_FIELD_ZOOM = 1.0`, Jordana 2026-11-24). Ring pills are compact (36px tall, 13px text) so 100% fits with margin (measured: up to 1.05 would fit).
 - Q10 value: **69**. Takeaways has **no** "What stuck with you / Add your memory / Share my field". No "Kept n/25".
 - Tests: `node --test 'src/components/map/**/*.test.mjs'` must stay green; lint gate is `npx eslint src/components/map` (repo-wide lint already fails on `main`).
 
 ## Review Focus
 
-1. **Field shrinkage from the ring.** Pills at x≈165/1275 overlap where blobs currently reach; `fitZoom` will pick a zoom below 1.2 (likely ~0.8). Readers should get a field that is smaller but never covered. *(pinned in Task 3: `fitZoom` tests; Task 8: browser overlap + zoom report to Jordana)*
+1. **Field size with the ring.** The field is capped at 100% (was 120%); compact pills at x≈140/1300 leave room (measured fit 1.05). If data or copy changes make a pill wider, `fitZoom` drops below 100% rather than letting a pill cover a blob. *(pinned in Task 3: `fitZoom` tests; Task 8: browser overlap + zoom report to Jordana)*
 2. **Arrow keys inside the slider.** ←/→ on the Q10 slider must move the slider, not jump stops. *(pinned in Task 5: handler skips range inputs; Task 8 browser check)*
 3. **Bad survey numbers in content.ts** (e.g. 690 instead of 69, empty bar list, duplicate stop number) must fail the dev server/build, not draw a broken chart. *(pinned in Task 2: `validateStops` tests + `assertValidStops` in the W31 config)*
 4. **Drawer and pop-up at once.** Opening a stop while a theme drawer is open must close the drawer; Escape closes only the pop-up. *(pinned in Task 5: `go()` clears `selectedId`; Task 8 browser check)*
@@ -375,7 +376,7 @@ Now content.ts has only a type import, so `node --test` can load it. Then add in
       id: 'attention',
       number: '01',
       title: 'The Attention Trap',
-      position: { x: 165, y: 300 },
+      position: { x: 140, y: 300 },
       copy: ['About 10 hours of media a day. Roughly 1,500 pieces of content. Most of it ends up as noise. [Copy TK]'],
       voice: {
         kind: 'video',
@@ -423,7 +424,7 @@ Now content.ts has only a type import, so `node --test` can load it. Then add in
       id: 'optimization',
       number: '03',
       title: 'Optimization-Maxxing',
-      position: { x: 1275, y: 300 },
+      position: { x: 1300, y: 300 },
       copy: ['When everyone optimizes toward the same numbers, everyone arrives at the same work. [Copy TK]'],
       voice: { kind: 'quote', quote: { text: "We've gotten incredibly good at optimizing for what performs, which can also mean optimizing toward sameness.", name: 'Kaare Wesnaes', role: 'Head of Innovation, Ogilvy' } },
       module: {
@@ -441,7 +442,7 @@ Now content.ts has only a type import, so `node --test` can load it. Then add in
       id: 'signals',
       number: '04',
       title: 'What Are the Signals?',
-      position: { x: 1275, y: 610 },
+      position: { x: 1300, y: 610 },
       copy: ['Judges agree a high view count proves one thing: the work was put in front of people. [Copy TK]'],
       voice: { kind: 'quote', quote: { text: 'The comment section has become one of the most valuable spaces in social.', name: 'Wangari Nderi', role: 'Group Brand, Digital & Communications Lead, Live54 Plus' } },
       module: {
@@ -477,7 +478,7 @@ Now content.ts has only a type import, so `node --test` can load it. Then add in
       number: '06',
       title: 'Takeaways',
       tourLabel: '06 Takeaways',
-      position: { x: 165, y: 610 },
+      position: { x: 140, y: 610 },
       copy: [],
       module: {
         type: 'takeaways',
@@ -550,7 +551,7 @@ In `src/components/map/reports/w31/index.ts`, add `import { assertValidStops } f
 
 **Interfaces:**
 - Consumes: `MapStop` (Task 2), `summary` (existing)
-- Produces: `PILL_HEIGHT = 44`; `pillLabel(s): string` (= `` `${number} ${title}` ``); `pillWidth(label: string): number`; `interface Rect { x; y; w; h }` (top-left); `pillRect(s: { number; title; position }): Rect`; `circleHitsRect(c: {x;y;r}, rect: Rect, pad: number): boolean`; `fitZoom(circles, rects, origin, max, min = 0.6, pad = 12): number`; from summary.ts: `FIELD_ORIGIN`, `MAX_FIELD_ZOOM = 1.2`, `fieldZoom: number`
+- Produces: `PILL_HEIGHT = 36`; `pillLabel(s): string` (= `` `${number} ${title}` ``); `pillWidth(label: string): number`; `interface Rect { x; y; w; h }` (top-left); `pillRect(s: { number; title; position }): Rect`; `circleHitsRect(c: {x;y;r}, rect: Rect, pad: number): boolean`; `fitZoom(circles, rects, origin, max, min = 0.6, pad = 12): number`; from summary.ts: `FIELD_ORIGIN`, `MAX_FIELD_ZOOM = 1.2`, `fieldZoom: number`
 
 - [ ] **Step 1: Failing tests** — `src/components/map/ringGeometry.test.mjs`:
 
@@ -601,7 +602,7 @@ test('fitZoom bottoms out at min when the pill covers the center', () => {
 // Geometry for the ring of stop pills on the 1440×900 canvas, and the
 // field zoom that keeps every blob clear of them.
 
-export const PILL_HEIGHT = 44
+export const PILL_HEIGHT = 36
 
 export interface Rect {
   x: number
@@ -620,9 +621,9 @@ export function pillLabel(s: { number: string; title: string }): string {
   return `${s.number} ${s.title}`
 }
 
-/** Fixed pill width from the label (Aktiv 15px ≈ 9px/char + padding), so layout math matches what renders. */
+/** Fixed pill width from the label (Aktiv 13px ≈ 7.6px/char + padding), so layout math matches what renders. */
 export function pillWidth(label: string): number {
-  return Math.round(48 + label.length * 9)
+  return Math.round(36 + label.length * 7.6)
 }
 
 export function pillRect(s: { number: string; title: string; position: { x: number; y: number } }): Rect {
@@ -669,8 +670,8 @@ import { fitZoom, pillRect } from '../../ringGeometry'
 
 /** The field zooms around this point (same as before). */
 export const FIELD_ORIGIN = { x: 720, y: 470 }
-/** Never larger than the 20% bump Jordana chose; smaller if the ring needs room. */
-export const MAX_FIELD_ZOOM = 1.2
+/** Jordana: field at 100% with the ring (was 1.2 before the ring). Smaller only if a pill would cover a blob. */
+export const MAX_FIELD_ZOOM = 1.0
 
 /** Biggest zoom at which no blob sits under a stop pill. Recomputed if data or stop positions change. */
 export const fieldZoom = fitZoom(
@@ -1238,14 +1239,14 @@ export function MapStage({
 /* Ring of stops (on the canvas, above the field) */
 .map-root .map-ring { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
 .map-root .map-ring-stop {
-  position: absolute; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 16px;
+  position: absolute; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 12px;
   border: 0; border-radius: var(--map-radius-pill); background: var(--map-btn-secondary-bg); color: var(--map-btn-secondary-text);
-  box-shadow: inset 0 0 0 1.5px var(--map-ink); font-family: var(--map-font-body); font-weight: 500; font-size: 15px;
+  box-shadow: inset 0 0 0 1.5px var(--map-ink); font-family: var(--map-font-body); font-weight: 500; font-size: 13px;
   white-space: nowrap; overflow: hidden; cursor: pointer; pointer-events: auto; transition: transform 150ms ease;
 }
 .map-root .map-ring-stop:hover { transform: translateY(-2px); }
 .map-root .map-ring-stop.is-current { background: var(--map-btn-primary-bg); color: var(--map-btn-primary-text); }
-.map-root .map-ring-num { font-family: var(--map-font-display); font-size: 17px; }
+.map-root .map-ring-num { font-family: var(--map-font-display); font-size: 15px; }
 .map-root .map-ring-stop.is-visited::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
 /* Stop pop-up (native dialog, centered) */
@@ -1370,7 +1371,7 @@ export function TourBar({
 .map-root .map-tour-prev:disabled { opacity: 0.35; cursor: default; }
 .map-root .map-tour-steps { flex: 1; display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .map-root .map-tour-pill {
-  height: 36px; padding: 0 14px; border: 1.5px solid currentColor; border-radius: var(--map-radius-pill); background: transparent;
+  height: 32px; padding: 0 12px; border: 1.5px solid currentColor; border-radius: var(--map-radius-pill); background: transparent;
   color: inherit; font-family: var(--map-font-display); font-size: 16px; cursor: pointer;
 }
 .map-root .map-tour-pill.is-current { background: var(--map-btn-secondary-bg); color: var(--map-btn-secondary-text); border-color: var(--map-btn-secondary-bg); }
@@ -1378,7 +1379,7 @@ export function TourBar({
 .map-root .map-ticker.map-ticker-field.is-muted { visibility: hidden; }
 ```
 
-In `brand.css` (`.map-root.map-w31` block) add `--map-tour-height: 60px;` and `--map-band-ticker-height: 44px;`, and **remove** the `--map-field-zoom: 1.2;` line.
+In `brand.css` (`.map-root.map-w31` block) add `--map-tour-height: 52px;` and `--map-band-ticker-height: 44px;`, and **remove** the `--map-field-zoom: 1.2;` line.
 
 - [ ] **Step 5: Field uses the calculated zoom** — in `brand.css` change the `.w31-field` rule to drop `transform: scale(var(--map-field-zoom));` (keep `transform-origin: 720px 470px;`). In `MemoryField.tsx` import `fieldZoom` from `./summary` and set `<div className="w31-field" style={{ transform: `scale(${fieldZoom})` }}>`.
 
@@ -1475,7 +1476,7 @@ and change the dimming line to:
 - [ ] **Step 1: Tests + types + lint + build** — `node --test 'src/components/map/**/*.test.mjs' && npx tsc --noEmit && npx eslint src/components/map && npm run build`. **Stop the dev server first** (the build wipes `.next`), restart it after.
 - [ ] **Step 2: Scope check** — `git fetch -q origin && git diff --name-only origin/main...HEAD | grep -vE '^(docs/superpowers/|src/components/map/|public/map/w31/|src/components/ReportView.tsx|src/sanity/schemas/report.ts|src/sanity/types.ts)'` → no output.
 - [ ] **Step 3: Browser checks** (headless Chrome, `?access=direct`, click See What Stuck):
-  - All six pills visible, readable, none overlapping a blob or MEANING / FORM; read the computed zoom from `getComputedStyle(document.querySelector('.w31-field')).transform` and report it.
+  - All six pills visible, readable (13px text fits inside each pill, no clipping), none overlapping a blob or MEANING / FORM; the field zoom should be exactly 1 (100%); read the computed zoom from `getComputedStyle(document.querySelector('.w31-field')).transform` and report it.
   - Each pill opens its pop-up; ×, Escape and a click outside close it; focus returns to the page.
   - ← / → buttons and arrow keys move between stops; on 01, arrow keys inside the slider move the slider only.
   - Slider: drag, Reveal → 69/100 and the guess show.
