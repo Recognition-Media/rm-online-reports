@@ -7,6 +7,12 @@
   font-display: swap;
 }
 @font-face {
+  font-family: 'W31 GT Standard';
+  src: url('/map/w31/fonts/gt-standard-m-medium.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
   font-family: 'W31 Terminal Grotesque Open';
   src: url('/map/w31/fonts/terminal-grotesque-open.otf') format('opentype');
   font-display: swap;
@@ -37,8 +43,11 @@
   --map-bar: var(--w31-ink);
   --map-bar-text: var(--w31-beige);
   --map-info-bg: var(--w31-beige);
-  --map-cta-bg: var(--w31-ink);
-  --map-cta-text: var(--w31-yellow);
+  --map-cta-text: var(--w31-ink);
+  --map-cta-ellipse: var(--w31-beige);
+  --map-cta-scribble: url('/map/w31/scribble-ellipse.png');
+  --map-ticker-label-bg: var(--w31-pink);
+  --map-ticker-label-text: var(--w31-ink);
 
   /* Type */
   /* Font roles (house rules):
@@ -54,6 +63,8 @@
   --map-subhead-weight: 700;
   --map-font-body: 'Aktiv Grotesk', 'aktiv-grotesk', -apple-system, sans-serif;
   --map-font-ticker: var(--map-font-display);
+  /* GT Standard M Medium, used only for the Explore button. */
+  --map-font-cta: 'W31 GT Standard', 'Aktiv Grotesk', -apple-system, sans-serif;
   --map-size-hero: clamp(72px, 12vw, 232px);
   --map-hero-line-height: 0.7;
   --map-hero-tracking: -0.04em;
@@ -64,7 +75,7 @@
   --map-size-pole: 44px;
   --map-size-title: 24px;
   --map-size-lead: clamp(22px, 2.3vw, 44px);
-  --map-size-cta: 15px;
+  --map-size-cta: clamp(22px, 2.3vw, 36px);
   --map-size-body: 16px;
   --map-size-label: 14px;
   --map-size-blob-pct: 36px;

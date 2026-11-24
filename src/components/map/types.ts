@@ -34,6 +34,8 @@ export interface MapContent {
     cta: string
     nav: NavLink[]
   }
+  /** Prompt shown in a box at the start of the ticker strip. */
+  tickerLabel: string
   /** Things people remembered, scrolling along the bottom of the landing. */
   ticker: TickerItem[]
   focusLock: {

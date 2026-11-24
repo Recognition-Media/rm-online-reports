@@ -44,14 +44,19 @@
   font-size: var(--map-size-lead); line-height: 1.15; font-weight: 500; font-style: normal;
 }
 
-/* Main landing button (opens the sign-up gate) */
+/* Main landing button (opens the sign-up gate): text inside a hand-drawn ellipse */
 .map-root .map-cta {
-  margin-top: var(--map-hero-gap); padding: 16px 32px; border: 0; border-radius: var(--map-radius-pill);
-  background: var(--map-cta-bg); color: var(--map-cta-text); font-family: var(--map-font-body); font-weight: 500;
-  font-size: var(--map-size-cta); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+  position: relative; margin-top: var(--map-hero-gap); padding: 22px 56px; border: 0; background: none;
+  color: var(--map-cta-text); font-family: var(--map-font-cta); font-weight: 500; font-size: var(--map-size-cta);
+  cursor: pointer; transition: transform 150ms ease;
 }
-.map-root .map-cta span { margin-left: 8px; }
-.map-root .map-cta:hover { transform: translateY(-1px); }
+/* The ellipse: the brand scribble used as a stencil, filled with a palette color. */
+.map-root .map-cta::before {
+  content: ''; position: absolute; inset: -6px -10px; background: var(--map-cta-ellipse);
+  -webkit-mask: var(--map-cta-scribble) center / 100% 100% no-repeat; mask: var(--map-cta-scribble) center / 100% 100% no-repeat;
+  pointer-events: none;
+}
+.map-root .map-cta:hover { transform: rotate(-2deg) scale(1.03); }
 
 /* Info drop-down under a nav button (e.g. About the Report) */
 .map-root .map-info-dropdown {
@@ -68,7 +73,13 @@
 }
 
 /* Ticker strip */
-.map-root .map-ticker { overflow: hidden; height: var(--map-ticker-height); display: flex; align-items: center; background: var(--map-bar); color: var(--map-bar-text); }
+.map-root .map-ticker { display: flex; align-items: stretch; height: var(--map-ticker-height); background: var(--map-bar); color: var(--map-bar-text); }
+.map-root .map-ticker-label {
+  flex-shrink: 0; display: flex; align-items: center; margin: 0; padding: 0 24px 0 var(--map-gutter);
+  background: var(--map-ticker-label-bg); color: var(--map-ticker-label-text);
+  font-family: var(--map-font-subhead); font-weight: var(--map-subhead-weight); font-size: 16px; white-space: nowrap;
+}
+.map-root .map-ticker-window { flex: 1; min-width: 0; display: flex; align-items: center; overflow: hidden; padding-left: 32px; }
 .map-root .map-ticker-track { display: flex; gap: 56px; width: max-content; animation: map-ticker 60s linear infinite; }
 .map-root .map-ticker-item { display: flex; align-items: center; gap: 12px; font-family: var(--map-font-ticker); font-size: 20px; white-space: nowrap; }
 .map-root .map-ticker-dot { width: 12px; height: 12px; border-radius: 50%; }

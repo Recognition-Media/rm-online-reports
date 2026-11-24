@@ -32,7 +32,7 @@ export function ReportView({ report }: { report: Report }) {
           else setShowGate(true)
         }}
       />
-      <Ticker items={config.content.ticker} />
+      <Ticker label={config.content.tickerLabel} items={config.content.ticker} />
       <MapStage
         config={config}
         locked={!hasAccess}
