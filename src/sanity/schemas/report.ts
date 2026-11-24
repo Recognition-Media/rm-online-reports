@@ -65,6 +65,7 @@ export default defineType({
         list: [
           { title: 'Horizontal (Webby-style)', value: 'horizontal' },
           { title: 'Vertical (Anthem-style)', value: 'vertical' },
+          { title: 'Interactive Map', value: 'map' },
         ],
       },
       initialValue: 'horizontal',

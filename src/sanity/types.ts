@@ -311,7 +311,7 @@ export interface Report {
   title: string
   slug: { current: string }
   property?: 'webby' | 'anthem' | 'telly' | 'lovie'
-  template?: 'vertical' | 'horizontal'
+  template?: 'vertical' | 'horizontal' | 'map'
   signupGateEnabled?: boolean
   status: 'draft' | 'live'
   metaTitle?: string
