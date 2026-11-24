@@ -1,0 +1,52 @@
+/* W31 "By Popular Demand": every design value for this report.
+   Change a color, font or size here and it applies everywhere. */
+
+@font-face {
+  font-family: 'W31 Terminal Grotesque';
+  src: url('/map/w31/fonts/terminal-grotesque.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'W31 Terminal Grotesque Open';
+  src: url('/map/w31/fonts/terminal-grotesque-open.otf') format('opentype');
+  font-display: swap;
+}
+
+.map-root.map-w31 {
+  /* Palette */
+  --map-ink: #141414;
+  --map-ground: #F0EBDF;
+  --map-paper: #FBF8F1;
+  --map-muted: #8A8578;
+  --map-dot: #9B978E;
+  --map-accent: #F5700F;
+  --map-pill: #FABB33;
+  --map-ellipse: #FFFFFF;
+  --map-bar: #141414;
+  --map-bar-text: #F0EBDF;
+
+  /* Type */
+  --map-font-display: 'W31 Terminal Grotesque', 'Aktiv Grotesk', monospace;
+  --map-font-display-open: 'W31 Terminal Grotesque Open', 'W31 Terminal Grotesque', monospace;
+  --map-font-body: 'Aktiv Grotesk', -apple-system, sans-serif;
+  --map-size-hero: clamp(64px, 11vw, 176px);
+  --map-size-pole: 44px;
+  --map-size-title: 24px;
+  --map-size-lead: 30px;
+  --map-size-body: 16px;
+  --map-size-label: 14px;
+  --map-size-blob-pct: 36px;
+  --map-size-blob-name: 16px;
+  --map-size-panel-pct: 120px;
+  --map-size-panel-headline: 44px;
+
+  /* Shape & space */
+  --map-radius-pill: 999px;
+  --map-gutter: 56px;
+  --map-blob-blur: 5px;
+  --map-header-height: 88px;
+  --map-bar-height: 64px;
+
+  /* Landing background */
+  --map-landing-bg: url('/map/w31/colorwash.jpg');
+}

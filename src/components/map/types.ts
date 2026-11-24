@@ -1,0 +1,60 @@
+import type { ComponentType } from 'react'
+
+export interface NavLink {
+  label: string
+  href: string
+  primary?: boolean
+}
+
+export interface TickerItem {
+  text: string
+  color: string
+}
+
+/** All copy for one map report. Moves into Sanity fields in Phase 3. */
+export interface MapContent {
+  brandLines: string[]
+  reportTitle: string
+  reportSubtitle: string
+  landing: {
+    eyebrow: string
+    headlineTop: string
+    headlineCircled: string
+    subtitle: string
+    nav: NavLink[]
+  }
+  prompt: {
+    question: string
+    placeholder: string
+    button: string
+    ticker: TickerItem[]
+  }
+  focusLock: {
+    eyebrow: string
+    headline: string
+    button: string
+  }
+  gate: {
+    title: string
+    subhead: string
+  }
+}
+
+export interface CenterProps {
+  selectedId: string | null
+  onSelect: (id: string | null) => void
+}
+
+export interface PanelProps {
+  id: string
+  onClose: () => void
+}
+
+/** Everything report-specific the reusable map template needs. */
+export interface MapReportConfig {
+  /** Extra class on .map-root that scopes the report's brand.css. */
+  className: string
+  content: MapContent
+  Center: ComponentType<CenterProps>
+  Panel: ComponentType<PanelProps>
+}
