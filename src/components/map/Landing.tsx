@@ -1,38 +1,32 @@
+import { assetPath } from '@/lib/assetPath'
 import type { MapContent } from './types'
 
 export function Landing({ content }: { content: MapContent }) {
   const { landing } = content
   return (
     <section className="map-landing">
-      <div className="map-landing-top">
-        <div className="map-brand">
-          {content.brandLines.map((l) => <div key={l}>{l}</div>)}
-        </div>
-        <nav className="map-nav">
-          {landing.nav.map((n) => (
-            <a
-              key={n.label}
-              href={n.href}
-              className={n.primary ? 'is-primary' : undefined}
-              {...(n.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            >
-              {n.label}
-            </a>
+      <nav className="map-nav">
+        {landing.nav.map((n) => (
+          <a
+            key={n.label}
+            href={n.href}
+            className={n.primary ? 'is-primary' : undefined}
+            {...(n.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
+            {n.label}
+          </a>
+        ))}
+      </nav>
+      <div className="map-landing-center">
+        {/* eslint-disable-next-line @next/next/no-img-element -- static export, plain img like the other templates */}
+        <img className="map-landing-logo" src={assetPath(content.logo.src)} alt={content.logo.alt} />
+        <h1 className="map-hero">
+          {landing.headline.map((line) => (
+            <span key={line} className="map-hero-line">{line}</span>
           ))}
-        </nav>
+        </h1>
+        <p className="map-subtitle">{landing.subtitle}</p>
       </div>
-      <span className="map-eyebrow">{landing.eyebrow}</span>
-      <h1 className="map-hero">
-        {landing.headlineTop}
-        <br />
-        <span className="map-hero-circled">
-          {landing.headlineCircled}
-          <svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
-            <ellipse cx="50" cy="20" rx="49" ry="19" vectorEffect="non-scaling-stroke" />
-          </svg>
-        </span>
-      </h1>
-      <p className="map-subtitle">{landing.subtitle}</p>
     </section>
   )
 }

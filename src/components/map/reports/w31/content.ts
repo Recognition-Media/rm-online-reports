@@ -7,14 +7,12 @@ import { themes } from './themes'
 const colorOf = (id: string) => themes.find((t) => t.id === id)?.color ?? 'var(--map-dot)'
 
 export const content: MapContent = {
-  brandLines: ['The', 'Webby', 'Awards'],
+  logo: { src: '/map/w31/webby-logo-black.svg', alt: 'The Webby Awards' },
   reportTitle: 'By Popular Demand',
   reportSubtitle: 'The 2026 Webby Trend Report',
   landing: {
-    eyebrow: 'The 2026 Webby Trend Report',
-    headlineTop: 'By Popular',
-    headlineCircled: 'Demand',
-    subtitle: 'On an Internet built to capture attention, what makes work actually last?',
+    headline: ['By', 'Popular', 'Demand'],
+    subtitle: 'A report on what makes work memorable on the Internet in 2026, by The Webby Awards',
     nav: [
       { label: 'About the report', href: '#about' },
       { label: 'Methodology', href: '#methodology' },

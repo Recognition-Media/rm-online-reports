@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { assetPath } from '@/lib/assetPath'
 import type { MapReportConfig } from './types'
 
 const W = 1440
@@ -43,9 +44,8 @@ export function MapStage({
   return (
     <section id="map" className={`map-stage-wrap${locked ? ' is-locked' : ''}`}>
       <header className="map-header">
-        <div className="map-brand">
-          {content.brandLines.map((l) => <div key={l}>{l}</div>)}
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element -- static export, plain img like the other templates */}
+        <img className="map-header-logo" src={assetPath(content.logo.src)} alt={content.logo.alt} />
         <div className="map-header-title">
           {content.reportTitle} · <span>{content.reportSubtitle}</span>
         </div>

@@ -13,13 +13,13 @@ export interface TickerItem {
 
 /** All copy for one map report. Moves into Sanity fields in Phase 3. */
 export interface MapContent {
-  brandLines: string[]
+  /** Brand logo shown on the landing and in the field header. */
+  logo: { src: string; alt: string }
   reportTitle: string
   reportSubtitle: string
   landing: {
-    eyebrow: string
-    headlineTop: string
-    headlineCircled: string
+    /** One entry per line of the big title. */
+    headline: string[]
     subtitle: string
     nav: NavLink[]
   }
