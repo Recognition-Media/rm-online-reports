@@ -209,3 +209,6 @@
 .map-root .map-tour-pill.is-current { background: var(--map-btn-secondary-bg); color: var(--map-btn-secondary-text); border-color: var(--map-btn-secondary-bg); }
 .map-root .map-ticker.map-ticker-field { position: relative; left: auto; right: auto; bottom: auto; height: var(--map-band-ticker-height); }
 .map-root .map-ticker.map-ticker-field.is-muted { visibility: hidden; }
+/* Buttons inside modules keep their natural width; arrow buttons on the beige card get an outline. */
+.map-root .map-mod > .map-btn { align-self: flex-start; }
+.map-root .map-stop-controls .map-btn-secondary { box-shadow: inset 0 0 0 1.5px var(--map-ink); }
