@@ -40,6 +40,8 @@ export interface MapContent {
   gate: {
     title: string
     subhead: string
+    /** Submit button text if the Studio's "Submit Button Text" field is empty. */
+    submit: string
   }
 }
 

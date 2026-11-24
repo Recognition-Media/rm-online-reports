@@ -46,5 +46,6 @@ export const content: MapContent = {
   gate: {
     title: 'Get By Popular Demand',
     subhead: "What people remembered from this year's Internet, why, and what Webby Judges think makes work last.",
+    submit: 'See What Stuck',
   },
 }

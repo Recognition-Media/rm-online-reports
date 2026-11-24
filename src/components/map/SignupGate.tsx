@@ -252,7 +252,7 @@ export function SignupGate({ report, copy, logo, onComplete, onClose }: { report
                 className="flex items-center justify-between w-full max-w-[280px] mx-auto uppercase font-medium py-3 md:py-[14px] px-5 md:px-6 mt-3 md:mt-4 text-xs md:text-sm tracking-wider transition-colors disabled:opacity-50 cursor-pointer rounded-full"
                 style={{ background: theme.accent, color: theme.buttonText }}
               >
-                <span>{submitting ? 'Submitting...' : (report.submitButtonText || 'Explore The Report')}</span>
+                <span>{submitting ? 'Submitting...' : (report.submitButtonText || copy.submit)}</span>
                 <span className="text-base md:text-lg">→</span>
               </button>
             </div>
