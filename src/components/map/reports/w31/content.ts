@@ -66,8 +66,9 @@ export const content: MapContent = {
           speaker: 'Lea Karam',
           role: 'Founder & CEO, Mindscope',
           length: '03:37',
-          // LOCAL PREVIEW ONLY: compressed copy, not committed (too large for git). Swap for a hosted link before launch.
-          src: '/map/w31/video/01-lea-karam.mp4',
+          // Hosted in the reports Sanity project (uploaded via Studio: By Popular Demand → Trends → "W31 video upload (Trend 01)").
+          // 480×480 web version. Swap for Vimeo/YouTube before launch if traffic warrants.
+          src: 'https://cdn.sanity.io/files/za6m18kc/production/d673a4de309ca27b2764f61f3bf869e1e43baa0b.mp4',
           quote: "Because of this cognitive overload that we're all exposed to, humans have built sharper filters.",
         },
       },
