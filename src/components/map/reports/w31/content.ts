@@ -8,6 +8,7 @@ const colorOf = (id: string) => themes.find((t) => t.id === id)?.color ?? 'var(-
 
 export const content: MapContent = {
   logo: { src: '/map/w31/webby-logo-black.svg', alt: 'The Webby Awards' },
+  logoOnDark: { src: '/map/w31/webby-logo-beige.svg' },
   reportTitle: 'By Popular Demand',
   landing: {
     headline: ['By', 'Popular', 'Demand'],

@@ -37,6 +37,8 @@
   --map-dot: color-mix(in srgb, var(--w31-ink) 40%, var(--w31-beige));
   --map-accent: var(--w31-orange);
   --map-info-bg: var(--map-surface);
+  --map-topbar-solid-bg: var(--w31-ink);
+  --map-topbar-solid-text: var(--w31-beige);
 
   /* Buttons: one design, two versions */
   --map-btn-primary-bg: var(--w31-ink);

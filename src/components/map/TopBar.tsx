@@ -7,8 +7,8 @@ import { InfoDropdown } from './InfoDropdown'
 
 /**
  * One bar pinned to the top of the screen: logo + nav buttons. It floats
- * over the landing art, then turns solid (with the report title) once the
- * reader has scrolled down into the report.
+ * over the landing art, then turns black (beige logo, title and buttons)
+ * once the reader has scrolled down into the report.
  */
 export function TopBar({ content }: { content: MapContent }) {
   const { landing } = content
@@ -35,7 +35,11 @@ export function TopBar({ content }: { content: MapContent }) {
   return (
     <header className={`map-topbar${solid ? ' is-solid' : ''}`}>
       {/* eslint-disable-next-line @next/next/no-img-element -- static export, plain img like the other templates */}
-      <img className="map-topbar-logo" src={assetPath(content.logo.src)} alt={content.logo.alt} />
+      <img
+        className="map-topbar-logo"
+        src={assetPath(solid ? content.logoOnDark.src : content.logo.src)}
+        alt={content.logo.alt}
+      />
       <div className="map-header-title" aria-hidden={!solid}>
         <strong>{content.reportTitle}</strong>
       </div>

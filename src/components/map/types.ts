@@ -23,6 +23,8 @@ export interface TickerItem {
 export interface MapContent {
   /** Brand logo shown on the landing and in the field header. */
   logo: { src: string; alt: string }
+  /** Same logo for dark backgrounds (the top bar over the report). */
+  logoOnDark: { src: string }
   reportTitle: string
   landing: {
     /** One entry per line of the big title. */

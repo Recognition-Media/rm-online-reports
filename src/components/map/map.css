@@ -11,13 +11,13 @@
 }
 
 /* Top bar: pinned to the top of the screen. Floats over the landing art,
-   turns solid beige with the report title once the report reaches the top. */
+   turns black (beige logo, title, buttons) once the report reaches the top. No rule line. */
 .map-root .map-topbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between;
-  height: var(--map-header-height); padding: 0 var(--map-gutter); border-bottom: 1.5px solid transparent;
-  transition: background-color 200ms ease, border-color 200ms ease;
+  height: var(--map-header-height); padding: 0 var(--map-gutter);
+  transition: background-color 200ms ease;
 }
-.map-root .map-topbar.is-solid { background: var(--map-ground); border-bottom-color: var(--map-ink); }
+.map-root .map-topbar.is-solid { background: var(--map-topbar-solid-bg); color: var(--map-topbar-solid-text); }
 /* Same size in both states: only the background changes as you scroll, so nothing jumps. */
 .map-root .map-topbar-logo { height: var(--map-header-logo-height); width: auto; }
 /* Title centered on the page. */
@@ -26,9 +26,7 @@
   opacity: 0; pointer-events: none; transition: opacity 200ms ease;
 }
 .map-root .map-topbar.is-solid .map-header-title { opacity: 1; }
-/* Contrast first: over the landing art the nav buttons are beige; on the solid beige bar they flip to black. */
-.map-root .map-topbar .map-btn-secondary { transition: background-color 200ms ease, color 200ms ease, transform 150ms ease; }
-.map-root .map-topbar.is-solid .map-btn-secondary { background: var(--map-btn-primary-bg); color: var(--map-btn-primary-text); }
+/* Nav buttons stay beige with black text in both states: high contrast on the art and on the black bar. */
 .map-root .map-header-title { display: flex; align-items: baseline; gap: 14px; font-family: var(--map-font-body); font-weight: 500; font-size: var(--map-size-title); }
 .map-root .map-header-title strong {
   font-family: var(--map-font-display); font-weight: 400; font-size: var(--map-size-header-title);
