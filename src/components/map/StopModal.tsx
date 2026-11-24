@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, type RefObject } from 'react'
+import { assetPath } from '@/lib/assetPath'
 import type { MapContent, MapStop } from './types'
 import { StopModule } from './modules/StopModule'
 import { VoiceBlock } from './modules/VoiceBlock'
@@ -44,6 +45,8 @@ export function StopModal({
   }, [stop.id])
 
   const isTakeaways = stop.module?.type === 'takeaways'
+  // A square video file plays at the top of the data panel; its quote moves to the left panel.
+  const featureVideo = stop.voice?.kind === 'video' && stop.voice.video.src ? stop.voice.video : null
 
   return (
     <>
@@ -79,9 +82,25 @@ export function StopModal({
                   {stop.title}
                 </h2>
                 {stop.copy.map((p) => <p key={p}>{p}</p>)}
-                {stop.voice && <VoiceBlock voice={stop.voice} labels={labels} />}
+                {featureVideo
+                  ? featureVideo.quote && (
+                      <VoiceBlock
+                        voice={{ kind: 'quote', quote: { text: featureVideo.quote, name: featureVideo.speaker, role: featureVideo.role } }}
+                        labels={labels}
+                      />
+                    )
+                  : stop.voice && <VoiceBlock voice={stop.voice} labels={labels} />}
               </div>
               <div className="map-stop-right">
+                {featureVideo?.src && (
+                  <figure className="map-feature-video">
+                    <video src={assetPath(featureVideo.src)} controls playsInline preload="metadata" />
+                    <figcaption>
+                      <strong>{featureVideo.speaker}</strong>
+                      {featureVideo.role ? ` · ${featureVideo.role}` : ''}
+                    </figcaption>
+                  </figure>
+                )}
                 {stop.module && <StopModule module={stop.module} />}
               </div>
             </div>

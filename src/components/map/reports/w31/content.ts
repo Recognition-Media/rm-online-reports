@@ -63,6 +63,8 @@ export const content: MapContent = {
           speaker: 'Lea Karam',
           role: 'Founder & CEO, Mindscope',
           length: '03:37',
+          // LOCAL PREVIEW ONLY: compressed copy, not committed (too large for git). Swap for a hosted link before launch.
+          src: '/map/w31/video/01-lea-karam.mp4',
           quote: "Because of this cognitive overload that we're all exposed to, humans have built sharper filters.",
         },
       },

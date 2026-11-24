@@ -88,6 +88,8 @@ export interface Video {
   url?: string
   /** Optional pull quote shown under the video. */
   quote?: string
+  /** A square video file to play inline at the top of the data panel (preview / self-hosted). */
+  src?: string
 }
 
 export type StopVoice = { kind: 'quote'; quote: Quote } | { kind: 'video'; video: Video }
