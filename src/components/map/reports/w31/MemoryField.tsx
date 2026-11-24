@@ -15,21 +15,22 @@ export function MemoryField({ selectedId, onSelect }: CenterProps) {
       <div className="w31-wash w31-wash-meaning" aria-hidden="true" />
       <div className="w31-wash w31-wash-form" aria-hidden="true" />
 
-      <div className="w31-pole w31-pole-meaning">
+      <button type="button" className="w31-pole w31-pole-meaning" onClick={() => onSelect('pole:meaning')}>
         <span className="w31-pole-name">Meaning</span>
         <span className="w31-pole-pct">{summary.poles.meaning.label}</span>
-      </div>
-      <div className="w31-pole w31-pole-form">
+      </button>
+      <button type="button" className="w31-pole w31-pole-form" onClick={() => onSelect('pole:form')}>
         <span className="w31-pole-pct">{summary.poles.form.label}</span>
         <span className="w31-pole-name">Form</span>
-      </div>
+      </button>
       <div className="w31-divider" style={{ left: CANVAS.divider }} />
 
       {visible.map((t, i) => {
         // Like the brand shapes: crisp on one side, fading out on the other.
         // The direction of the fade varies per blob.
         const fadeAngle = (i * 67 + 20) % 360
-        const dimmed = selectedId !== null && selectedId !== t.id
+        const selectedPole = selectedId?.startsWith('pole:') ? selectedId.slice(5) : null
+        const dimmed = selectedPole ? t.pole !== selectedPole : selectedId !== null && selectedId !== t.id
         return (
           <button
             key={t.id}

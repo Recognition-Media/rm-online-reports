@@ -3,8 +3,38 @@
 import type { PanelProps } from '../../types'
 import { SidePanel } from '../../SidePanel'
 import { summary } from './summary'
+import { poleCopy } from './content'
+import { rankPole, type Pole } from './themeMath'
 
-export function ThemePanel({ id, onClose }: PanelProps) {
+export function ThemePanel({ id, onClose, onSelect }: PanelProps) {
+  if (id.startsWith('pole:')) {
+    const pole = id.slice(5) as Pole
+    const info = poleCopy[pole]
+    if (!info) return null
+    return (
+      <SidePanel onClose={onClose} closeLabel="Back">
+        <p className="w31-panel-eyebrow w31-panel-pole">{info.name}</p>
+        <div className="w31-panel-stat">
+          <span className="w31-panel-pct">{summary.poles[pole].label}</span>
+        </div>
+        <h2 className="w31-panel-headline">{info.definition}</h2>
+        <p className="w31-panel-copy">{info.copy}</p>
+        <p className="w31-panel-eyebrow">{info.listLabel}</p>
+        <ol className="w31-pole-list">
+          {rankPole(summary, pole).map((t) => (
+            <li key={t.id}>
+              <button type="button" onClick={() => onSelect(t.id)}>
+                <span className="w31-pole-swatch" style={{ background: t.color }} />
+                <span className="w31-pole-list-name">{t.name}</span>
+                <span className="w31-pole-list-pct">{t.label}</span>
+              </button>
+            </li>
+          ))}
+        </ol>
+      </SidePanel>
+    )
+  }
+
   const t = summary.themes.find((x) => x.id === id)
   if (!t) return null
   const poleName = t.pole === 'meaning' ? 'Meaning' : 'Form'

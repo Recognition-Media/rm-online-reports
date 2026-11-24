@@ -173,3 +173,16 @@
 .map-root.map-w31 .w31-panel-answer { margin: 0 0 16px; padding: 20px 24px; background: color-mix(in srgb, var(--map-ink) 6%, transparent); }
 .map-root.map-w31 .w31-panel-answer figcaption { font-family: var(--map-font-subhead); font-weight: var(--map-subhead-weight); font-size: 20px; }
 .map-root.map-w31 .w31-panel-answer blockquote { margin: 8px 0 0; line-height: 1.5; }
+
+/* MEANING / FORM are buttons that open the pole drawer */
+.map-root.map-w31 .w31-pole { border: 0; background: none; padding: 0; color: inherit; cursor: pointer; }
+.map-root.map-w31 .w31-pole:hover .w31-pole-name { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
+.map-root.map-w31 .w31-pole-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.map-root.map-w31 .w31-pole-list button {
+  width: 100%; display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 0; background: color-mix(in srgb, var(--map-ink) 5%, transparent);
+  color: inherit; font-family: var(--map-font-body); font-size: 16px; text-align: left; cursor: pointer;
+}
+.map-root.map-w31 .w31-pole-list button:hover { background: color-mix(in srgb, var(--map-ink) 10%, transparent); }
+.map-root.map-w31 .w31-pole-swatch { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+.map-root.map-w31 .w31-pole-list-name { flex: 1; }
+.map-root.map-w31 .w31-pole-list-pct { font-family: var(--map-font-display); font-size: 18px; }
