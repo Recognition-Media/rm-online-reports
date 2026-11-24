@@ -38,7 +38,6 @@ export function TopBar({ content }: { content: MapContent }) {
       <img className="map-topbar-logo" src={assetPath(content.logo.src)} alt={content.logo.alt} />
       <div className="map-header-title" aria-hidden={!solid}>
         <strong>{content.reportTitle}</strong>
-        <span>{content.reportSubtitle}</span>
       </div>
       <nav className="map-nav">
         {landing.nav.map((n) => {

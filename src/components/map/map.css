@@ -14,15 +14,15 @@
    turns solid beige with the report title once the report reaches the top. */
 .map-root .map-topbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between;
-  height: var(--map-topbar-height); padding: 0 var(--map-gutter); border-bottom: 1.5px solid transparent;
-  transition: background-color 200ms ease, border-color 200ms ease, height 200ms ease;
+  height: var(--map-header-height); padding: 0 var(--map-gutter); border-bottom: 1.5px solid transparent;
+  transition: background-color 200ms ease, border-color 200ms ease;
 }
-.map-root .map-topbar.is-solid { height: var(--map-header-height); background: var(--map-ground); border-bottom-color: var(--map-ink); }
-.map-root .map-topbar-logo { height: var(--map-landing-logo-height); width: auto; transition: height 200ms ease; }
-.map-root .map-topbar.is-solid .map-topbar-logo { height: var(--map-header-logo-height); }
-/* Title sits in the space between logo and buttons (centered there), so it can never run under them. */
+.map-root .map-topbar.is-solid { background: var(--map-ground); border-bottom-color: var(--map-ink); }
+/* Same size in both states: only the background changes as you scroll, so nothing jumps. */
+.map-root .map-topbar-logo { height: var(--map-header-logo-height); width: auto; }
+/* Title centered on the page. */
 .map-root .map-topbar .map-header-title {
-  flex: 1; min-width: 0; justify-content: center; padding: 0 24px; overflow: hidden; white-space: nowrap;
+  position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap;
   opacity: 0; pointer-events: none; transition: opacity 200ms ease;
 }
 .map-root .map-topbar.is-solid .map-header-title { opacity: 1; }

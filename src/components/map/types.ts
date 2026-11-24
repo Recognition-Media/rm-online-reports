@@ -24,7 +24,6 @@ export interface MapContent {
   /** Brand logo shown on the landing and in the field header. */
   logo: { src: string; alt: string }
   reportTitle: string
-  reportSubtitle: string
   landing: {
     /** One entry per line of the big title. */
     headline: string[]
