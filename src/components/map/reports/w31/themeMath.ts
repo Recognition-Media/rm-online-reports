@@ -21,10 +21,8 @@ export interface Theme {
   color: string
   /** Text color used on top of `color`. */
   ink: string
-  /** CSS clip-path for the blob's outline (used when there's no `mask`). */
+  /** CSS clip-path for the blob's outline. */
   shape: string
-  /** A Webby 31 brand shape (transparent PNG) used as a stencil, filled with `color`. */
-  mask?: string
   line: string
   copy?: string
   /** Center of the blob on the 1440×900 canvas. Omit to auto-place. */

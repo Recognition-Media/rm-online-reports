@@ -52,11 +52,3 @@ test('each theme family has its own color, and no two families share one', () =>
   const all = Object.values(byFamily).map((c) => [...c][0])
   assert.equal(new Set(all).size, 8, `families sharing a color: ${all}`)
 })
-
-test('brand shapes: every mask file exists, and no two themes share a shape', async () => {
-  const { existsSync } = await import('node:fs')
-  const masked = themes.filter((t) => t.mask)
-  assert.ok(masked.length >= 12, `only ${masked.length} themes use brand shapes`)
-  for (const t of masked) assert.ok(existsSync(`public${t.mask}`), `${t.id}: missing public${t.mask}`)
-  assert.equal(new Set(masked.map((t) => t.mask)).size, masked.length)
-})

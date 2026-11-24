@@ -8,9 +8,6 @@ import type { Theme } from './themeMath'
 // (Feeling orange, Presence pink, Substance yellow, Belonging watermelon;
 // Invention blue, Structure light blue, Execution forest, Spread green).
 //
-// Shapes: `mask` = a real Webby 31 brand shape (brand/creative/color_*) used as a
-// stencil, filled with the theme's color. Themes without one keep a polygon `shape`.
-//
 // count = coded answers that LEAD with this theme
 // (source: themes[].leads.everyone in
 //  ~/webby-trend-report-31/data/w31-report-data-themes.json,
@@ -24,7 +21,6 @@ export const themes: Theme[] = [
     color: 'var(--w31-orange)',
     ink: 'var(--w31-ink)',
     shape: 'polygon(87% 21%, 98% 51%, 83% 84%, 38% 93%, 14% 72%, 9% 36%, 51% 5%)',
-    mask: '/map/w31/shapes/orange-1.png',
     line: "A laugh is the fastest way in.",
     position: { x: 660, y: 462 },
     answers: [
@@ -40,7 +36,6 @@ export const themes: Theme[] = [
     color: 'var(--w31-pink)',
     ink: 'var(--w31-ink)',
     shape: 'polygon(95% 55%, 79% 75%, 65% 91%, 33% 85%, 15% 59%, 16% 24%, 52% 7%, 79% 18%)',
-    mask: '/map/w31/shapes/pink-1.png',
     line: "A real person with a point of view.",
     position: { x: 552, y: 364 },
     answers: [
@@ -56,7 +51,6 @@ export const themes: Theme[] = [
     color: 'var(--w31-watermelon)',
     ink: 'var(--w31-ink)',
     shape: 'polygon(84% 74%, 61% 98%, 37% 87%, 7% 55%, 8% 37%, 34% 16%, 65% 16%, 90% 28%)',
-    mask: '/map/w31/shapes/red-1.png',
     line: "Everyone was talking about it.",
     position: { x: 629, y: 606 },
     answers: [
@@ -72,7 +66,6 @@ export const themes: Theme[] = [
     color: 'var(--w31-orange)',
     ink: 'var(--w31-ink)',
     shape: 'polygon(52% 93%, 14% 71%, 5% 47%, 45% 10%, 73% 16%, 91% 72%)',
-    mask: '/map/w31/shapes/orange-2.png',
     line: "It made me feel something.",
     position: { x: 450, y: 469 },
     answers: [
@@ -88,7 +81,6 @@ export const themes: Theme[] = [
     color: 'var(--w31-orange)',
     ink: 'var(--w31-ink)',
     shape: 'polygon(71% 79%, 37% 91%, 12% 54%, 17% 13%, 68% 12%, 90% 39%)',
-    mask: '/map/w31/shapes/orange-3.png',
     line: "Small joys stick.",
     position: { x: 538, y: 518 },
     answers: [
@@ -104,7 +96,6 @@ export const themes: Theme[] = [
     color: 'var(--w31-yellow)',
     ink: 'var(--w31-ink)',
     shape: 'polygon(99% 59%, 73% 94%, 39% 87%, 7% 39%, 33% 18%, 64% 10%)',
-    mask: '/map/w31/shapes/yellow-1.png',
     line: "It changed how I think.",
     position: { x: 503, y: 634 },
     answers: [
@@ -120,7 +111,6 @@ export const themes: Theme[] = [
     color: 'var(--w31-pink)',
     ink: 'var(--w31-ink)',
     shape: 'polygon(52% 10%, 81% 29%, 80% 76%, 42% 90%, 5% 70%, 15% 23%)',
-    mask: '/map/w31/shapes/pink-2.png',
     line: "You can feel who made it.",
     position: { x: 682, y: 329 },
     answers: [
@@ -136,7 +126,6 @@ export const themes: Theme[] = [
     color: 'var(--w31-yellow)',
     ink: 'var(--w31-ink)',
     shape: 'polygon(77% 90%, 27% 82%, 7% 66%, 27% 19%, 62% 3%, 85% 27%, 86% 52%)',
-    mask: '/map/w31/shapes/yellow-2.png',
     line: "It mattered in the real world.",
     position: { x: 384, y: 588 },
     answers: [
@@ -152,7 +141,6 @@ export const themes: Theme[] = [
     color: 'var(--w31-orange)',
     ink: 'var(--w31-ink)',
     shape: 'polygon(49% 90%, 13% 74%, 12% 48%, 35% 16%, 60% 7%, 94% 45%, 93% 73%)',
-    mask: '/map/w31/shapes/red-3.png',
     line: "It took me back.",
     position: { x: 384, y: 368 },
     answers: [
@@ -168,7 +156,6 @@ export const themes: Theme[] = [
     color: 'var(--w31-watermelon)',
     ink: 'var(--w31-ink)',
     shape: 'polygon(41% 9%, 79% 28%, 90% 67%, 42% 86%, 18% 78%, 8% 31%)',
-    mask: '/map/w31/shapes/red-2.png',
     line: "I saw myself in it.",
     position: { x: 416, y: 668 },
     answers: [
@@ -213,7 +200,6 @@ export const themes: Theme[] = [
     color: 'var(--w31-forest)',
     ink: 'var(--w31-beige)',
     shape: 'polygon(96% 57%, 77% 88%, 29% 87%, 13% 45%, 34% 17%, 72% 13%)',
-    mask: '/map/w31/shapes/green-3.png',
     line: "Made so well you notice.",
     position: { x: 906, y: 368 },
     answers: [
@@ -229,7 +215,6 @@ export const themes: Theme[] = [
     color: 'var(--w31-green)',
     ink: 'var(--w31-ink)',
     shape: 'polygon(92% 29%, 78% 82%, 32% 87%, 10% 69%, 17% 17%, 58% 2%)',
-    mask: '/map/w31/shapes/green-2.png',
     line: "Everyone could join in.",
     position: { x: 881, y: 648 },
     answers: [
