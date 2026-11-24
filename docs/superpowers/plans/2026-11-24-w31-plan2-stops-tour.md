@@ -579,10 +579,11 @@ test('fitZoom keeps the max zoom when nothing collides', () => {
 })
 
 test('fitZoom steps down until no circle touches a pill', () => {
-  const circle = { x: 100, y: 470, r: 10 }
-  const rect = { x: 0, y: 450, w: 60, h: 40 }
+  // At 1.2 this circle lands on the pill; it clears it from 1.07 down.
+  const circle = { x: 200, y: 470, r: 10 }
+  const rect = { x: 60, y: 450, w: 80, h: 40 }
   const z = fitZoom([circle], [rect], origin, 1.2)
-  assert.equal(z, 1.02)
+  assert.equal(z, 1.07)
   const zc = { x: origin.x + (circle.x - origin.x) * z, y: origin.y + (circle.y - origin.y) * z, r: circle.r * z }
   assert.equal(circleHitsRect(zc, rect, 12), false)
 })
