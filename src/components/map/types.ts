@@ -44,6 +44,11 @@ export interface MapContent {
     /** Submit button text if the Studio's "Submit Button Text" field is empty. */
     submit: string
   }
+  /** The stops around the map, in tour order. */
+  stops: MapStop[]
+  tour: { intro: TourIntro; start: string; next: string; end: string; prev: string; aria: string }
+  /** Small UI labels used by the map template. */
+  labels: { ringEyebrow: string; ringAria: string; close: string; prevStop: string; nextStop: string; videoSoon: string }
 }
 
 export interface CenterProps {
@@ -54,6 +59,8 @@ export interface CenterProps {
 export interface PanelProps {
   id: string
   onClose: () => void
+  /** Open another item in the same drawer (e.g. a theme from the Meaning list). */
+  onSelect: (id: string) => void
 }
 
 /** Everything report-specific the reusable map template needs. */
@@ -63,4 +70,87 @@ export interface MapReportConfig {
   content: MapContent
   Center: ComponentType<CenterProps>
   Panel: ComponentType<PanelProps>
+}
+
+export interface Quote {
+  text: string
+  name: string
+  role?: string
+}
+
+export interface Video {
+  speaker: string
+  role?: string
+  /** e.g. "03:37" */
+  length?: string
+  /** Embed URL (Vimeo/YouTube). Without one, a placeholder shows. */
+  url?: string
+  /** Optional pull quote shown under the video. */
+  quote?: string
+}
+
+export type StopVoice = { kind: 'quote'; quote: Quote } | { kind: 'video'; video: Video }
+
+export interface SliderRevealModule {
+  type: 'slider'
+  source: string
+  question: string
+  minLabel: string
+  maxLabel: string
+  /** The real answer, 0–100. */
+  value: number
+  valueLabel: string
+  lines: string[]
+  revealButton: string
+  guessLabel: string
+}
+
+export interface SplitStatModule {
+  type: 'split'
+  source: string
+  /** Headline percent, 0–100. */
+  headline: number
+  headlineLabel: string
+  parts: { label: string; value: number }[]
+}
+
+export interface RankedBarsModule {
+  type: 'bars'
+  source: string
+  bars: { label: string; value: number }[]
+}
+
+export interface CaseStudyModule {
+  type: 'case'
+  title: string
+  body: string
+}
+
+export interface TakeawaysModule {
+  type: 'takeaways'
+  title: string
+  items: { headline: string; line: string }[]
+}
+
+export type StopModule = SliderRevealModule | SplitStatModule | RankedBarsModule | CaseStudyModule | TakeawaysModule
+
+/** One stop on the ring around the map. */
+export interface MapStop {
+  id: string
+  /** "01" … */
+  number: string
+  title: string
+  /** Shown on the tour bar instead of the number, e.g. "06 Takeaways". */
+  tourLabel?: string
+  /** Pill center on the 1440×900 canvas. */
+  position: { x: number; y: number }
+  /** One entry per paragraph. */
+  copy: string[]
+  voice?: StopVoice
+  module: StopModule
+}
+
+export interface TourIntro {
+  title: string
+  body: string[]
 }

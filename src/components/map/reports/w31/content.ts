@@ -1,10 +1,7 @@
 import type { MapContent } from '../../types'
-import { themes } from './themes'
 
 // ALL COPY for the W31 report. Edit text here; components hold none.
 // Moves into Sanity fields in Phase 3.
-
-const colorOf = (id: string) => themes.find((t) => t.id === id)?.color ?? 'var(--map-dot)'
 
 export const content: MapContent = {
   logo: { src: '/map/w31/webby-logo-black.svg', alt: 'The Webby Awards' },
@@ -31,21 +28,181 @@ export const content: MapContent = {
   },
   tickerLabel: 'What Stuck on the Internet This Year?',
   ticker: [
-    { text: "'Punch' the baby monkey", color: colorOf('delight') },
-    { text: "Bad Bunny's Super Bowl halftime", color: colorOf('novelty') },
-    { text: 'GAP x KATSEYE', color: colorOf('insight') },
-    { text: 'Jimothy the raccoon', color: colorOf('craft') },
-    { text: 'Subway Takes', color: colorOf('voice') },
-    { text: 'Fat Bear Week', color: colorOf('narrative') },
-    { text: 'Mariah opening Christmas season', color: colorOf('stickiness') },
-    { text: 'Las Culturistas x Nicole Kidman', color: colorOf('insight') },
-    { text: 'M&S store deep-dives', color: colorOf('craft') },
-    { text: "Yung Lean 'Storm'", color: colorOf('emotion') },
-    { text: "Jacquemus x Simon's grandma", color: colorOf('novelty') },
+    { text: "'Punch' the baby monkey", color: 'var(--w31-orange)' },
+    { text: "Bad Bunny's Super Bowl halftime", color: 'var(--w31-blue)' },
+    { text: 'GAP x KATSEYE', color: 'var(--w31-yellow)' },
+    { text: 'Jimothy the raccoon', color: 'var(--w31-forest)' },
+    { text: 'Subway Takes', color: 'var(--w31-pink)' },
+    { text: 'Fat Bear Week', color: 'var(--w31-blue-light)' },
+    { text: 'Mariah opening Christmas season', color: 'var(--w31-green)' },
+    { text: 'Las Culturistas x Nicole Kidman', color: 'var(--w31-yellow)' },
+    { text: 'M&S store deep-dives', color: 'var(--w31-forest)' },
+    { text: "Yung Lean 'Storm'", color: 'var(--w31-orange)' },
+    { text: "Jacquemus x Simon's grandma", color: 'var(--w31-blue)' },
   ],
   gate: {
     title: 'Get By Popular Demand',
     subhead: "What people remembered from this year's Internet, why, and what Webby Judges think makes work last.",
     submit: 'See What Stuck',
+  },
+  // Stops around the map. ALL COPY BELOW IS PLACEHOLDER from the content outline; edit freely.
+  stops: [
+    {
+      id: 'attention',
+      number: '01',
+      title: 'The Attention Trap',
+      position: { x: 140, y: 300 },
+      copy: ['About 10 hours of media a day. Roughly 1,500 pieces of content. Most of it ends up as noise. [Copy TK]'],
+      voice: {
+        kind: 'video',
+        video: {
+          speaker: 'Lea Karam',
+          role: 'Founder & CEO, Mindscope',
+          length: '03:37',
+          quote: "Because of this cognitive overload that we're all exposed to, humans have built sharper filters.",
+        },
+      },
+      module: {
+        type: 'slider',
+        source: 'Webby Judge survey · Q10',
+        question: 'Compared with a few years ago, how hard is it to remember what you see online?',
+        minLabel: 'Easier',
+        maxLabel: 'Much harder',
+        value: 69,
+        valueLabel: 'Webby Judges rated it 69 out of 100.',
+        lines: ['79% say it has become at least moderately harder (50+).', '54% say significantly harder (70+).'],
+        revealButton: 'Reveal the answer',
+        guessLabel: 'Your guess',
+      },
+    },
+    {
+      id: 'metrics',
+      number: '02',
+      title: 'When Metrics Lose Meaning',
+      position: { x: 720, y: 110 },
+      copy: ['Metrics were a gift to creative work. But once everyone optimizes for views, the view count says less and less. [Copy TK]'],
+      voice: { kind: 'quote', quote: { text: 'Craft and effectiveness are not two sides of the same coin anymore.', name: 'Matheus Faustino', role: 'Creative Director, Monks' } },
+      module: {
+        type: 'split',
+        source: 'Webby Judge survey · Q3',
+        headline: 57,
+        headlineLabel: 'of Webby Judges have stopped treating views or likes as proof that work is good.',
+        parts: [
+          { label: 'Stopped, but still report on it', value: 34 },
+          { label: 'Stopped, and changed how I work', value: 23 },
+          { label: 'Still read it as evidence', value: 29 },
+          { label: 'I never did', value: 14 },
+        ],
+      },
+    },
+    {
+      id: 'optimization',
+      number: '03',
+      title: 'Optimization-Maxxing',
+      position: { x: 1300, y: 300 },
+      copy: ['When everyone optimizes toward the same numbers, everyone arrives at the same work. [Copy TK]'],
+      voice: { kind: 'quote', quote: { text: "We've gotten incredibly good at optimizing for what performs, which can also mean optimizing toward sameness.", name: 'Kaare Wesnaes', role: 'Head of Innovation, Ogilvy' } },
+      module: {
+        type: 'bars',
+        source: "Webby Judge survey · Q8 · tactics judges are tired of",
+        bars: [
+          { label: "AI for AI's sake", value: 27 },
+          { label: 'Formulaic voice, look or format', value: 23 },
+          { label: 'Influencer + celebrity formulas', value: 17 },
+          { label: 'Trend-chasing', value: 16 },
+        ],
+      },
+    },
+    {
+      id: 'signals',
+      number: '04',
+      title: 'What Are the Signals?',
+      position: { x: 1300, y: 610 },
+      copy: ['Judges agree a high view count proves one thing: the work was put in front of people. [Copy TK]'],
+      voice: { kind: 'quote', quote: { text: 'The comment section has become one of the most valuable spaces in social.', name: 'Wangari Nderi', role: 'Group Brand, Digital & Communications Lead, Live54 Plus' } },
+      module: {
+        type: 'bars',
+        source: 'Webby Judge survey · Q4 · a high view count signals…',
+        bars: [
+          { label: 'It was put in front of people', value: 69 },
+          { label: 'People chose to watch it', value: 36 },
+          { label: 'People stayed with it', value: 26 },
+          { label: 'People got something out of it', value: 12 },
+          { label: 'People will remember it', value: 9 },
+        ],
+      },
+    },
+    {
+      id: 'listening',
+      number: '05',
+      title: 'Listening vs. Experimenting',
+      position: { x: 720, y: 858 },
+      copy: ['Audience feedback still matters. The line to draw is between experimentation and optimization. [Copy TK]'],
+      voice: {
+        kind: 'video',
+        video: {
+          speaker: 'James Gerde',
+          role: 'Artist & Filmmaker',
+          quote: 'Everything I make starts from something that I like, and it always ends somewhere that I like.',
+        },
+      },
+      module: { type: 'case', title: 'Case study: Vaseline Verified', body: '[TK] Listening to culture to build memory with an audience.' },
+    },
+    {
+      id: 'takeaways',
+      number: '06',
+      title: 'Takeaways',
+      tourLabel: '06 Takeaways',
+      position: { x: 140, y: 610 },
+      copy: [],
+      module: {
+        type: 'takeaways',
+        title: 'How to build memory in an attention economy',
+        items: [
+          { headline: 'Stop treating reach as memory.', line: 'Views prove distribution, not that anyone will remember.' },
+          { headline: 'Listen for meaning, not formats.', line: "Use feedback to find what moves people, not to copy last week's winner." },
+          { headline: 'Lead with a feeling.', line: "A laugh, a feeling, a new way of seeing: that's what people carry with them." },
+          { headline: 'Give it a shape people can hold.', line: 'A ritual, a character, a world makes meaning easy to return to.' },
+        ],
+      },
+    },
+  ],
+  tour: {
+    intro: {
+      title: 'How to read the field',
+      body: [
+        'Each shape is one reason people gave for why something stuck. Its size shows how many answers led with that reason.',
+        'Warm colors are Meaning, the human insight, feeling or point of view behind the work; cool colors are Form, the shape and execution that carry it. Shapes in the same color belong to the same family of reasons.',
+      ],
+    },
+    start: 'Start the tour',
+    next: 'Next',
+    end: 'Back to the field',
+    prev: 'Previous',
+    aria: 'Report tour',
+  },
+  labels: {
+    ringEyebrow: 'Outer ring',
+    ringAria: 'Report sections',
+    close: 'Close',
+    prevStop: 'Previous',
+    nextStop: 'Next',
+    videoSoon: 'Video coming soon',
+  },
+}
+
+/** MEANING / FORM drawer copy. Definitions from w31-report-data-themes.json; the rest is placeholder. */
+export const poleCopy = {
+  meaning: {
+    name: 'Meaning',
+    definition: 'The human insight, emotion or point of view that makes the work matter.',
+    copy: '[Copy TK: why Meaning matters for people making work.]',
+    listLabel: 'Reasons on this side',
+  },
+  form: {
+    name: 'Form',
+    definition: 'A shape that helps people hold on to a meaningful idea, and the execution that carries it.',
+    copy: '[Copy TK: why Form matters for people making work.]',
+    listLabel: 'Reasons on this side',
   },
 }

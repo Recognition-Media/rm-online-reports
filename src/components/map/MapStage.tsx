@@ -42,7 +42,7 @@ export function MapStage({
         <div className="map-canvas" style={{ transform: `translate(-50%, -50%) scale(${scale})` }}>
           <Center selectedId={selectedId} onSelect={onSelect} />
         </div>
-        {selectedId && <Panel id={selectedId} onClose={() => onSelect(null)} />}
+        {selectedId && <Panel id={selectedId} onClose={() => onSelect(null)} onSelect={onSelect} />}
       </div>
     </section>
   )
