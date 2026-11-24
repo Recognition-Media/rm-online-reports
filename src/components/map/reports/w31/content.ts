@@ -56,7 +56,10 @@ export const content: MapContent = {
       title: 'The Attention Trap',
       position: { x: 132, y: 300 },
       color: 'var(--w31-pink)',
-      copy: ['About 10 hours of media a day. Roughly 1,500 pieces of content. Most of it ends up as noise. [Copy TK]'],
+      copy: [
+        'It is easier than ever to grab consumers’ attention on the Internet but it is less clear what that actually gets brands in today’s ecosystem. That isn’t hyperbole; a Nielsen survey found that American adults consume about 10 hours of media per day. Culture is fragmented but flat, with attention split across platforms, niches, formats, and fandoms. Entire industries have optimized around engagement, reach, and virality.',
+        'And yet, it is harder than ever to create work that is remembered by audiences in 2026 — for creators and brands alike.',
+      ],
       voice: {
         kind: 'video',
         video: {
@@ -75,8 +78,7 @@ export const content: MapContent = {
         maxLabel: 'Much harder',
         value: 69,
         valueLabel: 'Webby Judges rated it 69 out of 100.',
-        lines: ['79% say it has become at least moderately harder (50+).', '54% say significantly harder (70+).'],
-        guessLabel: 'Your guess',
+        lines: ['79% say it has become at least moderately harder.', '54% say significantly harder.'],
       },
     },
     {

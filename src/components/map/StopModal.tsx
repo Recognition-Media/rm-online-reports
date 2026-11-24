@@ -93,7 +93,8 @@ export function StopModal({
                 {featureVideo && <FeatureVideo video={featureVideo} labels={labels} />}
                 {featureVideo
                   ? featureVideo.quote && (
-                      <VoiceBlock voice={{ kind: 'quote', quote: { text: featureVideo.quote, name: featureVideo.speaker, role: featureVideo.role } }} labels={labels} />
+                      // The speaker is already named under the video, so the quote has no credit line.
+                      <VoiceBlock voice={{ kind: 'quote', quote: { text: featureVideo.quote, name: '' } }} labels={labels} />
                     )
                   : stop.module && <StopModule module={stop.module} />}
               </div>

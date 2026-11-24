@@ -105,7 +105,8 @@ export interface SliderRevealModule {
   value: number
   valueLabel: string
   lines: string[]
-  guessLabel: string
+  /** No longer shown (the module is always open). */
+  guessLabel?: string
 }
 
 export interface SplitStatModule {

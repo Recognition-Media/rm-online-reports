@@ -359,9 +359,6 @@
 /* Feature video: our own Watch / Pause buttons */
 .map-root .map-feature-video { position: relative; width: min(100%, 300px); }
 .map-root .map-feature-video video { cursor: pointer; }
-.map-root .map-video-watch { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
-.map-root .map-video-watch:hover { transform: translate(-50%, calc(-50% - 1px)); }
-.map-root .map-video-pause { position: absolute; left: 12px; bottom: 12px; padding: 8px 14px; font-size: 14px; opacity: 0.9; }
 /* Revealed answer, compact when the module sits in the left panel under the copy */
 .map-root .map-stop-left .map-mod { gap: 12px; }
 .map-root .map-stop-left .map-mod-reveal { display: grid; grid-template-columns: auto 1fr; column-gap: 16px; row-gap: 4px; align-items: end; }
@@ -369,3 +366,30 @@
 .map-root .map-stop-left .map-mod-big span { font-size: 22px; }
 .map-root .map-stop-left .map-mod-label, .map-root .map-stop-left .map-mod-guess { font-size: 13px; }
 .map-root .map-stop-left .map-mod-lines { grid-column: 1 / -1; gap: 2px; font-size: 13px; line-height: 1.45; }
+
+/* Always-open score scale (replaces the guessing slider) */
+.map-root .map-scale { display: grid; gap: 8px; }
+.map-root .map-scale-track { position: relative; height: 12px; background: var(--map-slider-track); margin: 10px 0; }
+.map-root .map-scale-knob {
+  position: absolute; top: 50%; width: 32px; height: 32px; margin-left: -16px; transform: translateY(-50%);
+  border-radius: 50%; background: var(--map-ink); box-shadow: 0 0 0 4px var(--map-stop-left, var(--map-ground));
+}
+/* Feature video: speaker + Watch/Pause under the clip */
+.map-root .map-feature-video-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; }
+.map-root .map-feature-video-bar > span { display: grid; gap: 2px; font-size: 12px; }
+.map-root .map-feature-video-bar strong { font-family: var(--map-font-display); font-weight: 400; font-size: 16px; }
+.map-root .map-video-toggle { padding: 8px 16px; font-size: 13px; white-space: nowrap; letter-spacing: 0.06em; text-transform: uppercase; }
+
+.map-root .map-voice figcaption:empty { display: none; }
+/* Card uses the full height available between the bars (was capped at 640px) */
+.map-root .map-stop:not(.is-finale) { height: calc(100dvh - var(--map-header-height) - var(--map-tour-height, 0px) - 40px); top: calc(var(--map-header-height) + 20px); bottom: calc(var(--map-tour-height, 0px) + 20px); }
+.map-root .map-stop-left { gap: 14px; padding: 36px 40px; }
+.map-root .map-stop-right { padding: 64px 40px 36px; }
+.map-root .map-stop-left .map-mod { margin-top: 4px; gap: 6px; }
+.map-root .map-stop-left .map-mod-big { font-size: 64px; }
+.map-root .map-stop-left .map-scale-track { margin: 6px 0; }
+/* Speaker on one line under the video */
+.map-root .map-feature-video { width: min(100%, 280px); }
+.map-root .map-feature-video-bar > span { display: block; min-width: 0; font-size: 12px; line-height: 1.3; }
+.map-root .map-feature-video-bar > span > span { display: block; }
+.map-root .map-stop-left p { line-height: 1.5; }

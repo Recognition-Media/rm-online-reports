@@ -4,14 +4,15 @@ import { useRef, useState } from 'react'
 import { assetPath } from '@/lib/assetPath'
 import type { MapContent, Video } from './types'
 
-/** Square clip with our own Watch / Pause buttons (no browser controls). */
+/** Square clip; speaker + Watch/Pause button sit underneath it (Anthem pattern). */
 export function FeatureVideo({ video, labels }: { video: Video; labels: MapContent['labels'] }) {
   const ref = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
   if (!video.src) return null
+  const toggle = () => (playing ? ref.current?.pause() : ref.current?.play())
 
   return (
-    <figure className={`map-feature-video${playing ? ' is-playing' : ''}`}>
+    <figure className="map-feature-video">
       <video
         ref={ref}
         src={assetPath(video.src)}
@@ -21,17 +22,17 @@ export function FeatureVideo({ video, labels }: { video: Video; labels: MapConte
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
-        onClick={() => (playing ? ref.current?.pause() : ref.current?.play())}
+        onClick={toggle}
       />
-      {playing ? (
-        <button type="button" className="map-btn map-btn-primary map-video-pause" onClick={() => ref.current?.pause()}>
-          <span aria-hidden="true">❚❚</span> {labels.pauseVideo}
+      <figcaption className="map-feature-video-bar">
+        <span>
+          <strong>{video.speaker}</strong>
+          {video.role && <span>{video.role}</span>}
+        </span>
+        <button type="button" className="map-btn map-btn-primary map-video-toggle" onClick={toggle}>
+          <span aria-hidden="true">{playing ? '❚❚' : '▶'}</span> {playing ? labels.pauseVideo : labels.watchVideo}
         </button>
-      ) : (
-        <button type="button" className="map-btn map-btn-primary map-video-watch" onClick={() => ref.current?.play()}>
-          <span aria-hidden="true">▶</span> {labels.watchVideo}
-        </button>
-      )}
+      </figcaption>
     </figure>
   )
 }
