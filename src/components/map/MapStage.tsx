@@ -51,7 +51,8 @@ export function MapStage({
         </div>
         <div aria-hidden="true" />
       </header>
-      <div className="map-stage" ref={stageRef} aria-hidden={locked}>
+      {/* inert: while locked, nothing in the blurred field can be focused, clicked or read. */}
+      <div className="map-stage" ref={stageRef} inert={locked}>
         <div className="map-canvas" style={{ transform: `translate(-50%, -50%) scale(${scale})` }}>
           <Center selectedId={selectedId} onSelect={onSelect} />
         </div>
