@@ -52,6 +52,8 @@
 .map-root .map-cta {
   margin-top: var(--map-hero-gap); padding: var(--map-cta-padding-y) calc(24px * 1.2);
   font-size: calc(var(--map-size-button) * 1.2); text-transform: uppercase; letter-spacing: 0.06em;
+  /* Heaviest Aktiv weight the site has (kit: 200/400/700). Swap to 800 once ExtraBold is added to the Adobe kit. */
+  font-family: var(--map-font-subhead); font-weight: var(--map-cta-weight);
 }
 
 /* Info drop-down under a nav button (e.g. About the Report) */
