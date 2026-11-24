@@ -1,7 +1,7 @@
 // Geometry for the ring of stop pills on the 1440×900 canvas, and the
 // field zoom that keeps every blob clear of them.
 
-export const PILL_HEIGHT = 42
+export const PILL_HEIGHT = 45
 
 export interface Rect {
   x: number
@@ -20,9 +20,9 @@ export function pillLabel(s: { number: string; title: string }): string {
   return `${s.number} ${s.title}`
 }
 
-/** Fixed pill width from the label (16px text measures 7.6–8.5px/char; 8.6 leaves a margin) + padding, so layout math matches what renders. */
+/** Fixed pill width from the label (17px text ≈ 9.14px/char incl. margin) + padding, so layout math matches what renders. */
 export function pillWidth(label: string): number {
-  return Math.round(40 + label.length * 8.6)
+  return Math.round(40 + label.length * 9.14)
 }
 
 export function pillRect(s: { number: string; title: string; position: { x: number; y: number } }): Rect {

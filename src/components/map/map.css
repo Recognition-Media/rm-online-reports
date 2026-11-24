@@ -27,6 +27,7 @@
 }
 .map-root .map-topbar.is-solid .map-header-title { opacity: 1; }
 /* Nav buttons stay beige with black text in both states: high contrast on the art and on the black bar. */
+.map-root .map-topbar .map-btn { padding: 8px 16px; font-size: 14px; }
 .map-root .map-header-title { display: flex; align-items: baseline; gap: 14px; font-family: var(--map-font-body); font-weight: 500; font-size: var(--map-size-title); }
 .map-root .map-header-title strong {
   font-family: var(--map-font-display); font-weight: 400; font-size: var(--map-size-header-title);
@@ -167,14 +168,14 @@
 .map-root .map-ring-stop {
   position: absolute; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 14px;
   border: 0; border-radius: var(--map-radius-pill); background: var(--map-btn-primary-bg); color: var(--map-btn-primary-text);
-  font-family: var(--map-font-body); font-weight: 500; font-size: 16px; white-space: nowrap; overflow: hidden;
+  font-family: var(--map-font-body); font-weight: 500; font-size: 17px; white-space: nowrap; overflow: hidden;
   cursor: pointer; pointer-events: auto; transition: background-color 150ms ease, color 150ms ease, transform 150ms ease;
 }
 /* Hover / open: the stop's own brand color, black text for contrast. */
 .map-root .map-ring-stop:hover, .map-root .map-ring-stop:focus-visible, .map-root .map-ring-stop.is-current {
   background: var(--stop-color); color: var(--map-ink); transform: translateY(-2px);
 }
-.map-root .map-ring-num { font-family: var(--map-font-display); font-size: 18px; }
+.map-root .map-ring-num { font-family: var(--map-font-display); font-size: 19px; }
 
 /* Stop pop-up: sits between the top bar and the bottom navigation, over a dim layer on the field only */
 .map-root .map-stop-scrim {

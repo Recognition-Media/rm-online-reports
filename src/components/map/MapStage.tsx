@@ -62,7 +62,7 @@ export function MapStage({
   return (
     <section id="map" className="map-stage-wrap">
       <div className="map-stage" ref={stageRef} inert={stop !== null}>
-        <div className="map-canvas" style={{ transform: `translate(-50%, -50%) scale(${scale})` }}>
+        <div className="map-canvas" style={{ transform: `translate(-50%, calc(-50% + var(--map-canvas-shift, 0px))) scale(${scale})` }}>
           <Center selectedId={selectedId} onSelect={onSelect} />
           <Ring stops={content.stops} current={step} visited={visited} ariaLabel={content.labels.ringAria} onOpen={go} />
         </div>
