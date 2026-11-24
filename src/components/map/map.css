@@ -16,8 +16,11 @@
   padding: 0 var(--map-gutter); border-bottom: 1.5px solid var(--map-ink); background: var(--map-ground);
 }
 .map-root .map-header-logo { height: var(--map-header-logo-height); width: auto; }
-.map-root .map-header-title { font-family: var(--map-font-subhead); font-weight: var(--map-subhead-weight); font-size: var(--map-size-title); }
-.map-root .map-header-title span { color: var(--map-muted); }
+.map-root .map-header-title { display: flex; align-items: baseline; gap: 14px; font-family: var(--map-font-body); font-weight: 500; font-size: var(--map-size-title); }
+.map-root .map-header-title strong {
+  font-family: var(--map-font-display); font-weight: 400; font-size: var(--map-size-header-title);
+  line-height: var(--map-hero-line-height); letter-spacing: var(--map-hero-tracking); text-transform: uppercase;
+}
 
 /* Landing: centered lockup, title and subtitle over the background art */
 .map-root .map-landing {

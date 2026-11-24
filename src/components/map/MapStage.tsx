@@ -43,7 +43,8 @@ export function MapStage({
         {/* eslint-disable-next-line @next/next/no-img-element -- static export, plain img like the other templates */}
         <img className="map-header-logo" src={assetPath(content.logo.src)} alt={content.logo.alt} />
         <div className="map-header-title">
-          {content.reportTitle} · <span>{content.reportSubtitle}</span>
+          <strong>{content.reportTitle}</strong>
+          <span>{content.reportSubtitle}</span>
         </div>
         <div aria-hidden="true" />
       </header>

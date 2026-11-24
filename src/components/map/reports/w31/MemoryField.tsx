@@ -13,6 +13,9 @@ export function MemoryField({ selectedId, onSelect }: CenterProps) {
   const visible = summary.themes.filter((t) => t.count > 0)
   return (
     <div className="w31-field">
+      {/* Faint color washes behind each side */}
+      <div className="w31-wash w31-wash-meaning" aria-hidden="true" />
+      <div className="w31-wash w31-wash-form" aria-hidden="true" />
       {DOTS.map((d, i) => (
         <span
           key={i}
@@ -31,7 +34,10 @@ export function MemoryField({ selectedId, onSelect }: CenterProps) {
       </div>
       <div className="w31-divider" style={{ left: CANVAS.divider }} />
 
-      {visible.map((t) => {
+      {visible.map((t, i) => {
+        // Like the brand shapes: crisp on one side, fading out on the other.
+        // The direction of the fade varies per blob.
+        const fadeAngle = (i * 67 + 20) % 360
         const dimmed = selectedId !== null && selectedId !== t.id
         return (
           <button
@@ -48,7 +54,14 @@ export function MemoryField({ selectedId, onSelect }: CenterProps) {
             onClick={() => onSelect(selectedId === t.id ? null : t.id)}
             aria-label={`${t.name}, ${t.label}`}
           >
-            <span className="w31-blob-shape" style={{ background: t.color, clipPath: t.shape }} />
+            <span className="w31-blob-glow" aria-hidden="true">
+              <span className="w31-blob-fill" style={{ background: t.color, clipPath: t.shape }} />
+            </span>
+            <span
+              className="w31-blob-fill w31-blob-crisp"
+              aria-hidden="true"
+              style={{ background: t.color, clipPath: t.shape, ['--fade' as string]: `${fadeAngle}deg` }}
+            />
             <span className="w31-blob-pct">{t.label}</span>
             {t.size >= NAME_MIN_SIZE && <span className="w31-blob-name">{t.name}</span>}
           </button>
