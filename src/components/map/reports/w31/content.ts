@@ -161,7 +161,7 @@ export const content: MapContent = {
       copy: [],
       module: {
         type: 'takeaways',
-        title: 'How to build memory in an attention economy',
+        title: 'How to make memorable work in an attention economy',
         items: [
           { headline: 'Stop treating reach as memory.', line: 'Views prove distribution, not that anyone will remember.' },
           { headline: 'Listen for meaning, not formats.', line: "Use feedback to find what moves people, not to copy last week's winner." },
