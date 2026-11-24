@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type RefObject } from 'react'
 import type { MapContent, MapStop } from './types'
 import { StopModule } from './modules/StopModule'
 import { VoiceBlock } from './modules/VoiceBlock'
@@ -49,7 +49,7 @@ export function StopModal({
     <>
       <div className="map-stop-scrim" onClick={onClose} aria-hidden="true" />
       <div
-        className={`map-stop${isTakeaways ? ' is-wide' : ''}`}
+        className={`map-stop${isTakeaways ? ' is-finale' : ''}`}
         role="dialog"
         aria-modal="false"
         aria-labelledby="map-stop-title"
@@ -64,12 +64,9 @@ export function StopModal({
 
           {isTakeaways ? (
             <div className="map-stop-full">
-              <p className="map-stop-eyebrow">
-                {labels.ringEyebrow} {stop.number}
-              </p>
-              <h2 id="map-stop-title" ref={titleRef} tabIndex={-1} className="map-visually-hidden">
+              <p className="map-stop-eyebrow" id="map-stop-title" ref={titleRef as unknown as RefObject<HTMLParagraphElement>} tabIndex={-1}>
                 {stop.title}
-              </h2>
+              </p>
               <StopModule module={stop.module} />
             </div>
           ) : (
