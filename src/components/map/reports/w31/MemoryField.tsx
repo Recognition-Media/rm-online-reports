@@ -41,6 +41,11 @@ export function MemoryField({ selectedId, onSelect }: CenterProps) {
               width: t.size,
               height: t.size,
               color: t.ink,
+              // Slow float: each blob gets its own speed, direction and start point so they drift out of sync.
+              ['--float-dur' as string]: `${9 + ((i * 37) % 7)}s`,
+              ['--float-delay' as string]: `-${(i * 53) % 11}s`,
+              ['--float-x' as string]: `${((i * 29) % 9) - 4}px`,
+              ['--float-y' as string]: `${i % 2 ? 7 : -7}px`,
             }}
             onClick={() => onSelect(selectedId === t.id ? null : t.id)}
             aria-label={`${t.name}, ${t.label}`}

@@ -121,6 +121,14 @@
   padding: 0; border: 0; background: none; cursor: pointer; transition: opacity 200ms ease, transform 200ms ease;
 }
 .map-root.map-w31 .w31-blob:hover, .map-root.map-w31 .w31-blob.is-selected { transform: scale(1.06); }
+/* Slow float. Uses `translate` (separate from `transform`) so hover scaling still works. */
+.map-root.map-w31 .w31-blob { animation: w31-float var(--float-dur, 10s) ease-in-out var(--float-delay, 0s) infinite alternate; }
+@keyframes w31-float {
+  from { translate: 0 0; }
+  50% { translate: var(--float-x) calc(var(--float-y) * -0.4); }
+  to { translate: calc(var(--float-x) * -0.6) var(--float-y); }
+}
+@media (prefers-reduced-motion: reduce) { .map-root.map-w31 .w31-blob { animation: none; } }
 .map-root.map-w31 .w31-blob.is-dimmed { opacity: 0.35; }
 .map-root.map-w31 .w31-blob-glow { position: absolute; inset: 0; filter: blur(var(--map-blob-blur)); }
 .map-root.map-w31 .w31-blob-fill { position: absolute; inset: 0; }
