@@ -308,3 +308,5 @@
 .map-root .map-slider input[type='range']::-webkit-slider-thumb { width: 32px; height: 32px; border: 0; box-shadow: 0 0 0 4px var(--map-stop-paper); }
 .map-root .map-slider input[type='range']::-moz-range-thumb { width: 32px; height: 32px; border: 0; box-shadow: 0 0 0 4px var(--map-stop-paper); }
 .map-root .map-slider-scale { font-size: 12px; }
+/* "Trend 0N" takes its stop's color */
+.map-root .map-stop .map-stop-eyebrow { color: var(--stop-color, var(--map-ink)); }
