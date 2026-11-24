@@ -7,12 +7,11 @@ export interface InfoPanel {
   body: string[]
 }
 
-/** A landing nav button: either a link (href) or a pop-up box (panel). */
+/** A landing nav button (secondary style): either a link (href) or a drop-down box (panel). */
 export interface NavLink {
   label: string
   href?: string
   panel?: InfoPanel
-  primary?: boolean
 }
 
 export interface TickerItem {

@@ -1,11 +1,11 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useState, type ReactNode } from 'react'
 import { assetPath } from '@/lib/assetPath'
 import type { InfoPanel, MapContent } from './types'
 import { InfoDropdown } from './InfoDropdown'
 
-export function Landing({ content, onExplore }: { content: MapContent; onExplore: () => void }) {
+export function Landing({ content, onExplore, children }: { content: MapContent; onExplore: () => void; children?: ReactNode }) {
   const { landing } = content
   const [open, setOpen] = useState<string | null>(null)
   const close = useCallback(() => setOpen(null), [])
@@ -17,7 +17,7 @@ export function Landing({ content, onExplore }: { content: MapContent; onExplore
       <img className="map-landing-logo" src={assetPath(content.logo.src)} alt={content.logo.alt} />
       <nav className="map-nav">
         {landing.nav.map((n) => {
-          const cls = n.primary ? 'is-primary' : undefined
+          const cls = 'map-btn map-btn-secondary'
           if (n.panel) {
             const isOpen = open === n.label
             return (
@@ -53,11 +53,12 @@ export function Landing({ content, onExplore }: { content: MapContent; onExplore
           ))}
         </h1>
         <p className="map-subtitle">{landing.subtitle}</p>
-        <button type="button" className="map-cta" onClick={onExplore}>
+        <button type="button" className="map-btn map-btn-primary map-cta" onClick={onExplore}>
           {landing.cta}
           <span aria-hidden="true">↓</span>
         </button>
       </div>
+      {children}
     </section>
   )
 }

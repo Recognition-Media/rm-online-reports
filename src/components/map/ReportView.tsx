@@ -31,8 +31,9 @@ export function ReportView({ report }: { report: Report }) {
           if (hasAccess) document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' })
           else setShowGate(true)
         }}
-      />
-      <Ticker label={config.content.tickerLabel} items={config.content.ticker} />
+      >
+        <Ticker label={config.content.tickerLabel} items={config.content.ticker} />
+      </Landing>
       <MapStage
         config={config}
         locked={!hasAccess}

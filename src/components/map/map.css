@@ -22,15 +22,19 @@
 /* Landing: centered lockup, title and subtitle over the background art */
 .map-root .map-landing {
   position: relative; display: flex; align-items: center; justify-content: center;
-  min-height: calc(100dvh - var(--map-ticker-height)); padding: 48px var(--map-gutter);
+  min-height: 100dvh; padding: 48px var(--map-gutter) calc(var(--map-ticker-height) + 72px);
   background: var(--map-landing-bg) center / cover no-repeat, var(--map-accent);
 }
 .map-root .map-nav { position: absolute; top: 48px; right: var(--map-gutter); display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
-.map-root .map-nav > a, .map-root .map-nav > button {
-  border: 0; cursor: pointer; padding: 12px 24px; border-radius: var(--map-radius-pill); background: var(--map-paper);
-  color: var(--map-ink); font-family: var(--map-font-body); font-weight: 500; font-size: 16px; text-decoration: none; opacity: 0.85;
+/* Buttons: one design, two versions. Primary = the one main action per screen. */
+.map-root .map-btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border: 0; border-radius: var(--map-radius-pill);
+  font-family: var(--map-font-body); font-weight: 500; font-size: var(--map-size-button); line-height: 1.2;
+  text-decoration: none; cursor: pointer; transition: transform 150ms ease;
 }
-.map-root .map-nav .is-primary { background: var(--map-ink); color: var(--map-pill); opacity: 1; }
+.map-root .map-btn:hover { transform: translateY(-1px); }
+.map-root .map-btn-primary { background: var(--map-btn-primary-bg); color: var(--map-btn-primary-text); }
+.map-root .map-btn-secondary { background: var(--map-btn-secondary-bg); color: var(--map-btn-secondary-text); }
 .map-root .map-landing-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .map-root .map-landing-logo { position: absolute; top: 48px; left: var(--map-gutter); height: var(--map-landing-logo-height); width: auto; }
 .map-root .map-hero {
@@ -44,14 +48,8 @@
   font-size: var(--map-size-lead); line-height: 1.15; font-weight: 500; font-style: normal;
 }
 
-/* Main landing button (opens the sign-up gate) */
-.map-root .map-cta {
-  margin-top: var(--map-hero-gap); padding: 16px 32px; border: 0; border-radius: var(--map-radius-pill);
-  background: var(--map-cta-bg); color: var(--map-cta-text); font-family: var(--map-font-cta); font-weight: 500;
-  font-size: var(--map-size-cta); cursor: pointer; transition: transform 150ms ease;
-}
-.map-root .map-cta span { margin-left: 10px; }
-.map-root .map-cta:hover { transform: translateY(-2px); }
+/* Main landing button: a primary .map-btn, spaced below the subtitle */
+.map-root .map-cta { margin-top: var(--map-hero-gap); }
 
 /* Info drop-down under a nav button (e.g. About the Report) */
 .map-root .map-info-dropdown {
@@ -67,17 +65,22 @@
   border-radius: var(--map-radius-pill); background: transparent; color: var(--map-ink); font-size: 20px; line-height: 1; cursor: pointer;
 }
 
-/* Ticker strip */
-.map-root .map-ticker { display: flex; align-items: stretch; height: var(--map-ticker-height); background: var(--map-bar); color: var(--map-bar-text); }
-.map-root .map-ticker-label {
-  flex-shrink: 0; display: flex; align-items: center; margin: 0; padding: 0 24px 0 var(--map-gutter);
-  background: var(--map-ticker-label-bg); color: var(--map-ticker-label-text);
-  font-family: var(--map-font-subhead); font-weight: var(--map-subhead-weight); font-size: 16px; white-space: nowrap;
+/* Ticker: an inset, rounded bar at the bottom of the landing (modeled on the Telly Watchlist ticker) */
+.map-root .map-ticker {
+  position: absolute; left: var(--map-gutter); right: var(--map-gutter); bottom: 24px; display: flex; align-items: stretch;
+  height: var(--map-ticker-height); overflow: hidden; border: 2px solid var(--map-ink); border-radius: var(--map-ticker-radius);
+  background: var(--map-surface); color: var(--map-ink); font-family: var(--map-font-body); text-align: left;
 }
-.map-root .map-ticker-window { flex: 1; min-width: 0; display: flex; align-items: center; overflow: hidden; padding-left: 32px; }
-.map-root .map-ticker-track { display: flex; gap: 56px; width: max-content; animation: map-ticker 60s linear infinite; }
-.map-root .map-ticker-item { display: flex; align-items: center; gap: 12px; font-family: var(--map-font-ticker); font-size: 20px; white-space: nowrap; }
-.map-root .map-ticker-dot { width: 12px; height: 12px; border-radius: 50%; }
+.map-root .map-ticker-label {
+  flex-shrink: 0; display: flex; align-items: center; gap: 10px; margin: 0; padding: 0 24px;
+  background: var(--map-ink); color: var(--map-surface);
+  font-weight: 700; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
+}
+.map-root .map-ticker-label::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.map-root .map-ticker-window { flex: 1; min-width: 0; display: flex; align-items: center; overflow: hidden; padding-left: 28px; }
+.map-root .map-ticker-track { display: flex; gap: 28px; width: max-content; animation: map-ticker 60s linear infinite; }
+.map-root .map-ticker-item { display: flex; align-items: center; gap: 28px; font-weight: 500; font-size: 15px; white-space: nowrap; }
+.map-root .map-ticker-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
 @keyframes map-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .map-root .map-ticker-track { animation: none; } }
 

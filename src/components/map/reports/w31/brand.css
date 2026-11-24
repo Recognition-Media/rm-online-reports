@@ -7,12 +7,6 @@
   font-display: swap;
 }
 @font-face {
-  font-family: 'W31 GT Standard';
-  src: url('/map/w31/fonts/gt-standard-m-medium.otf') format('opentype');
-  font-weight: 500;
-  font-display: swap;
-}
-@font-face {
   font-family: 'W31 Terminal Grotesque Open';
   src: url('/map/w31/fonts/terminal-grotesque-open.otf') format('opentype');
   font-display: swap;
@@ -32,28 +26,28 @@
   --w31-ink: #141414;
   --w31-white: #FFFFFF;
 
-  /* What each part of the page uses */
+  /* Color jobs (house rules):
+     orange art = backdrop · beige = surfaces · black = text + the one
+     primary button · other palette colors = DATA only (blobs, ticker dots). */
   --map-ink: var(--w31-ink);
   --map-ground: var(--w31-beige);
-  --map-paper: color-mix(in srgb, var(--w31-beige) 50%, var(--w31-white));
+  --map-surface: var(--w31-beige);
   --map-muted: color-mix(in srgb, var(--w31-ink) 50%, var(--w31-beige));
   --map-dot: color-mix(in srgb, var(--w31-ink) 40%, var(--w31-beige));
   --map-accent: var(--w31-orange);
-  --map-pill: var(--w31-yellow);
-  --map-bar: var(--w31-ink);
-  --map-bar-text: var(--w31-beige);
-  --map-info-bg: var(--w31-beige);
-  --map-cta-bg: var(--w31-beige);
-  --map-cta-text: var(--w31-ink);
-  --map-ticker-label-bg: var(--w31-pink);
-  --map-ticker-label-text: var(--w31-ink);
+  --map-info-bg: var(--map-surface);
+
+  /* Buttons: one design, two versions */
+  --map-btn-primary-bg: var(--w31-ink);
+  --map-btn-primary-text: var(--w31-beige);
+  --map-btn-secondary-bg: var(--map-surface);
+  --map-btn-secondary-text: var(--w31-ink);
 
   /* Type */
-  /* Font roles (house rules):
-     display = large headers + data numbers  → Terminal Grotesque
+  /* Font roles (house rules): two families only.
+     display = large headers + data numbers       → Terminal Grotesque
      subhead = subheaders (e.g. About the Report) → Aktiv Grotesk Bold
-     body    = body copy, labels, buttons     → Aktiv Grotesk
-     ticker  = the scrolling ticker (exempt from the rules; keeps its look) */
+     body    = body copy, labels, buttons, ticker → Aktiv Grotesk */
   --map-font-display: 'W31 Terminal Grotesque', 'Aktiv Grotesk', monospace;
   --map-font-display-open: 'W31 Terminal Grotesque Open', 'W31 Terminal Grotesque', monospace;
   /* 'aktiv-grotesk' (Adobe Fonts kit in the site layout) has real Bold;
@@ -61,9 +55,6 @@
   --map-font-subhead: 'aktiv-grotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
   --map-subhead-weight: 700;
   --map-font-body: 'Aktiv Grotesk', 'aktiv-grotesk', -apple-system, sans-serif;
-  --map-font-ticker: var(--map-font-display);
-  /* GT Standard M Medium, used only for the Explore button. */
-  --map-font-cta: 'W31 GT Standard', 'Aktiv Grotesk', -apple-system, sans-serif;
   --map-size-hero: clamp(72px, 12vw, 232px);
   --map-hero-line-height: 0.7;
   --map-hero-tracking: -0.04em;
@@ -74,7 +65,7 @@
   --map-size-pole: 44px;
   --map-size-title: 24px;
   --map-size-lead: clamp(22px, 2.3vw, 44px);
-  --map-size-cta: 18px;
+  --map-size-button: 16px;
   --map-size-body: 16px;
   --map-size-label: 14px;
   --map-size-blob-pct: 36px;
@@ -88,18 +79,19 @@
   --map-gutter: 56px;
   --map-blob-blur: 5px;
   --map-header-height: 88px;
-  --map-ticker-height: 56px;
+  --map-ticker-height: 52px;
+  --map-ticker-radius: 12px;
 
   /* Landing background */
   --map-landing-bg: url('/map/w31/landing-bg.jpg');
 
   /* Sign-up gate */
   --map-gate-overlay: color-mix(in srgb, var(--w31-ink) 55%, transparent);
-  --map-gate-frame: var(--w31-orange);
-  --map-gate-card: var(--w31-beige);
+  --map-gate-frame: var(--w31-ink);
+  --map-gate-card: var(--map-surface);
   --map-gate-text: var(--w31-ink);
-  --map-gate-accent: var(--w31-orange);
-  --map-gate-button-text: var(--w31-ink);
+  --map-gate-accent: var(--map-btn-primary-bg);
+  --map-gate-button-text: var(--map-btn-primary-text);
 }
 
 /* Memory Field (drawn on the 1440×900 canvas) */

@@ -26,7 +26,7 @@ export const content: MapContent = {
           ],
         },
       },
-      { label: 'Enter the 31st Webbys', href: 'https://www.webbyawards.com/', primary: true },
+      { label: 'Enter the 31st Webbys', href: 'https://www.webbyawards.com/' },
     ],
   },
   tickerLabel: 'What stuck with you on the Internet this year?',

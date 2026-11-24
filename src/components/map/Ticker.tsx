@@ -11,8 +11,8 @@ export function Ticker({ label, items }: { label: string; items: TickerItem[] })
         <div className="map-ticker-track">
         {doubled.map((item, i) => (
           <span key={i} className="map-ticker-item">
-            <span className="map-ticker-dot" style={{ background: item.color }} />
             {item.text}
+            <span className="map-ticker-dot" style={{ background: item.color }} />
           </span>
         ))}
         </div>
