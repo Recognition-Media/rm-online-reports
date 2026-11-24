@@ -101,3 +101,9 @@ test('validateThemes catches data-entry mistakes', () => {
   assert.ok(errs.some((e) => e.includes('"c"') && e.includes('count')))
   assert.ok(errs.some((e) => e.includes('"d"') && e.includes('pole')))
 })
+
+test('assertValidThemes throws on bad data so the page build fails loudly', async () => {
+  const { assertValidThemes } = await import('./themeMath.ts')
+  assert.doesNotThrow(() => assertValidThemes([t('a', 'meaning', 1)]))
+  assert.throws(() => assertValidThemes([t('a', 'meaning', 1), t('a', 'form', -12)]), /themes\.ts[\s\S]*duplicate id "a"[\s\S]*count/)
+})

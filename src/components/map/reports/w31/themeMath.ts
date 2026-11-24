@@ -97,6 +97,12 @@ export function validateThemes(themes: Theme[]): string[] {
   return errors
 }
 
+/** Stops the dev server and the page build if themes.ts has a mistake. */
+export function assertValidThemes(themes: Theme[]): void {
+  const errors = validateThemes(themes)
+  if (errors.length) throw new Error(`themes.ts has data mistakes:\n- ${errors.join('\n- ')}`)
+}
+
 export function computeThemeStats(themes: Theme[]): ThemeSummary {
   const total = themes.reduce((sum, t) => sum + t.count, 0)
   const maxCount = Math.max(0, ...themes.map((t) => t.count))

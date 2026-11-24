@@ -1,10 +1,9 @@
-import { computeThemeStats, validateThemes } from './themeMath'
+import { assertValidThemes, computeThemeStats } from './themeMath'
 import { themes } from './themes'
 
-if (process.env.NODE_ENV !== 'production') {
-  const errors = validateThemes(themes)
-  if (errors.length) console.error('[W31 themes.ts]', errors)
-}
+// Throws on duplicate ids, bad counts or unknown poles, so a typo in
+// themes.ts can't ship: the dev server and the build both fail loudly.
+assertValidThemes(themes)
 
 /** Calculated once from the counts in themes.ts. */
 export const summary = computeThemeStats(themes)
