@@ -50,7 +50,7 @@
 
 /* Main landing button: a primary .map-btn, 20% larger, in caps, spaced below the subtitle */
 .map-root .map-cta {
-  margin-top: var(--map-hero-gap); padding: calc(12px * 1.2) calc(24px * 1.2);
+  margin-top: var(--map-hero-gap); padding: var(--map-cta-padding-y) calc(24px * 1.2);
   font-size: calc(var(--map-size-button) * 1.2); text-transform: uppercase; letter-spacing: 0.06em;
 }
 

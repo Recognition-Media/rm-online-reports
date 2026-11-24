@@ -66,6 +66,7 @@
   --map-size-title: 24px;
   --map-size-lead: clamp(22px, 2.3vw, 44px);
   --map-size-button: 16px;
+  --map-cta-padding-y: 20px;
   --map-size-body: 16px;
   --map-size-label: 14px;
   --map-size-blob-pct: 36px;
