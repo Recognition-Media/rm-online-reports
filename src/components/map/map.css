@@ -396,5 +396,6 @@
 /* Feature video side: video, speaker and Watch button centered in the right panel */
 .map-root .map-stop-right:has(.map-feature-video) { align-items: center; }
 .map-root .map-feature-video { margin-inline: auto; }
-.map-root .map-feature-video-bar { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+/* Speaker left, Watch button right, spanning the video's width (the block itself stays centered) */
+.map-root .map-feature-video-bar { flex-direction: row; align-items: center; justify-content: space-between; text-align: left; }
 .map-root .map-stop-right:has(.map-feature-video) > .map-voice { width: 100%; }
