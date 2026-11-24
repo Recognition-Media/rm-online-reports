@@ -203,6 +203,13 @@ export function spreadPositions(summary: ThemeSummary, factor: number): ThemeSum
   return { ...summary, themes }
 }
 
+/** Blobs whose displayed % is under this get softer, blurrier edges; bigger ones stay sharp. */
+export const SOFT_UNDER_PCT = 7
+
+export function isSoftBlob(t: ThemeStat): boolean {
+  return Math.round(t.share * 100) < SOFT_UNDER_PCT
+}
+
 export function rankPole(summary: ThemeSummary, pole: Pole): ThemeStat[] {
   return summary.themes
     .filter((t) => t.pole === pole)
