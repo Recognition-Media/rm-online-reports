@@ -14,7 +14,17 @@ export const content: MapContent = {
     headline: ['By', 'Popular', 'Demand'],
     subtitle: 'A report on what makes work memorable on the Internet in 2026, by The Webby Awards',
     nav: [
-      { label: 'About the Report', href: '#about' },
+      {
+        label: 'About the Report',
+        panel: {
+          title: 'About the Report',
+          body: [
+            'TKTK: what the report is and why The Webby Awards made it.',
+            'TKTK: who we asked (Internet Memory Project events and Webby Judges) and how the answers were read.',
+            'TKTK: how to explore the report.',
+          ],
+        },
+      },
       { label: 'Enter the 31st Webbys', href: 'https://www.webbyawards.com/', primary: true },
     ],
   },

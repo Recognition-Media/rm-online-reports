@@ -26,11 +26,11 @@
   background: var(--map-landing-bg) center / cover no-repeat, var(--map-accent);
 }
 .map-root .map-nav { position: absolute; top: 48px; right: var(--map-gutter); display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
-.map-root .map-nav a {
-  padding: 12px 24px; border-radius: var(--map-radius-pill); background: var(--map-paper);
+.map-root .map-nav a, .map-root .map-nav button {
+  border: 0; cursor: pointer; padding: 12px 24px; border-radius: var(--map-radius-pill); background: var(--map-paper);
   color: var(--map-ink); font-family: var(--map-font-display); font-size: 18px; text-decoration: none; opacity: 0.85;
 }
-.map-root .map-nav a.is-primary { background: var(--map-ink); color: var(--map-pill); opacity: 1; }
+.map-root .map-nav .is-primary { background: var(--map-ink); color: var(--map-pill); opacity: 1; }
 .map-root .map-landing-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .map-root .map-landing-logo { position: absolute; top: 48px; left: var(--map-gutter); height: var(--map-landing-logo-height); width: auto; }
 .map-root .map-hero {
@@ -42,6 +42,17 @@
 .map-root .map-subtitle {
   max-width: var(--map-subtitle-width); margin: var(--map-hero-gap) 0 0;
   font-size: var(--map-size-lead); line-height: 1.15; font-weight: 500; font-style: normal;
+}
+
+/* Info pop-up (e.g. About the Report) */
+.map-root .map-info-dialog { position: fixed; inset: 0; margin: auto; height: fit-content; width: min(640px, calc(100% - 32px)); max-height: calc(100dvh - 64px); padding: 0; border: 1.5px solid var(--map-ink); background: var(--map-info-bg); color: var(--map-ink); }
+.map-root .map-info-dialog::backdrop { background: var(--map-gate-overlay); }
+.map-root .map-info-box { position: relative; padding: 48px; font-family: var(--map-font-body); }
+.map-root .map-info-box h2 { margin: 0 0 24px; font-family: var(--map-font-display); font-weight: 400; font-size: var(--map-size-panel-headline); line-height: 1.05; font-style: normal; }
+.map-root .map-info-box p { margin: 0 0 16px; font-size: var(--map-size-body); line-height: 1.6; }
+.map-root .map-info-close {
+  position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border: 1.5px solid var(--map-ink);
+  border-radius: var(--map-radius-pill); background: transparent; color: var(--map-ink); font-size: 22px; line-height: 1; cursor: pointer;
 }
 
 /* Prompt bar */

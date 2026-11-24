@@ -1,8 +1,17 @@
 import type { ComponentType } from 'react'
 
+/** Text shown in a pop-up box (e.g. "About the Report"). */
+export interface InfoPanel {
+  title: string
+  /** One entry per paragraph. */
+  body: string[]
+}
+
+/** A landing nav button: either a link (href) or a pop-up box (panel). */
 export interface NavLink {
   label: string
-  href: string
+  href?: string
+  panel?: InfoPanel
   primary?: boolean
 }
 

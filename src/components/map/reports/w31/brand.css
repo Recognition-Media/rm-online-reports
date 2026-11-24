@@ -36,6 +36,7 @@
   --map-pill: var(--w31-yellow);
   --map-bar: var(--w31-ink);
   --map-bar-text: var(--w31-beige);
+  --map-info-bg: var(--w31-beige);
 
   /* Type */
   --map-font-display: 'W31 Terminal Grotesque', 'Aktiv Grotesk', monospace;
