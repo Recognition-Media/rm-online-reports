@@ -5,6 +5,8 @@ export function Landing({ content }: { content: MapContent }) {
   const { landing } = content
   return (
     <section className="map-landing">
+      {/* eslint-disable-next-line @next/next/no-img-element -- static export, plain img like the other templates */}
+      <img className="map-landing-logo" src={assetPath(content.logo.src)} alt={content.logo.alt} />
       <nav className="map-nav">
         {landing.nav.map((n) => (
           <a
@@ -18,8 +20,6 @@ export function Landing({ content }: { content: MapContent }) {
         ))}
       </nav>
       <div className="map-landing-center">
-        {/* eslint-disable-next-line @next/next/no-img-element -- static export, plain img like the other templates */}
-        <img className="map-landing-logo" src={assetPath(content.logo.src)} alt={content.logo.alt} />
         <h1 className="map-hero">
           {landing.headline.map((line) => (
             <span key={line} className="map-hero-line">{line}</span>

@@ -32,9 +32,9 @@
 }
 .map-root .map-nav a.is-primary { background: var(--map-ink); color: var(--map-pill); opacity: 1; }
 .map-root .map-landing-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.map-root .map-landing-logo { height: var(--map-landing-logo-height); width: auto; }
+.map-root .map-landing-logo { position: absolute; top: 48px; left: var(--map-gutter); height: var(--map-landing-logo-height); width: auto; }
 .map-root .map-hero {
-  margin: var(--map-hero-gap) 0 0; font-family: var(--map-font-display); font-weight: 400;
+  margin: 0; font-family: var(--map-font-display); font-weight: 400;
   font-size: var(--map-size-hero); line-height: var(--map-hero-line-height);
   letter-spacing: var(--map-hero-tracking); text-transform: uppercase;
 }

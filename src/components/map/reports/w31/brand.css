@@ -45,7 +45,7 @@
   --map-hero-line-height: 0.7;
   --map-hero-tracking: -0.04em;
   --map-hero-gap: clamp(32px, 5vh, 72px);
-  --map-landing-logo-height: clamp(64px, 6.5vw, 124px);
+  --map-landing-logo-height: clamp(48px, 4.5vw, 72px);
   --map-header-logo-height: 48px;
   --map-subtitle-width: 22em;
   --map-size-pole: 44px;
