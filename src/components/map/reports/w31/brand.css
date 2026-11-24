@@ -83,6 +83,7 @@
   --map-gutter: 56px;
   --map-blob-blur: 14px;
   --map-wash-opacity: 0.45;
+  --map-field-zoom: 1.2;
   --map-header-height: 88px;
   --map-ticker-height: 56px;
 
@@ -101,7 +102,8 @@
 }
 
 /* Memory Field (drawn on the 1440×900 canvas) */
-.map-root.map-w31 .w31-field { position: absolute; inset: 0; }
+/* Zoom scales everything on the field (labels, blobs, numbers) around its center. */
+.map-root.map-w31 .w31-field { position: absolute; inset: 0; transform: scale(var(--map-field-zoom)); transform-origin: 720px 470px; }
 .map-root.map-w31 .w31-dot { position: absolute; border-radius: 50%; background: var(--map-dot); filter: blur(2px); }
 .map-root.map-w31 .w31-pole { position: absolute; top: 150px; display: flex; align-items: baseline; gap: 16px; }
 .map-root.map-w31 .w31-pole-meaning { left: 280px; }
