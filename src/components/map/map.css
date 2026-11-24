@@ -22,7 +22,7 @@
 /* Landing: centered lockup, title and subtitle over the background art */
 .map-root .map-landing {
   position: relative; display: flex; align-items: center; justify-content: center;
-  min-height: 100dvh; padding: 48px var(--map-gutter) calc(var(--map-ticker-height) + 72px);
+  min-height: 100dvh; padding: 48px var(--map-gutter) calc(var(--map-ticker-height) + 48px);
   background: var(--map-landing-bg) center / cover no-repeat, var(--map-accent);
 }
 .map-root .map-nav { position: absolute; top: 48px; right: var(--map-gutter); display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
@@ -65,18 +65,17 @@
   border-radius: var(--map-radius-pill); background: transparent; color: var(--map-ink); font-size: 20px; line-height: 1; cursor: pointer;
 }
 
-/* Ticker: an inset, rounded bar at the bottom of the landing (modeled on the Telly Watchlist ticker) */
+/* Ticker: full-width black strip along the bottom of the landing */
 .map-root .map-ticker {
-  position: absolute; left: var(--map-gutter); right: var(--map-gutter); bottom: 24px; display: flex; align-items: stretch;
-  height: var(--map-ticker-height); overflow: hidden; border: 2px solid var(--map-ink); border-radius: var(--map-ticker-radius);
-  background: var(--map-surface); color: var(--map-ink); font-family: var(--map-font-body); text-align: left;
+  position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: stretch;
+  height: var(--map-ticker-height); overflow: hidden; background: var(--map-ink); color: var(--map-surface);
+  font-family: var(--map-font-body); text-align: left;
 }
 .map-root .map-ticker-label {
-  flex-shrink: 0; display: flex; align-items: center; gap: 10px; margin: 0; padding: 0 24px;
-  background: var(--map-ink); color: var(--map-surface);
-  font-weight: 700; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
+  flex-shrink: 0; display: flex; align-items: center; margin: 0; padding: 0 28px 0 var(--map-gutter);
+  border-right: 1px solid color-mix(in srgb, var(--map-surface) 30%, transparent);
+  font-weight: var(--map-subhead-weight); font-size: 15px; white-space: nowrap;
 }
-.map-root .map-ticker-label::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
 .map-root .map-ticker-window { flex: 1; min-width: 0; display: flex; align-items: center; overflow: hidden; padding-left: 28px; }
 .map-root .map-ticker-track { display: flex; gap: 28px; width: max-content; animation: map-ticker 60s linear infinite; }
 .map-root .map-ticker-item { display: flex; align-items: center; gap: 28px; font-weight: 500; font-size: 15px; white-space: nowrap; }

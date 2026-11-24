@@ -29,7 +29,7 @@ export const content: MapContent = {
       { label: 'Enter the 31st Webbys', href: 'https://www.webbyawards.com/' },
     ],
   },
-  tickerLabel: 'What stuck with you on the Internet this year?',
+  tickerLabel: 'What Stuck on the Internet This Year?',
   ticker: [
     { text: "'Punch' the baby monkey", color: colorOf('delight') },
     { text: "Bad Bunny's Super Bowl halftime", color: colorOf('novelty') },

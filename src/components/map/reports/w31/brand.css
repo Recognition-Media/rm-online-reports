@@ -79,8 +79,7 @@
   --map-gutter: 56px;
   --map-blob-blur: 5px;
   --map-header-height: 88px;
-  --map-ticker-height: 52px;
-  --map-ticker-radius: 12px;
+  --map-ticker-height: 56px;
 
   /* Landing background */
   --map-landing-bg: url('/map/w31/landing-bg.jpg');
