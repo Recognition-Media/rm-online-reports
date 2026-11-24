@@ -347,3 +347,7 @@
 .map-root .map-feature-video video { width: min(100%, 300px); aspect-ratio: 1 / 1; object-fit: cover; background: var(--map-ink); display: block; }
 .map-root .map-feature-video figcaption { font-size: 12px; }
 .map-root .map-feature-video strong { font-family: var(--map-font-display); font-weight: 400; font-size: 16px; }
+
+/* Feature-video stops: data module under the copy on the left; quote under the video on the right */
+.map-root .map-stop-left .map-mod { margin-top: auto; }
+.map-root .map-stop-right:has(.map-feature-video) .map-voice-quote { padding-top: 14px; }

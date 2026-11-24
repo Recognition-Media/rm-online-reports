@@ -45,7 +45,7 @@ export function StopModal({
   }, [stop.id])
 
   const isTakeaways = stop.module?.type === 'takeaways'
-  // A square video file plays at the top of the data panel; its quote moves to the left panel.
+  // A square video file plays at the top of the right panel with its quote; the data module moves left.
   const featureVideo = stop.voice?.kind === 'video' && stop.voice.video.src ? stop.voice.video : null
 
   return (
@@ -82,26 +82,25 @@ export function StopModal({
                   {stop.title}
                 </h2>
                 {stop.copy.map((p) => <p key={p}>{p}</p>)}
-                {featureVideo
-                  ? featureVideo.quote && (
-                      <VoiceBlock
-                        voice={{ kind: 'quote', quote: { text: featureVideo.quote, name: featureVideo.speaker, role: featureVideo.role } }}
-                        labels={labels}
-                      />
-                    )
-                  : stop.voice && <VoiceBlock voice={stop.voice} labels={labels} />}
+                {featureVideo ? (
+                  // With a feature video: the data module sits on the left, under the copy.
+                  stop.module && <StopModule module={stop.module} />
+                ) : (
+                  stop.voice && <VoiceBlock voice={stop.voice} labels={labels} />
+                )}
               </div>
               <div className="map-stop-right">
                 {featureVideo?.src && (
                   <figure className="map-feature-video">
-                    <video src={assetPath(featureVideo.src)} controls playsInline preload="metadata" />
-                    <figcaption>
-                      <strong>{featureVideo.speaker}</strong>
-                      {featureVideo.role ? ` · ${featureVideo.role}` : ''}
-                    </figcaption>
+                    {/* The quote below credits the speaker, so no caption here. */}
+                    <video src={assetPath(featureVideo.src)} controls playsInline preload="metadata" aria-label={featureVideo.speaker} />
                   </figure>
                 )}
-                {stop.module && <StopModule module={stop.module} />}
+                {featureVideo
+                  ? featureVideo.quote && (
+                      <VoiceBlock voice={{ kind: 'quote', quote: { text: featureVideo.quote, name: featureVideo.speaker, role: featureVideo.role } }} labels={labels} />
+                    )
+                  : stop.module && <StopModule module={stop.module} />}
               </div>
             </div>
           )}
