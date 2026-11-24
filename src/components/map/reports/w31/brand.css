@@ -104,7 +104,6 @@
 /* Memory Field (drawn on the 1440×900 canvas) */
 /* Zoom scales everything on the field (labels, blobs, numbers) around its center. */
 .map-root.map-w31 .w31-field { position: absolute; inset: 0; transform: scale(var(--map-field-zoom)); transform-origin: 720px 470px; }
-.map-root.map-w31 .w31-dot { position: absolute; border-radius: 50%; background: var(--map-dot); filter: blur(2px); }
 .map-root.map-w31 .w31-pole { position: absolute; top: 150px; display: flex; align-items: baseline; gap: 16px; }
 .map-root.map-w31 .w31-pole-meaning { left: 280px; }
 .map-root.map-w31 .w31-pole-form { right: 280px; }

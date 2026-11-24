@@ -2,12 +2,10 @@
 
 import type { CenterProps } from '../../types'
 import { CANVAS } from './themeMath'
-import { makeDots } from './dots'
 import { summary } from './summary'
 
-const DOTS = makeDots(90, 31)
 // Below this size the theme name is hidden and only the % shows (as in the design).
-const NAME_MIN_SIZE = 90
+const NAME_MIN_SIZE = 117 // 90 × 1.3, scaled with the blobs
 
 export function MemoryField({ selectedId, onSelect }: CenterProps) {
   const visible = summary.themes.filter((t) => t.count > 0)
@@ -16,13 +14,6 @@ export function MemoryField({ selectedId, onSelect }: CenterProps) {
       {/* Faint color washes behind each side */}
       <div className="w31-wash w31-wash-meaning" aria-hidden="true" />
       <div className="w31-wash w31-wash-form" aria-hidden="true" />
-      {DOTS.map((d, i) => (
-        <span
-          key={i}
-          className="w31-dot"
-          style={{ left: d.x, top: d.y, width: d.r * 2, height: d.r * 2, opacity: d.o }}
-        />
-      ))}
 
       <div className="w31-pole w31-pole-meaning">
         <span className="w31-pole-name">Meaning</span>

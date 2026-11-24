@@ -51,7 +51,8 @@ export interface ThemeSummary {
 }
 
 /** The design canvas the field is drawn on (scaled to the screen). */
-export const CANVAS = { width: 1440, height: 900, divider: 720, maxBlob: 191, minBlob: 36 }
+// Blob sizes were 191 / 36 in the 11.23 mockup; enlarged 30% on 2026-11-24.
+export const CANVAS = { width: 1440, height: 900, divider: 720, maxBlob: 248, minBlob: 47 }
 
 export function formatShare(share: number): string {
   if (!share) return '0%'
