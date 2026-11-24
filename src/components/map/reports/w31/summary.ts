@@ -2,6 +2,7 @@ import { assertValidThemes, computeThemeStats, spreadPositions } from './themeMa
 import { themes } from './themes'
 import { content } from './content'
 import { fitZoom, pillRect } from '../../ringGeometry'
+import { isRingStop } from '../../types'
 
 // Throws on duplicate ids, bad counts or unknown poles, so a typo in
 // themes.ts can't ship: the dev server and the build both fail loudly.
@@ -21,7 +22,7 @@ export const MAX_FIELD_ZOOM = 1.0
 /** Biggest zoom at which no blob sits under a stop pill. Recomputed if data or stop positions change. */
 export const fieldZoom = fitZoom(
   summary.themes.filter((t) => t.size > 0).map((t) => ({ x: t.x, y: t.y, r: t.size / 2 })),
-  content.stops.map(pillRect),
+  content.stops.filter(isRingStop).map(pillRect),
   FIELD_ORIGIN,
   MAX_FIELD_ZOOM,
 )

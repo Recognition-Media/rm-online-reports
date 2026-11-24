@@ -153,8 +153,26 @@ export const content: MapContent = {
       module: { type: 'case', title: 'Case study: Vaseline Verified', body: '[TK] Listening to culture to build memory with an audience.' },
     },
     {
-      id: 'takeaways',
+      id: 'meaning',
       number: '06',
+      title: 'Meaning',
+      color: 'var(--w31-orange)',
+      ring: false,
+      panel: 'pole:meaning',
+      copy: [],
+    },
+    {
+      id: 'form',
+      number: '07',
+      title: 'Form',
+      color: 'var(--w31-blue)',
+      ring: false,
+      panel: 'pole:form',
+      copy: [],
+    },
+    {
+      id: 'takeaways',
+      number: '08',
       title: 'Takeaways',
       position: { x: 91, y: 610 },
       color: 'var(--w31-watermelon)',
@@ -192,14 +210,19 @@ export const content: MapContent = {
 export const poleCopy = {
   meaning: {
     name: 'Meaning',
+    headline: 'Meaning: people remember what moved them.',
     definition: 'The human insight, emotion or point of view that makes the work matter.',
-    copy: '[Copy TK: why Meaning matters for people making work.]',
+    copy: 'A laugh, a voice that felt real, a moment everyone shared. Tap any shape on the left to open it. [Copy TK]',
     listLabel: 'Reasons on this side',
+    // Placeholder from the mockup. Judge answers are anonymous: confirm permission before printing a judge's name.
+    quote: { text: 'What is harder to replicate is a clear understanding of people.', name: 'Vaishnavi Ramamoorthy, Webby Judge' },
   },
   form: {
     name: 'Form',
+    headline: 'Form: a shape people can hold onto.',
     definition: 'A shape that helps people hold on to a meaningful idea, and the execution that carries it.',
-    copy: '[Copy TK: why Form matters for people making work.]',
+    copy: 'Novelty, craft, things built to spread. Tap any shape on the left to open it. [Copy TK]',
     listLabel: 'Reasons on this side',
+    quote: { text: "Quite often it's the thing that stops you when you are browsing, or feels like there was a decision to buck a trend.", name: 'Richard Foster, SVP Creative, Leftfield Labs' },
   },
 }

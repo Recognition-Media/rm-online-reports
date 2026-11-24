@@ -43,7 +43,7 @@ export function StopModal({
     titleRef.current?.focus()
   }, [stop.id])
 
-  const isTakeaways = stop.module.type === 'takeaways'
+  const isTakeaways = stop.module?.type === 'takeaways'
 
   return (
     <>
@@ -67,7 +67,7 @@ export function StopModal({
               <p className="map-stop-eyebrow" id="map-stop-title" ref={titleRef as unknown as RefObject<HTMLParagraphElement>} tabIndex={-1}>
                 {stop.title}
               </p>
-              <StopModule module={stop.module} />
+              {stop.module && <StopModule module={stop.module} />}
             </div>
           ) : (
             <div className="map-stop-panels">
@@ -82,7 +82,7 @@ export function StopModal({
                 {stop.voice && <VoiceBlock voice={stop.voice} labels={labels} />}
               </div>
               <div className="map-stop-right">
-                <StopModule module={stop.module} />
+                {stop.module && <StopModule module={stop.module} />}
               </div>
             </div>
           )}

@@ -148,11 +148,21 @@ export interface MapStop {
   tourLabel?: string
   /** Brand color the stop turns on hover and while open (a CSS color / var). */
   color: string
-  /** Pill center on the 1440×900 canvas. */
-  position: { x: number; y: number }
+  /** Pill center on the 1440×900 canvas (ring stops only). */
+  position?: { x: number; y: number }
   /** One entry per paragraph. */
   copy: string[]
   voice?: StopVoice
-  module: StopModule
+  /** Content for the centered pop-up. Not used when `panel` is set. */
+  module?: StopModule
+  /** Open the report's side drawer with this id instead of the pop-up (e.g. "pole:meaning"). */
+  panel?: string
+  /** false = no pill on the ring (reached from the nav or the field itself). */
+  ring?: boolean
 }
+
+/** A stop that shows as a pill on the ring. */
+export type RingStop = MapStop & { position: { x: number; y: number } }
+
+export const isRingStop = (s: MapStop): s is RingStop => s.ring !== false && !!s.position
 

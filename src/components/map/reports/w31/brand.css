@@ -199,3 +199,33 @@
 /* While a stop is open, MEANING / FORM and the center line fade back (as in the mockup) */
 .map-root.map-w31 .w31-pole, .map-root.map-w31 .w31-divider { transition: opacity 600ms ease; }
 .map-root.map-w31 .has-stop .w31-pole, .map-root.map-w31 .has-stop .w31-divider { opacity: 0.15; }
+
+/* 06 Meaning / 07 Form (from the "tour stop Meaning" export): the field zooms into that half,
+   the other half and the ring fade, and the drawer opens on the right. */
+.map-root.map-w31 .map-center { position: absolute; inset: 0; transition: transform 800ms ease; }
+.map-root.map-w31 [data-stop='meaning'] .map-center { transform-origin: 520px 480px; transform: translate(-60px, 0) scale(1.18); }
+.map-root.map-w31 [data-stop='form'] .map-center { transform-origin: 900px 480px; transform: translate(-460px, 0) scale(1.18); }
+.map-root.map-w31 .map-ring { transition: opacity 600ms ease; }
+.map-root.map-w31 .has-panel-stop .map-ring { opacity: 0; pointer-events: none; }
+.map-root.map-w31 .has-panel-stop .w31-blob.is-dimmed { opacity: 0.12; }
+.map-root.map-w31 [data-stop='meaning'] .w31-pole-form, .map-root.map-w31 [data-stop='form'] .w31-pole-meaning,
+.map-root.map-w31 .has-panel-stop .w31-divider { opacity: 0.15; }
+@media (prefers-reduced-motion: reduce) { .map-root.map-w31 .map-center { transition: none; } }
+
+/* Drawer, export values: 560px, paper background, ink rule on the left */
+.map-root.map-w31 .map-panel { width: min(560px, 42%); padding: 36px 40px; background: var(--map-stop-paper); }
+.map-root.map-w31 .w31-pole-drawer { display: flex; flex-direction: column; gap: 16px; min-height: calc(100% - 40px); }
+.map-root.map-w31 .w31-pole-eyebrow { margin: 0; font-family: var(--map-font-display); font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; }
+.map-root.map-w31 .w31-pole-big { margin: 0; font-family: var(--map-font-display); font-size: 100px; line-height: 0.8; }
+.map-root.map-w31 .w31-pole-headline { margin: 0; font-family: var(--map-font-display); font-weight: 400; font-size: 44px; line-height: 0.95; }
+.map-root.map-w31 .w31-pole-copy { margin: 0; font-size: 14px; line-height: 1.6; }
+.map-root.map-w31 .w31-pole-drawer .w31-pole-list { gap: 0; }
+.map-root.map-w31 .w31-pole-drawer .w31-pole-list button {
+  padding: 6px 0; background: none; border-bottom: 1px solid color-mix(in srgb, var(--map-ink) 12%, transparent); font-family: var(--map-font-display); font-size: 20px;
+}
+.map-root.map-w31 .w31-pole-drawer .w31-pole-list button:hover { background: color-mix(in srgb, var(--map-ink) 5%, transparent); }
+.map-root.map-w31 .w31-pole-drawer .w31-pole-swatch { width: 18px; height: 18px; border-radius: 0; }
+.map-root.map-w31 .w31-pole-drawer .w31-pole-list-pct { font-size: 20px; }
+.map-root.map-w31 .w31-pole-quote { margin: auto 0 0; padding-top: 14px; border-top: 1.5px solid var(--map-ink); }
+.map-root.map-w31 .w31-pole-quote blockquote { margin: 0; font-family: var(--map-font-display); font-size: 21px; line-height: 1.18; }
+.map-root.map-w31 .w31-pole-quote figcaption { margin-top: 8px; font-size: 12px; }

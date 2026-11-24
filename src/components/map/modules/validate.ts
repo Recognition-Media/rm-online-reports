@@ -16,8 +16,12 @@ export function validateStops(stops: MapStop[]): string[] {
     ids.add(s.id)
     if (numbers.has(s.number)) errors.push(`duplicate stop number "${s.number}"`)
     numbers.add(s.number)
-    if (!onCanvas(s.position)) errors.push(`stop "${s.id}": position must be on the 1440×900 canvas`)
+    if (s.ring !== false && !onCanvas(s.position)) errors.push(`stop "${s.id}": position must be on the 1440×900 canvas`)
     const m = s.module
+    if (!m) {
+      if (!s.panel) errors.push(`stop "${s.id}": needs a module (pop-up content) or a panel (drawer)`)
+      continue
+    }
     if (m.type === 'slider' && !isPct(m.value)) errors.push(`stop "${s.id}": slider value must be 0–100 (got ${m.value})`)
     if (m.type === 'split') {
       const bad = [m.headline, ...m.parts.map((p) => p.value)].filter((v) => !isPct(v))

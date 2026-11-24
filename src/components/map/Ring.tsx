@@ -1,6 +1,6 @@
 'use client'
 
-import type { MapStop } from './types'
+import { isRingStop, type MapStop } from './types'
 import { PILL_HEIGHT, pillLabel, pillWidth } from './ringGeometry'
 
 export function Ring({
@@ -18,7 +18,7 @@ export function Ring({
 }) {
   return (
     <nav className="map-ring" aria-label={ariaLabel}>
-      {stops.map((s) => {
+      {stops.filter(isRingStop).map((s) => {
         const w = pillWidth(pillLabel(s))
         const cls = `map-ring-stop${current === s.id ? ' is-current' : ''}${visited.includes(s.id) ? ' is-visited' : ''}`
         return (

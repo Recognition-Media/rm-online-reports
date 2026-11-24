@@ -48,3 +48,10 @@ test('a stop needs a position on the canvas', () => {
   assert.ok(errs.some((e) => e.includes('stop "b"') && e.includes('position')))
   assert.ok(errs.some((e) => e.includes('stop "c"') && e.includes('position')))
 })
+
+test('a drawer stop (panel) needs no module or position; other stops need both', () => {
+  const panelStop = { id: 'm', number: '06', title: 'Meaning', color: 'x', copy: [], panel: 'pole:meaning', ring: false }
+  assert.deepEqual(validateStops([panelStop]), [])
+  const errs = validateStops([{ id: 'z', number: '07', title: 'Z', color: 'x', copy: [] }])
+  assert.ok(errs.some((e) => e.includes('stop "z"') && e.includes('module')))
+})

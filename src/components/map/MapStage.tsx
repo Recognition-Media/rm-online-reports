@@ -30,13 +30,34 @@ export function MapStage({
   const go = useCallback(
     (id: string | null) => {
       setStep(id)
-      if (id) {
-        onSelect(null) // a stop pop-up replaces any open drawer
-        setVisited((v) => (v.includes(id) ? v : [...v, id]))
-      }
+      // A pop-up stop replaces any open drawer; a drawer stop (e.g. Meaning) opens its own.
+      const target = content.stops.find((s) => s.id === id)
+      onSelect(target?.panel ?? null)
+      if (id) setVisited((v) => (v.includes(id) ? v : [...v, id]))
     },
-    [onSelect],
+    [onSelect, content.stops],
   )
+
+  const stop = content.stops.find((s) => s.id === step) ?? null
+  const panelStop = stop?.panel ? stop : null
+
+  // Selecting from the field or a drawer: a stop's panel id (e.g. clicking MEANING)
+  // opens that stop; anything else (a theme) opens in the drawer.
+  const select = useCallback(
+    (id: string | null) => {
+      const owner = id ? content.stops.find((s) => s.panel === id) : undefined
+      if (owner) return go(owner.id)
+      if (id === null && panelStop) return go(null)
+      onSelect(id)
+    },
+    [content.stops, go, onSelect, panelStop],
+  )
+
+  // Drawer "Back": from a theme opened inside Meaning/Form, return to that view; otherwise close.
+  const closePanel = useCallback(() => {
+    if (panelStop && selectedId !== panelStop.panel) onSelect(panelStop.panel ?? null)
+    else select(null)
+  }, [panelStop, selectedId, onSelect, select])
 
   useEffect(() => {
     const el = stageRef.current
@@ -48,25 +69,40 @@ export function MapStage({
     return () => ro.disconnect()
   }, [])
 
-  useEffect(() => {
-    if (!selectedId) return
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onSelect(null)
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [selectedId, onSelect])
-
-  const stop = content.stops.find((s) => s.id === step) ?? null
   const prev = prevStep(steps, step)
   const next = nextStep(steps, step)
 
+  // Keys while a drawer is open: Escape goes back/closes; in a drawer stop, arrows move between stops.
+  useEffect(() => {
+    if (!selectedId) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') return closePanel()
+      if (!panelStop || e.altKey || e.metaKey || e.ctrlKey) return
+      if ((e.target as HTMLElement | null)?.tagName === 'INPUT') return
+      if (e.key === 'ArrowLeft' && prev) go(prev)
+      if (e.key === 'ArrowRight' && next) go(next)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [selectedId, closePanel, panelStop, prev, next, go])
+
+  const popupStop = stop && !stop.panel ? stop : null
+
   return (
-    <section id="map" className={`map-stage-wrap${stop ? ' has-stop' : ''}`}>
-      <div className="map-stage" ref={stageRef} inert={stop !== null}>
+    <section
+      id="map"
+      className={`map-stage-wrap${popupStop ? ' has-stop' : ''}${panelStop ? ' has-panel-stop' : ''}`}
+      data-stop={stop?.id}
+    >
+      <div className="map-stage" ref={stageRef} inert={popupStop !== null}>
         <div className="map-canvas" style={{ transform: `translate(-50%, calc(-50% + var(--map-canvas-shift, 0px))) scale(${scale})` }}>
-          <Center selectedId={selectedId} onSelect={onSelect} />
+          {/* Wrapper so a report can zoom its center visual for a drawer stop (e.g. into the Meaning half). */}
+          <div className="map-center">
+            <Center selectedId={selectedId} onSelect={select} />
+          </div>
           <Ring stops={content.stops} current={step} visited={visited} ariaLabel={content.labels.ringAria} onOpen={go} />
         </div>
-        {selectedId && <Panel id={selectedId} onClose={() => onSelect(null)} onSelect={onSelect} />}
+        {selectedId && <Panel id={selectedId} onClose={closePanel} onSelect={select} />}
       </div>
       <div className="map-band">
         <TourBar
@@ -78,9 +114,9 @@ export function MapStage({
           onNext={next ? () => go(next) : undefined}
         />
       </div>
-      {stop && (
+      {popupStop && (
         <StopModal
-          stop={stop}
+          stop={popupStop}
           labels={content.labels}
           onClose={() => {
             // Return focus to the pill of the stop the reader was on (or the tour button after the intro).
