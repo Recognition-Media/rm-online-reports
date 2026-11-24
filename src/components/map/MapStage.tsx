@@ -9,14 +9,10 @@ const H = 900
 
 export function MapStage({
   config,
-  locked,
-  onUnlock,
   selectedId,
   onSelect,
 }: {
   config: MapReportConfig
-  locked: boolean
-  onUnlock: () => void
   selectedId: string | null
   onSelect: (id: string | null) => void
 }) {
@@ -42,7 +38,7 @@ export function MapStage({
   }, [selectedId, onSelect])
 
   return (
-    <section id="map" className={`map-stage-wrap${locked ? ' is-locked' : ''}`}>
+    <section id="map" className="map-stage-wrap">
       <header className="map-header">
         {/* eslint-disable-next-line @next/next/no-img-element -- static export, plain img like the other templates */}
         <img className="map-header-logo" src={assetPath(content.logo.src)} alt={content.logo.alt} />
@@ -51,22 +47,12 @@ export function MapStage({
         </div>
         <div aria-hidden="true" />
       </header>
-      {/* inert: while locked, nothing in the blurred field can be focused, clicked or read. */}
-      <div className="map-stage" ref={stageRef} inert={locked}>
+      <div className="map-stage" ref={stageRef}>
         <div className="map-canvas" style={{ transform: `translate(-50%, -50%) scale(${scale})` }}>
           <Center selectedId={selectedId} onSelect={onSelect} />
         </div>
-        {selectedId && !locked && <Panel id={selectedId} onClose={() => onSelect(null)} />}
+        {selectedId && <Panel id={selectedId} onClose={() => onSelect(null)} />}
       </div>
-      {locked && (
-        <div className="map-focus-lock">
-          <p>{content.focusLock.eyebrow}</p>
-          <h2>{content.focusLock.headline}</h2>
-          <button type="button" className="map-button" onClick={onUnlock}>
-            {content.focusLock.button}
-          </button>
-        </div>
-      )}
     </section>
   )
 }

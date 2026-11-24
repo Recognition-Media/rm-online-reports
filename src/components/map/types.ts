@@ -37,11 +37,6 @@ export interface MapContent {
   tickerLabel: string
   /** Things people remembered, scrolling along the bottom of the landing. */
   ticker: TickerItem[]
-  focusLock: {
-    eyebrow: string
-    headline: string
-    button: string
-  }
   gate: {
     title: string
     subhead: string

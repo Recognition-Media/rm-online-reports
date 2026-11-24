@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Report } from '@/sanity/types'
 import { AnalyticsScripts } from '@/components/AnalyticsScripts'
 import { getMapReport } from './reports'
@@ -20,6 +20,14 @@ export function ReportView({ report }: { report: Report }) {
   const config = getMapReport(report.slug.current)
   const { hasAccess, grantAccess } = useReportAccess(report)
   const [showGate, setShowGate] = useState(false)
+  // Until the reader clicks Explore (and signs up, if needed) the report isn't
+  // on the page at all, so the landing can't be scrolled past (Anthem pattern).
+  const [entered, setEntered] = useState(false)
+
+  // Once the report mounts, jump down to it.
+  useEffect(() => {
+    if (entered) document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' })
+  }, [entered])
   const [selectedId, setSelectedId] = useState<string | null>(null)
 
   return (
@@ -28,19 +36,16 @@ export function ReportView({ report }: { report: Report }) {
       <Landing
         content={config.content}
         onExplore={() => {
-          if (hasAccess) document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' })
-          else setShowGate(true)
+          if (!hasAccess) setShowGate(true)
+          else if (entered) document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' })
+          else setEntered(true)
         }}
       >
         <Ticker label={config.content.tickerLabel} items={config.content.ticker} />
       </Landing>
-      <MapStage
-        config={config}
-        locked={!hasAccess}
-        onUnlock={() => setShowGate(true)}
-        selectedId={selectedId}
-        onSelect={setSelectedId}
-      />
+      {entered && (
+        <MapStage config={config} selectedId={selectedId} onSelect={setSelectedId} />
+      )}
       {showGate && (
         <SignupGate
           report={report}
@@ -50,7 +55,7 @@ export function ReportView({ report }: { report: Report }) {
           onComplete={() => {
             grantAccess()
             setShowGate(false)
-            document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' })
+            setEntered(true)
           }}
         />
       )}

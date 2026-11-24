@@ -43,11 +43,6 @@ export const content: MapContent = {
     { text: "Yung Lean 'Storm'", color: colorOf('emotion') },
     { text: "Jacquemus x Simon's grandma", color: colorOf('novelty') },
   ],
-  focusLock: {
-    eyebrow: 'The report is out of focus',
-    headline: 'Get the report to bring it into focus.',
-    button: 'Get the report ↑',
-  },
   gate: {
     title: 'Get By Popular Demand',
     subhead: "What people remembered from this year's Internet, why, and what Webby Judges think makes work last.",
