@@ -103,11 +103,10 @@
 @media (prefers-reduced-motion: reduce) { .map-root .map-ticker-track { animation: none; } }
 
 /* Stage: a fixed 1440×900 design canvas scaled to fit */
-.map-root .map-stage-wrap { position: relative; }
-.map-root .map-stage-wrap { padding-top: var(--map-header-height); }
-.map-root .map-stage { position: relative; height: calc(100dvh - var(--map-header-height) - var(--map-tour-height, 0px)); overflow: hidden; background: var(--map-ground); }
+.map-root .map-stage-wrap { position: relative; padding-top: var(--map-header-height); overflow: hidden; background: var(--map-ground); }
+.map-root .map-stage { position: relative; height: calc(100dvh - var(--map-header-height) - var(--map-tour-height, 0px)); overflow: hidden; }
 /* Background art, bled slightly past the edges so the artwork's soft corners never show. */
-.map-root .map-stage::before { content: ''; position: absolute; inset: -2%; background: var(--map-report-bg) center / cover no-repeat; opacity: var(--map-report-bg-opacity); pointer-events: none; }
+.map-root .map-stage-wrap::before { content: ''; position: absolute; top: var(--map-header-height); left: -2%; right: -2%; bottom: -2%; background: var(--map-report-bg) center / cover no-repeat; opacity: var(--map-report-bg-opacity); pointer-events: none; }
 .map-root .map-canvas { z-index: 1; }
 .map-root .map-canvas { position: absolute; left: 50%; top: 50%; width: 1440px; height: 900px; transform-origin: center; }
 
@@ -203,7 +202,8 @@
 .map-root .map-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
 /* Bottom navigation on the field page (stays usable while a stop is open) */
-.map-root .map-band { position: relative; z-index: 32; background: var(--map-topbar-solid-bg); color: var(--map-topbar-solid-text); }
+/* No band color: the nav sits on the field's own background, so the field reads full-height. */
+.map-root .map-band { position: relative; z-index: 32; color: var(--map-ink); }
 .map-root .map-tour { display: flex; align-items: center; gap: 12px; height: var(--map-tour-height); padding: 0 var(--map-gutter); }
 .map-root .map-tour-hint { flex: 1; margin: 0; font-weight: var(--map-subhead-weight); font-size: 15px; }
 .map-root .map-tour-arrow {
