@@ -106,7 +106,10 @@
 /* Stage: a fixed 1440×900 design canvas scaled to fit */
 .map-root .map-stage-wrap { position: relative; }
 .map-root .map-stage-wrap { padding-top: var(--map-header-height); }
-.map-root .map-stage { position: relative; height: calc(100dvh - var(--map-header-height)); overflow: hidden; }
+.map-root .map-stage { position: relative; height: calc(100dvh - var(--map-header-height)); overflow: hidden; background: var(--map-ground); }
+/* Background art, bled slightly past the edges so the artwork's soft corners never show. */
+.map-root .map-stage::before { content: ''; position: absolute; inset: -2%; background: var(--map-report-bg) center / cover no-repeat; opacity: var(--map-report-bg-opacity); pointer-events: none; }
+.map-root .map-canvas { z-index: 1; }
 .map-root .map-canvas { position: absolute; left: 50%; top: 50%; width: 1440px; height: 900px; transform-origin: center; }
 
 /* Side panel */

@@ -88,6 +88,9 @@
 
   /* Landing background */
   --map-landing-bg: url('/map/w31/landing-bg.jpg');
+  /* Report background: beige with brand color art at the left and bottom-right edges */
+  --map-report-bg: url('/map/w31/report-bg.jpg');
+  --map-report-bg-opacity: 0.3;
 
   /* Sign-up gate */
   --map-gate-overlay: color-mix(in srgb, var(--w31-ink) 55%, transparent);
