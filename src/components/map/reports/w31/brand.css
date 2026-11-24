@@ -107,7 +107,7 @@
 .map-root.map-w31 .w31-pole { position: absolute; top: 150px; display: flex; align-items: baseline; gap: 16px; }
 .map-root.map-w31 .w31-pole-meaning { left: 280px; }
 .map-root.map-w31 .w31-pole-form { right: 280px; }
-.map-root.map-w31 .w31-pole-name { font-family: var(--map-font-display-open); font-size: var(--map-size-pole); text-transform: uppercase; }
+.map-root.map-w31 .w31-pole-name { font-family: var(--map-font-display); font-size: var(--map-size-pole); text-transform: uppercase; }
 .map-root.map-w31 .w31-pole-pct { font-family: var(--map-font-display); font-size: 24px; }
 .map-root.map-w31 .w31-divider { position: absolute; top: 230px; bottom: 120px; border-left: 1.5px dashed var(--map-muted); }
 .map-root.map-w31 .w31-blob {

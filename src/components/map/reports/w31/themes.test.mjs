@@ -23,3 +23,14 @@ test('every theme uses a Webby 31 brand color from brand.css', () => {
     assert.match(t.ink, /^var\(--w31-(ink|beige)\)$/, `${t.id} ink ${t.ink}`)
   }
 })
+
+test('with the real data, blobs on the same side barely overlap after spreading', async () => {
+  const { spreadPositions, BLOB_RADIUS } = await import('./themeMath.ts')
+  const s = spreadPositions(computeThemeStats(themes), 1.15)
+  for (const a of s.themes) for (const b of s.themes) {
+    if (a.id >= b.id || a.pole !== b.pole || !a.size || !b.size) continue
+    const d = Math.hypot(a.x - b.x, a.y - b.y)
+    const min = (a.size + b.size) * BLOB_RADIUS
+    assert.ok(d >= min * 0.97, `${a.id} and ${b.id} overlap: ${Math.round(d)} < ${Math.round(min)}`)
+  }
+})

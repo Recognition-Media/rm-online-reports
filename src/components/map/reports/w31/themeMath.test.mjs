@@ -107,3 +107,29 @@ test('assertValidThemes throws on bad data so the page build fails loudly', asyn
   assert.doesNotThrow(() => assertValidThemes([t('a', 'meaning', 1)]))
   assert.throws(() => assertValidThemes([t('a', 'meaning', 1), t('a', 'form', -12)]), /themes\.ts[\s\S]*duplicate id "a"[\s\S]*count/)
 })
+
+test('spreadPositions pushes blobs away from the center of their side', async () => {
+  const { spreadPositions } = await import('./themeMath.ts')
+  const s = computeThemeStats([
+    t('a', 'meaning', 10, { position: { x: 350, y: 450 } }),
+    t('b', 'meaning', 10, { position: { x: 500, y: 600 } }),
+  ])
+  const out = spreadPositions(s, 1.5)
+  // side center is (425, 525); each blob ends up 1.5× as far from it
+  assert.deepEqual([out.themes[0].x, out.themes[0].y], [313, 413])
+  assert.deepEqual([out.themes[1].x, out.themes[1].y], [538, 638])
+})
+
+test('spreadPositions never lets a blob cross the center line', async () => {
+  const { spreadPositions } = await import('./themeMath.ts')
+  const s = computeThemeStats([
+    t('m1', 'meaning', 50, { position: { x: 400, y: 450 } }),
+    t('m2', 'meaning', 50, { position: { x: 700, y: 450 } }),
+    t('f1', 'form', 50, { position: { x: 740, y: 450 } }),
+    t('f2', 'form', 50, { position: { x: 1000, y: 450 } }),
+  ])
+  for (const b of spreadPositions(s, 1.15).themes) {
+    if (b.pole === 'meaning') assert.ok(b.x + b.size / 2 <= CANVAS.divider, `${b.id} right edge ${b.x + b.size / 2}`)
+    else assert.ok(b.x - b.size / 2 >= CANVAS.divider, `${b.id} left edge ${b.x - b.size / 2}`)
+  }
+})

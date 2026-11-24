@@ -134,6 +134,75 @@ export function computeThemeStats(themes: Theme[]): ThemeSummary {
   }
 }
 
+/** Collision radius as a fraction of blob size (the shapes are polygons, so a bit under half). */
+export const BLOB_RADIUS = 0.42
+
+/** Where blobs may sit on the canvas (below the MEANING / FORM labels, inside the dashed line's height). */
+const FIELD = { top: 250, bottom: 790, left: 170, right: 1270 }
+
+/**
+ * Spreads each side's blobs away from that side's center by `factor`
+ * (1.15 = 15% more room), then gently pushes overlapping blobs apart
+ * while keeping every blob on its own side of the center line and
+ * close to its spread-out spot. Deterministic: same data, same layout.
+ */
+export function spreadPositions(summary: ThemeSummary, factor: number): ThemeSummary {
+  const center: Record<Pole, { x: number; y: number }> = { meaning: { x: 0, y: 0 }, form: { x: 0, y: 0 } }
+  for (const pole of ['meaning', 'form'] as Pole[]) {
+    const side = summary.themes.filter((t) => t.pole === pole)
+    if (!side.length) continue
+    center[pole] = {
+      x: side.reduce((s, t) => s + t.x, 0) / side.length,
+      y: side.reduce((s, t) => s + t.y, 0) / side.length,
+    }
+  }
+  const targets = summary.themes.map((t) => {
+    const c = center[t.pole]
+    return { x: c.x + (t.x - c.x) * factor, y: c.y + (t.y - c.y) * factor }
+  })
+  const pos = targets.map((p) => ({ ...p }))
+
+  const keepInBounds = (i: number) => {
+    const t = summary.themes[i]
+    const r = t.size * BLOB_RADIUS
+    const half = t.size / 2
+    const p = pos[i]
+    if (t.pole === 'meaning') p.x = Math.min(Math.max(p.x, FIELD.left + r), CANVAS.divider - half)
+    else p.x = Math.max(Math.min(p.x, FIELD.right - r), CANVAS.divider + half)
+    p.y = Math.min(Math.max(p.y, FIELD.top + r), FIELD.bottom - r)
+  }
+
+  for (let iter = 0; iter < 400; iter++) {
+    for (let i = 0; i < pos.length; i++) {
+      for (let j = i + 1; j < pos.length; j++) {
+        const a = summary.themes[i]
+        const b = summary.themes[j]
+        if (a.pole !== b.pole || !a.size || !b.size) continue
+        const min = (a.size + b.size) * BLOB_RADIUS
+        let dx = pos[j].x - pos[i].x
+        let dy = pos[j].y - pos[i].y
+        let d = Math.hypot(dx, dy)
+        if (d >= min) continue
+        if (d < 0.001) { dx = 1; dy = 0; d = 1 }
+        const push = (min - d) / 2
+        pos[i].x -= (dx / d) * push
+        pos[i].y -= (dy / d) * push
+        pos[j].x += (dx / d) * push
+        pos[j].y += (dy / d) * push
+      }
+    }
+    for (let i = 0; i < pos.length; i++) {
+      // Light pull back toward the spread-out spot keeps the mockup's arrangement.
+      pos[i].x += (targets[i].x - pos[i].x) * 0.01
+      pos[i].y += (targets[i].y - pos[i].y) * 0.01
+      keepInBounds(i)
+    }
+  }
+
+  const themes = summary.themes.map((t, i) => ({ ...t, x: Math.round(pos[i].x), y: Math.round(pos[i].y) }))
+  return { ...summary, themes }
+}
+
 export function rankPole(summary: ThemeSummary, pole: Pole): ThemeStat[] {
   return summary.themes
     .filter((t) => t.pole === pole)
