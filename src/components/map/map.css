@@ -310,3 +310,12 @@
 .map-root .map-slider-scale { font-size: 12px; }
 /* "Trend 0N" takes its stop's color */
 .map-root .map-stop .map-stop-eyebrow { color: var(--stop-color, var(--map-ink)); }
+
+/* Ranked bars, Anthem-style: thin rounded bars, each in its own brand color (cycles through the data palette) */
+.map-root .map-bars-track { height: 8px; border-radius: var(--map-radius-pill); overflow: hidden; }
+.map-root .map-bars-fill { border-radius: var(--map-radius-pill); }
+.map-root .map-bars li:nth-child(5n+1) .map-bars-fill { background: var(--map-data-1); }
+.map-root .map-bars li:nth-child(5n+2) .map-bars-fill { background: var(--map-data-2); }
+.map-root .map-bars li:nth-child(5n+3) .map-bars-fill { background: var(--map-data-3); }
+.map-root .map-bars li:nth-child(5n+4) .map-bars-fill { background: var(--map-data-4); }
+.map-root .map-bars li:nth-child(5n+5) .map-bars-fill { background: var(--map-data-5, var(--map-data-1)); }

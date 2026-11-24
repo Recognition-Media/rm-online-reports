@@ -44,6 +44,7 @@
   --map-data-2: var(--w31-pink);
   --map-data-3: var(--w31-yellow);
   --map-data-4: var(--w31-blue);
+  --map-data-5: var(--w31-green);
   /* Stop drawers (mockup style) */
   --map-stop-left: var(--w31-white);
   --map-stop-paper: color-mix(in srgb, var(--w31-beige) 45%, var(--w31-white));
