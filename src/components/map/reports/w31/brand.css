@@ -41,13 +41,15 @@
   /* Type */
   /* Font roles (house rules):
      display = large headers + data numbers  → Terminal Grotesque
-     subhead = subheaders (e.g. About the Report) → GT Standard
+     subhead = subheaders (e.g. About the Report) → Aktiv Grotesk Bold
      body    = body copy, labels, buttons     → Aktiv Grotesk
      ticker  = the scrolling ticker (exempt from the rules; keeps its look) */
   --map-font-display: 'W31 Terminal Grotesque', 'Aktiv Grotesk', monospace;
   --map-font-display-open: 'W31 Terminal Grotesque Open', 'W31 Terminal Grotesque', monospace;
-  /* GT Standard files not added yet: falls back to Aktiv Grotesk until they are. */
-  --map-font-subhead: 'W31 GT Standard', 'Aktiv Grotesk', -apple-system, sans-serif;
+  /* 'aktiv-grotesk' (Adobe Fonts kit in the site layout) has real Bold;
+     the self-hosted 'Aktiv Grotesk' only has Regular + Medium. */
+  --map-font-subhead: 'aktiv-grotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+  --map-subhead-weight: 700;
   --map-font-body: 'Aktiv Grotesk', 'aktiv-grotesk', -apple-system, sans-serif;
   --map-font-ticker: var(--map-font-display);
   --map-size-hero: clamp(72px, 12vw, 232px);
@@ -111,8 +113,8 @@
 .map-root.map-w31 .w31-panel-stat { display: flex; align-items: center; gap: 32px; margin: 40px 0 24px; }
 .map-root.map-w31 .w31-panel-swatch { width: 96px; height: 96px; }
 .map-root.map-w31 .w31-panel-pct { font-family: var(--map-font-display-open); font-size: var(--map-size-panel-pct); line-height: 1; }
-.map-root.map-w31 .w31-panel-headline { margin: 0 0 16px; font-family: var(--map-font-subhead); font-weight: 400; font-size: var(--map-size-panel-headline); line-height: 1.05; font-style: normal; }
+.map-root.map-w31 .w31-panel-headline { margin: 0 0 16px; font-family: var(--map-font-subhead); font-weight: var(--map-subhead-weight); font-size: var(--map-size-panel-headline); line-height: 1.05; font-style: normal; }
 .map-root.map-w31 .w31-panel-copy { margin: 0 0 40px; line-height: 1.6; }
 .map-root.map-w31 .w31-panel-answer { margin: 0 0 16px; padding: 20px 24px; background: color-mix(in srgb, var(--map-ink) 6%, transparent); }
-.map-root.map-w31 .w31-panel-answer figcaption { font-family: var(--map-font-subhead); font-size: 20px; }
+.map-root.map-w31 .w31-panel-answer figcaption { font-family: var(--map-font-subhead); font-weight: var(--map-subhead-weight); font-size: 20px; }
 .map-root.map-w31 .w31-panel-answer blockquote { margin: 8px 0 0; line-height: 1.5; }

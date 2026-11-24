@@ -16,7 +16,7 @@
   padding: 0 var(--map-gutter); border-bottom: 1.5px solid var(--map-ink); background: var(--map-ground);
 }
 .map-root .map-header-logo { height: var(--map-header-logo-height); width: auto; }
-.map-root .map-header-title { font-family: var(--map-font-subhead); font-size: var(--map-size-title); }
+.map-root .map-header-title { font-family: var(--map-font-subhead); font-weight: var(--map-subhead-weight); font-size: var(--map-size-title); }
 .map-root .map-header-title span { color: var(--map-muted); }
 
 /* Landing: centered lockup, title and subtitle over the background art */
@@ -50,7 +50,7 @@
   padding: 32px; border: 1.5px solid var(--map-ink); background: var(--map-info-bg); color: var(--map-ink);
   text-align: left; font-family: var(--map-font-body);
 }
-.map-root .map-info-dropdown h2 { margin: 0 48px 16px 0; font-family: var(--map-font-subhead); font-weight: 400; font-size: var(--map-size-info-title); line-height: 1.05; font-style: normal; }
+.map-root .map-info-dropdown h2 { margin: 0 48px 16px 0; font-family: var(--map-font-subhead); font-weight: var(--map-subhead-weight); font-size: var(--map-size-info-title); line-height: 1.05; font-style: normal; }
 .map-root .map-info-dropdown p { margin: 0 0 12px; font-size: var(--map-size-body); line-height: 1.6; }
 .map-root .map-info-dropdown p:last-child { margin-bottom: 0; }
 .map-root .map-info-close {
@@ -88,7 +88,7 @@
   padding: 40px; border: 1.5px solid var(--map-ink); background: var(--map-ground); text-align: center;
 }
 .map-root .map-focus-lock p { margin: 0; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; }
-.map-root .map-focus-lock h2 { margin: 16px 0 24px; font-family: var(--map-font-subhead); font-weight: 400; font-size: 34px; }
+.map-root .map-focus-lock h2 { margin: 16px 0 24px; font-family: var(--map-font-subhead); font-weight: var(--map-subhead-weight); font-size: 34px; }
 .map-root .map-button {
   padding: 12px 24px; border: 0; border-radius: var(--map-radius-pill); background: var(--map-ink);
   color: var(--map-ground); font-family: var(--map-font-body); font-weight: 500; font-size: 16px; cursor: pointer;
