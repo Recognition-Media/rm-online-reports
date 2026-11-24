@@ -5,7 +5,7 @@ import { assetPath } from '@/lib/assetPath'
 import type { InfoPanel, MapContent } from './types'
 import { InfoDropdown } from './InfoDropdown'
 
-export function Landing({ content }: { content: MapContent }) {
+export function Landing({ content, onExplore }: { content: MapContent; onExplore: () => void }) {
   const { landing } = content
   const [open, setOpen] = useState<string | null>(null)
   const close = useCallback(() => setOpen(null), [])
@@ -53,6 +53,9 @@ export function Landing({ content }: { content: MapContent }) {
           ))}
         </h1>
         <p className="map-subtitle">{landing.subtitle}</p>
+        <button type="button" className="map-cta" onClick={onExplore}>
+          {landing.cta} <span aria-hidden="true">↓</span>
+        </button>
       </div>
     </section>
   )

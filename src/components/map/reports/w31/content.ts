@@ -13,6 +13,7 @@ export const content: MapContent = {
   landing: {
     headline: ['By', 'Popular', 'Demand'],
     subtitle: 'A report on what makes work memorable on the Internet in 2026, by The Webby Awards',
+    cta: 'Explore the Report',
     nav: [
       {
         label: 'About the Report',
@@ -28,24 +29,19 @@ export const content: MapContent = {
       { label: 'Enter the 31st Webbys', href: 'https://www.webbyawards.com/', primary: true },
     ],
   },
-  prompt: {
-    question: 'What stuck with you on the Internet this year?',
-    placeholder: 'Type it here',
-    button: 'Drop it in',
-    ticker: [
-      { text: "'Punch' the baby monkey", color: colorOf('delight') },
-      { text: "Bad Bunny's Super Bowl halftime", color: colorOf('novelty') },
-      { text: 'GAP x KATSEYE', color: colorOf('insight') },
-      { text: 'Jimothy the raccoon', color: colorOf('craft') },
-      { text: 'Subway Takes', color: colorOf('voice') },
-      { text: 'Fat Bear Week', color: colorOf('narrative') },
-      { text: 'Mariah opening Christmas season', color: colorOf('stickiness') },
-      { text: 'Las Culturistas x Nicole Kidman', color: colorOf('insight') },
-      { text: 'M&S store deep-dives', color: colorOf('craft') },
-      { text: "Yung Lean 'Storm'", color: colorOf('emotion') },
-      { text: "Jacquemus x Simon's grandma", color: colorOf('novelty') },
-    ],
-  },
+  ticker: [
+    { text: "'Punch' the baby monkey", color: colorOf('delight') },
+    { text: "Bad Bunny's Super Bowl halftime", color: colorOf('novelty') },
+    { text: 'GAP x KATSEYE', color: colorOf('insight') },
+    { text: 'Jimothy the raccoon', color: colorOf('craft') },
+    { text: 'Subway Takes', color: colorOf('voice') },
+    { text: 'Fat Bear Week', color: colorOf('narrative') },
+    { text: 'Mariah opening Christmas season', color: colorOf('stickiness') },
+    { text: 'Las Culturistas x Nicole Kidman', color: colorOf('insight') },
+    { text: 'M&S store deep-dives', color: colorOf('craft') },
+    { text: "Yung Lean 'Storm'", color: colorOf('emotion') },
+    { text: "Jacquemus x Simon's grandma", color: colorOf('novelty') },
+  ],
   focusLock: {
     eyebrow: 'The report is out of focus',
     headline: 'Get the report to bring it into focus.',

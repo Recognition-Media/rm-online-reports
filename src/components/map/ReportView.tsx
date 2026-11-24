@@ -5,7 +5,7 @@ import type { Report } from '@/sanity/types'
 import { AnalyticsScripts } from '@/components/AnalyticsScripts'
 import { getMapReport } from './reports'
 import { Landing } from './Landing'
-import { PromptBar } from './PromptBar'
+import { Ticker } from './Ticker'
 import { MapStage } from './MapStage'
 import { SignupGate } from './SignupGate'
 import { useReportAccess } from './useReportAccess'
@@ -25,8 +25,14 @@ export function ReportView({ report }: { report: Report }) {
   return (
     <main className={`map-root ${config.className}`}>
       <AnalyticsScripts report={report} />
-      <Landing content={config.content} />
-      <PromptBar prompt={config.content.prompt} />
+      <Landing
+        content={config.content}
+        onExplore={() => {
+          if (hasAccess) document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' })
+          else setShowGate(true)
+        }}
+      />
+      <Ticker items={config.content.ticker} />
       <MapStage
         config={config}
         locked={!hasAccess}
@@ -38,6 +44,7 @@ export function ReportView({ report }: { report: Report }) {
         <SignupGate
           report={report}
           copy={config.content.gate}
+          logo={config.content.logo}
           onClose={() => setShowGate(false)}
           onComplete={() => {
             grantAccess()

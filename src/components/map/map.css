@@ -22,7 +22,7 @@
 /* Landing: centered lockup, title and subtitle over the background art */
 .map-root .map-landing {
   position: relative; display: flex; align-items: center; justify-content: center;
-  min-height: calc(100dvh - var(--map-bar-height) * 2); padding: 48px var(--map-gutter);
+  min-height: calc(100dvh - var(--map-ticker-height)); padding: 48px var(--map-gutter);
   background: var(--map-landing-bg) center / cover no-repeat, var(--map-accent);
 }
 .map-root .map-nav { position: absolute; top: 48px; right: var(--map-gutter); display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
@@ -44,6 +44,15 @@
   font-size: var(--map-size-lead); line-height: 1.15; font-weight: 500; font-style: normal;
 }
 
+/* Main landing button (opens the sign-up gate) */
+.map-root .map-cta {
+  margin-top: var(--map-hero-gap); padding: 16px 32px; border: 0; border-radius: var(--map-radius-pill);
+  background: var(--map-cta-bg); color: var(--map-cta-text); font-family: var(--map-font-body); font-weight: 500;
+  font-size: var(--map-size-cta); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+}
+.map-root .map-cta span { margin-left: 8px; }
+.map-root .map-cta:hover { transform: translateY(-1px); }
+
 /* Info drop-down under a nav button (e.g. About the Report) */
 .map-root .map-info-dropdown {
   position: absolute; top: calc(100% + 12px); right: 0; z-index: 30; width: min(480px, calc(100vw - 32px));
@@ -58,20 +67,8 @@
   border-radius: var(--map-radius-pill); background: transparent; color: var(--map-ink); font-size: 20px; line-height: 1; cursor: pointer;
 }
 
-/* Prompt bar */
-.map-root .map-prompt { position: sticky; bottom: 0; z-index: 20; background: var(--map-bar); color: var(--map-bar-text); }
-.map-root .map-prompt-form { display: flex; align-items: center; gap: 16px; padding: 16px var(--map-gutter) 8px; flex-wrap: wrap; }
-.map-root .map-prompt-form label { font-family: var(--map-font-body); font-weight: 500; font-size: 18px; }
-.map-root .map-prompt-form input {
-  width: min(400px, 100%); padding: 12px 20px; border: 0; border-radius: var(--map-radius-pill);
-  background: var(--map-ground); color: var(--map-ink); font-size: var(--map-size-body);
-}
-.map-root .map-prompt-form button {
-  padding: 12px 24px; border: 0; border-radius: var(--map-radius-pill); background: var(--map-accent);
-  color: var(--map-ink); font-family: var(--map-font-body); font-weight: 500; font-size: 16px; cursor: pointer;
-}
-.map-root .map-prompt-form button:disabled { opacity: 0.6; cursor: default; }
-.map-root .map-ticker { overflow: hidden; padding: 8px 0 14px; }
+/* Ticker strip */
+.map-root .map-ticker { overflow: hidden; height: var(--map-ticker-height); display: flex; align-items: center; background: var(--map-bar); color: var(--map-bar-text); }
 .map-root .map-ticker-track { display: flex; gap: 56px; width: max-content; animation: map-ticker 60s linear infinite; }
 .map-root .map-ticker-item { display: flex; align-items: center; gap: 12px; font-family: var(--map-font-ticker); font-size: 20px; white-space: nowrap; }
 .map-root .map-ticker-dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -80,7 +77,7 @@
 
 /* Stage: a fixed 1440×900 design canvas scaled to fit */
 .map-root .map-stage-wrap { position: relative; }
-.map-root .map-stage { position: relative; height: calc(100dvh - var(--map-header-height) - var(--map-bar-height)); overflow: hidden; }
+.map-root .map-stage { position: relative; height: calc(100dvh - var(--map-header-height)); overflow: hidden; }
 .map-root .map-canvas { position: absolute; left: 50%; top: 50%; width: 1440px; height: 900px; transform-origin: center; }
 .map-root .map-stage-wrap.is-locked .map-stage { filter: blur(14px); pointer-events: none; user-select: none; }
 .map-root .map-focus-lock {

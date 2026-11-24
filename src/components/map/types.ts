@@ -30,14 +30,12 @@ export interface MapContent {
     /** One entry per line of the big title. */
     headline: string[]
     subtitle: string
+    /** Main button: opens the sign-up gate, or scrolls into the report once signed up. */
+    cta: string
     nav: NavLink[]
   }
-  prompt: {
-    question: string
-    placeholder: string
-    button: string
-    ticker: TickerItem[]
-  }
+  /** Things people remembered, scrolling along the bottom of the landing. */
+  ticker: TickerItem[]
   focusLock: {
     eyebrow: string
     headline: string

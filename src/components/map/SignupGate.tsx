@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import type { Report, FormField } from '@/sanity/types'
 import { trackSignupConversion } from '@/lib/analytics'
 import { buildCioIdentity } from '@/lib/cioIdentity'
+import { assetPath } from '@/lib/assetPath'
 import type { MapContent } from './types'
 
 // One theme for map reports. Values are CSS variables from the report's
@@ -50,7 +51,7 @@ function FieldInput({ field, value, onChange }: { field: FormField; value: strin
   )
 }
 
-export function SignupGate({ report, copy, onComplete, onClose }: { report: Report; copy: MapContent['gate']; onComplete: () => void; onClose?: () => void }) {
+export function SignupGate({ report, copy, logo, onComplete, onClose }: { report: Report; copy: MapContent['gate']; logo: MapContent['logo']; onComplete: () => void; onClose?: () => void }) {
   const [formData, setFormData] = useState<Record<string, string>>({})
   const [consented, setConsented] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -169,6 +170,11 @@ export function SignupGate({ report, copy, onComplete, onClose }: { report: Repo
 
           <form onSubmit={handleSubmit} className="flex flex-col min-h-0">
             <div className="gate-scroll min-h-0 overflow-y-auto px-5 md:px-10 pt-4 md:pt-6">
+              <div className="mb-2 md:mb-4">
+                {/* eslint-disable-next-line @next/next/no-img-element -- static export, plain img like the other templates */}
+                <img src={assetPath(logo.src)} alt={logo.alt} className="mx-auto w-auto h-[50px] md:h-[64px]" />
+              </div>
+
               <h3
                 className="uppercase font-bold text-xs md:text-sm tracking-wider pb-2 whitespace-pre-line"
                 style={{ color: theme.text }}
