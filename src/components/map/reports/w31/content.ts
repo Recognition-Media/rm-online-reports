@@ -160,7 +160,6 @@ export const content: MapContent = {
       id: 'takeaways',
       number: '06',
       title: 'Takeaways',
-      tourLabel: '06 Takeaways',
       position: { x: 91, y: 610 },
       color: 'var(--w31-watermelon)',
       copy: [],
