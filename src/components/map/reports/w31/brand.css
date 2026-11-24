@@ -50,3 +50,22 @@
   /* Landing background */
   --map-landing-bg: url('/map/w31/colorwash.jpg');
 }
+
+/* Memory Field (drawn on the 1440×900 canvas) */
+.map-root.map-w31 .w31-field { position: absolute; inset: 0; }
+.map-root.map-w31 .w31-dot { position: absolute; border-radius: 50%; background: var(--map-dot); filter: blur(2px); }
+.map-root.map-w31 .w31-pole { position: absolute; top: 150px; display: flex; align-items: baseline; gap: 16px; }
+.map-root.map-w31 .w31-pole-meaning { left: 280px; }
+.map-root.map-w31 .w31-pole-form { right: 280px; }
+.map-root.map-w31 .w31-pole-name { font-family: var(--map-font-display-open); font-size: var(--map-size-pole); text-transform: uppercase; }
+.map-root.map-w31 .w31-pole-pct { font-family: var(--map-font-display); font-size: 24px; }
+.map-root.map-w31 .w31-divider { position: absolute; top: 230px; bottom: 120px; border-left: 1.5px dashed var(--map-muted); }
+.map-root.map-w31 .w31-blob {
+  position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 0; border: 0; background: none; cursor: pointer; transition: opacity 200ms ease, transform 200ms ease;
+}
+.map-root.map-w31 .w31-blob:hover, .map-root.map-w31 .w31-blob.is-selected { transform: scale(1.06); }
+.map-root.map-w31 .w31-blob.is-dimmed { opacity: 0.35; }
+.map-root.map-w31 .w31-blob-shape { position: absolute; inset: 0; filter: blur(var(--map-blob-blur)); }
+.map-root.map-w31 .w31-blob-pct { position: relative; font-family: var(--map-font-display); font-size: var(--map-size-blob-pct); line-height: 1; }
+.map-root.map-w31 .w31-blob-name { position: relative; font-family: var(--map-font-display); font-size: var(--map-size-blob-name); }
