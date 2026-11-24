@@ -28,7 +28,8 @@
 
   /* Color jobs (house rules):
      orange art = backdrop · beige = surfaces · black = text + the one
-     primary button · other palette colors = DATA only (blobs, ticker dots). */
+     primary button · other palette colors = DATA only (blobs, ticker dots).
+     Exception: the sign-up box accent (orange). */
   --map-ink: var(--w31-ink);
   --map-ground: var(--w31-beige);
   --map-surface: var(--w31-beige);
@@ -88,11 +89,13 @@
 
   /* Sign-up gate */
   --map-gate-overlay: color-mix(in srgb, var(--w31-ink) 55%, transparent);
-  --map-gate-frame: var(--w31-ink);
+  /* The one accent allowed outside the data: orange frame, submit button,
+     required-field asterisks and focus line (like Anthem's purple / Telly's pink). */
+  --map-gate-frame: var(--w31-orange);
   --map-gate-card: var(--map-surface);
   --map-gate-text: var(--w31-ink);
-  --map-gate-accent: var(--map-btn-primary-bg);
-  --map-gate-button-text: var(--map-btn-primary-text);
+  --map-gate-accent: var(--w31-orange);
+  --map-gate-button-text: var(--w31-ink);
 }
 
 /* Memory Field (drawn on the 1440×900 canvas) */
