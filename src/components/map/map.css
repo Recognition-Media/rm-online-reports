@@ -267,3 +267,44 @@
 }
 .map-root .map-slider input[type='range']::-moz-range-thumb { width: 36px; height: 36px; border-radius: 50%; background: var(--map-ink); border: 3px solid var(--map-ground); cursor: grab; }
 .map-root .map-slider-answer { top: 6px; height: 36px; background: var(--map-ink); }
+
+/* Exact values from the 11.23 "outer ring node open" export (design/State · outer ring node open-html):
+   no dim/blur over the field; white + cream panels; Terminal eyebrows/title/quote/close. */
+.map-root .map-stop-scrim { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.map-root .map-stop {
+  width: min(900px, 60vw); height: min(640px, calc(100dvh - var(--map-header-height) - var(--map-tour-height, 0px) - 48px));
+  border: 0; background: var(--map-stop-left); box-shadow: 0 30px 80px color-mix(in srgb, var(--map-ink) 16%, transparent);
+}
+.map-root .map-stop-card { height: 100%; }
+.map-root .map-stop-panels { height: 100%; }
+.map-root .map-stop-left {
+  display: flex; flex-direction: column; gap: 16px; padding: 40px; background: var(--map-stop-left);
+  border-right: 1.5px solid color-mix(in srgb, var(--map-ink) 10%, transparent);
+}
+.map-root .map-stop-left p { font-size: 15px; line-height: 1.6; }
+.map-root .map-stop-left .map-voice { margin-top: auto; }
+.map-root .map-stop-right {
+  display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 40px; background: var(--map-stop-paper); border-left: 0;
+}
+.map-root .map-stop-full { padding: 40px; }
+.map-root .map-stop-eyebrow, .map-root .map-stop .map-mod-source {
+  font-family: var(--map-font-display); font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.map-root .map-stop h2 { font-size: 46px; line-height: 0.95; }
+.map-root .map-stop .map-voice-quote, .map-root .map-stop .map-voice-video > blockquote { padding-top: 14px; }
+.map-root .map-stop .map-voice blockquote { font-size: 21px; line-height: 1.18; }
+.map-root .map-stop .map-voice-quote figcaption { margin-top: 8px; font-size: 12px; }
+.map-root .map-stop-close { font-family: var(--map-font-display); font-size: 15px; top: 16px; right: 16px; }
+.map-root .map-stop-controls { top: 16px; right: 16px; }
+.map-root .map-video-row { gap: 16px; }
+.map-root .map-video-thumb { width: 170px; height: 106px; background: var(--map-video-thumb); }
+.map-root .map-video-play { width: 44px; height: 44px; }
+.map-root .map-video-row figcaption { font-size: 13px; line-height: 1.45; }
+.map-root .map-video-row strong { font-size: 18px; }
+.map-root .map-stop .map-mod-question, .map-root .map-stop .map-mod-label { font-size: 13px; line-height: 1.5; }
+.map-root .map-stop .map-mod-big { font-size: 150px; line-height: 0.8; }
+.map-root .map-stop .map-mod-big span { font-size: 30px; }
+.map-root .map-slider input[type='range'] { height: 12px; border-radius: 0; }
+.map-root .map-slider input[type='range']::-webkit-slider-thumb { width: 32px; height: 32px; border: 0; box-shadow: 0 0 0 4px var(--map-stop-paper); }
+.map-root .map-slider input[type='range']::-moz-range-thumb { width: 32px; height: 32px; border: 0; box-shadow: 0 0 0 4px var(--map-stop-paper); }
+.map-root .map-slider-scale { font-size: 12px; }

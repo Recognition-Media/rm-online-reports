@@ -60,7 +60,7 @@ export function MapStage({
   const next = nextStep(steps, step)
 
   return (
-    <section id="map" className="map-stage-wrap">
+    <section id="map" className={`map-stage-wrap${stop ? ' has-stop' : ''}`}>
       <div className="map-stage" ref={stageRef} inert={stop !== null}>
         <div className="map-canvas" style={{ transform: `translate(-50%, calc(-50% + var(--map-canvas-shift, 0px))) scale(${scale})` }}>
           <Center selectedId={selectedId} onSelect={onSelect} />

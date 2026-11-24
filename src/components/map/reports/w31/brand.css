@@ -45,7 +45,9 @@
   --map-data-3: var(--w31-yellow);
   --map-data-4: var(--w31-blue);
   /* Stop drawers (mockup style) */
+  --map-stop-left: var(--w31-white);
   --map-stop-paper: color-mix(in srgb, var(--w31-beige) 45%, var(--w31-white));
+  --map-video-thumb: radial-gradient(circle at 40% 35%, var(--w31-yellow), var(--w31-orange) 60%, var(--w31-watermelon));
   --map-slider-track: linear-gradient(90deg, var(--w31-green), var(--w31-yellow) 45%, var(--w31-orange) 72%, var(--w31-watermelon));
   --map-topbar-solid-bg: var(--w31-ink);
   --map-topbar-solid-text: var(--w31-beige);
@@ -190,3 +192,7 @@
 .map-root.map-w31 .w31-pole-swatch { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
 .map-root.map-w31 .w31-pole-list-name { flex: 1; }
 .map-root.map-w31 .w31-pole-list-pct { font-family: var(--map-font-display); font-size: 18px; }
+
+/* While a stop is open, MEANING / FORM and the center line fade back (as in the mockup) */
+.map-root.map-w31 .w31-pole, .map-root.map-w31 .w31-divider { transition: opacity 600ms ease; }
+.map-root.map-w31 .has-stop .w31-pole, .map-root.map-w31 .has-stop .w31-divider { opacity: 0.15; }
